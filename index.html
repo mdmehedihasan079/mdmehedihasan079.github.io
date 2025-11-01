@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Portfolio</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons (New addition for professional, scalable icons) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Load Inter font -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+        /* ...existing code... */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        .light body {
+            background-color: #ffffff;
+            color: #1f2937;
+        }
+
+        .nav-bg {
+            background-color: #161b22;
+        }
+
+        .light .nav-bg {
+            background-color: #f3f4f6;
+        }
+
+        .card-bg {
+            background-color: #161b22;
+            border-color: #374151;
+            transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .light .card-bg {
+            background-color: #ffffff;
+            border-color: #d1d5db;
+        }
+
+        .glow-shadow-hover:hover {
+            box-shadow: 0 0 3px #0ea5e9, 0 0 15px #0ea5e9, 0 0 20px rgba(14, 165, 233, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .light .glow-shadow-hover:hover {
+            box-shadow: 0 0 3px #38bdf8, 0 0 15px #38bdf8, 0 0 20px rgba(56, 189, 248, 0.1);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+
+        .light ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #304d6d;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #507d9f;
+        }
+
+        .light .text-sky-400 {
+            color: #0e7490;
+        }
+
+        .light .text-gray-400 {
+            color: #4b5563;
+        }
+
+        .light .text-emerald-400 {
+            color: #059669;
+        }
+
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: content-box;
+            padding: 0.75rem 1rem; /* Increased horizontal padding for better spacing */
+            border-radius: 0.5rem; /* Changed from 9999px to match rounded-lg */
+            background-color: #161b22; /* Changed to match card-bg for consistency */
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5); /* Softened the inner shadow */
+        }
+
+        .light .marquee-container {
+            background-color: #f0f8ff;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); 
+            padding: 0.75rem 1rem; /* Matched horizontal padding for light mode */
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee-scroll 30s linear infinite;
+        }
+
+        .marquee-text {
+            font-size: 1.25rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            vertical-align: middle;
+            line-height: 1;
+            color: #b7e0f2;
+            text-shadow: none;
+            margin-right: 4rem;
+            padding: 0 0.5rem;
+        }
+
+        .light .marquee-text {
+            color: #4b5563;
+            text-shadow: none;
+        }
+
+        @keyframes marquee-scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .rotating-title-container {
+            min-height: 2.5rem;
+        }
+
+        #confirmation-message {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        .show {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        @keyframes bufferingTranslate {
+            0% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(4px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .contact-buffering-active {
+            animation: bufferingTranslate 1s ease-in-out infinite alternate;
+        }
+
+        #scrollTopBtn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            transform: translateY(10px);
+            z-index: 1000;
+        }
+
+        #scrollTopBtn.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- ACTIVE NAV UNDERLINE EFFECT --- */
+        .nav-link.pb-2.active-nav {
+            border-bottom: 2.5px solid #38bdf8 !important;
+            color: #38bdf8 !important;
+            font-weight: 600;
+            padding-bottom: 2px;
+        }
+
+        .light .nav-link.pb-2.active-nav {
+            border-bottom: 2.5px solid #0e7490 !important;
+            color: #0e7490 !important;
+        }
+    </style>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-blue': '#1c9cea',
+                        'dark-gray': '#1f2937',
+                        'footer-bg': '#141d26',
+                        'text-light': '#c0c6cc',
+                        'accent-teal': '#2dd4bf',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script>
+        // ...your existing JavaScript code...
+
+        // --- Active Nav Underline on Scroll and Click ---
+        window.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.nav-link.pb-2');
+            const sections = [
+                { id: '#home', el: document.getElementById('home') },
+                { id: '#about-page', el: document.getElementById('about-page') },
+                { id: '#education-page', el: document.getElementById('education-page') },
+                { id: '#skills-page', el: document.getElementById('skills-page') },
+                { id: '#portfolio-page', el: document.getElementById('portfolio-page') },
+                { id: '#contact-page', el: document.getElementById('contact-page') }
+            ];
+
+            function clearActiveLinks() {
+                navLinks.forEach(link => link.classList.remove('active-nav'));
+            }
+
+            function setActiveNav() {
+                let scrollPos = window.scrollY + 90; // Offset for navbar height
+                let currentId = '#home';
+                for (let i = 0; i < sections.length; i++) {
+                    const section = sections[i].el;
+                    if (section && section.offsetTop <= scrollPos) {
+                        currentId = sections[i].id;
+                    }
+                }
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === currentId) {
+                        link.classList.add('active-nav');
+                    } else {
+                        link.classList.remove('active-nav');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', setActiveNav);
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    clearActiveLinks();
+                    this.classList.add('active-nav');
+                });
+            });
+
+            setActiveNav();
+        });
+
+        // ...rest of your JavaScript code...
+    </script>
+</head>
+
+<body class="transition-colors duration-500">
+    <!-- Confirmation Message Box (Replaces alert()) - Needs to be high in the DOM -->
+    <div id="confirmation-message"
+        class="fixed top-5 left-1/2 -translate-x-1/2 z-50 p-4 bg-green-600 text-white rounded-lg shadow-2xl max-w-sm"
+        role="alert">
+        <div class="flex items-center">
+            <!-- Icon: Check Circle -->
+            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 12l2 2l4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <p class="font-medium">Message Sent! We'll be in touch soon.</p>
+        </div>
+    </div>
+
+    <!-- Fixed Navigation Bar -->
+    <nav
+        class="fixed top-0 left-0 w-full nav-bg/95 backdrop-blur-sm z-50 shadow-lg border-b border-gray-700/50 light:border-gray-300/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <!-- LEFT SIDE: Name and Mobile Menu Toggle -->
+                <div class="flex items-center space-x-4 -ml-2">
+                    <a href="#home"
+                        class="text-xl font-bold text-sky-400 transition-all duration-300 transform hover:scale-110 hover:text-white light:hover:text-gray-900 origin-left">
+                        MD Mehedi Hasan
+                    </a>
+                    <!-- Mobile Menu Button (Hamburger) - placeholder, JS not fully implemented for mobile menu -->
+                    <button
+                        class="sm:hidden text-gray-300 light:text-gray-600 p-2 rounded-md hover:bg-sky-700/50 light:hover:bg-sky-200 transition duration-200">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+                <!-- CENTER: Navigation Links (Hidden on mobile) -->
+                <div class="hidden sm:flex sm:flex-1 sm:justify-center sm:space-x-4 items-center">
+                    <!-- ...existing code... -->
+                    <a href="#home"
+                        class="nav-link px-3 py-1.5 pb-2 rounded-md text-sm font-medium text-gray-300 light:text-gray-700 hover:bg-sky-700/50 light:hover:bg-sky-200 hover:text-white light:hover:text-black transition duration-200">Home</a>
+                    <a href="#about-page"
+                        class="nav-link px-3 py-1.5 pb-2 rounded-md text-sm font-medium text-gray-300 light:text-gray-700 hover:bg-sky-700/50 light:hover:bg-sky-200 hover:text-white light:hover:text-black transition duration-200">About</a>
+                    <a href="#education-page"
+                        class="nav-link px-3 py-1.5 pb-2 rounded-md text-sm font-medium text-gray-300 light:text-gray-700 hover:bg-sky-700/50 light:hover:bg-sky-200 hover:text-white light:hover:text-black transition duration-200">Education</a>
+                    <a href="#skills-page"
+                        class="nav-link px-3 py-1.5 pb-2 rounded-md text-sm font-medium text-gray-300 light:text-gray-700 hover:bg-sky-700/50 light:hover:bg-sky-200 hover:text-white light:hover:text-black transition duration-200">My
+                        Skills</a>
+                    <a href="#portfolio-page"
+                        class="nav-link px-3 py-1.5 pb-2 rounded-md text-sm font-medium text-gray-300 light:text-gray-700 hover:bg-sky-700/50 light:hover:bg-sky-200 hover:text-white light:hover:text-black transition duration-200">
+                        Portfolio
+                    </a>
+                    <a href="#contact-page"
+                        class="nav-link px-3 py-1.5 pb-2 rounded-md text-sm font-medium text-gray-300 light:text-gray-700 hover:bg-sky-700/50 light:hover:bg-sky-200 hover:text-white light:hover:text-black transition duration-200">Contact</a>
+                    <!-- ...existing code... -->
+                </div>
+                <!-- RIGHT SIDE: Dark/Light Mode Toggle and Let's Talk Button -->
+                <div class="flex items-center space-x-4">
+                    <!-- Dark/Light Mode Toggle -->
+                    <button id="theme-toggle"
+                        class="p-2 rounded-full hover:bg-sky-700/50 light:hover:bg-sky-200 transition duration-200 text-gray-300">
+                        <svg class="h-6 w-6 text-yellow-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path id="theme-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M20.354 15.354A9 9 0 018.646 3.646 12 12 0 0015.354 20.354z" />
+                        </svg>
+                    </button>
+                    <!-- Let's Talk Button -->
+                    <a href="#contact-page"
+                        class="px-3 py-1.5 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 transition duration-300 text-sm">
+                        Let's Talk
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Row 1: Home (Page 1) -->
+    <section id="home"
+        class="min-h-screen pt-16 flex items-center justify-center p-4 sm:p-8 bg-section transition-colors duration-500">
+        <div
+            class="w-full lg:max-w-6xl mx-auto flex flex-col items-center justify-start card-bg rounded-3xl shadow-2xl p-6 sm:p-12 border-4 border-sky-600/50 transition-all duration-500 glow-shadow-hover">
+
+            <!-- ENHANCED MARQUEE SCROLLER CONTAINER -->
+            <div class="marquee-container w-full max-w-4xl mx-auto mt-2 mb-10">
+                <div class="marquee-content">
+                    <span class="marquee-text">Mechanical Design Engineer | Creating and Rendering High-Quality 3D
+                        Models
+                        | Let’s Bring Ideas to Life!</span>
+                    <span class="marquee-text">Mechanical Design Engineer | Creating and Rendering High-Quality 3D
+                        Models
+                        | Let’s Bring Ideas to Life!</span>
+                </div>
+            </div>
+
+            <!-- TWO-COLUMN LAYOUT FOR MAIN CONTENT -->
+            <div
+                class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full max-w-4xl mx-auto flex-grow">
+                <!-- LEFT COLUMN: Image & Rotating Titles (Centered) -->
+                <div class="flex flex-col items-center justify-center text-center p-4">
+                    <!-- 1. Circular Profile Picture -->
+                    <img src="image/Home.png"
+                        alt="MD Mehedi Hasan Profile Picture"
+                        
+                    <!-- 2. Rotating Title - NOW INSIDE A BOX -->
+                    <div
+                        class="rotating-title-container px-4 py-1.5 rounded-lg bg-gray-700/80 text-white font-semibold text-base light:bg-gray-200/90 light:text-gray-800 transition-colors duration-500 shadow-md">
+                        <span id="rotating-title" class="inline-block transition-opacity duration-500">
+                            <!-- Initial title set by JS -->
+                        </span>
+                    </div>
+                </div>
+                <!-- RIGHT COLUMN: Static Text Block & Button -->
+                <div class="flex flex-col justify-center p-4 text-center lg:text-left">
+                    <h1
+                        class="text-4xl sm:text-5xl font-extrabold text-white light:text-gray-900 mb-2 leading-tight transition-colors duration-500">
+                        I’m Mehedi Hasan
+                    </h1>
+                    <p class="text-xl sm:text-2xl text-sky-400 font-medium mb-4 transition-colors duration-500">
+                        Mechanical Engineer
+                    </p>
+                    <p
+                        class="text-lg text-gray-400 max-w-2xl font-light light:text-gray-600 transition-colors duration-500 lg:max-w-full">
+                        Undergraduate student at RUET. Experienced in CAD Design, 3D Modeling & Rendering and Basic
+                        Programming.
+                    </p>
+                    <a href="#about-page"
+                        class="mt-8 px-8 py-3 bg-sky-600 text-white font-semibold rounded-full shadow-lg hover:bg-sky-700 transform hover:scale-105 transition duration-300 self-center lg:self-start">
+                        Learn More About Me
+                    </a>
+                </div>
+            </div>
+            <!-- END TWO-COLUMN LAYOUT -->
+        </div>
+    </section>
+
+    <!-- Row 2: About Me (Page 2) -->
+    <section id="about-page"
+        class="py-20 pt-16 flex items-center justify-center p-4 sm:p-8 bg-section transition-colors duration-500">
+        <div
+            class="w-full lg:max-w-6xl mx-auto p-8 sm:p-12 card-bg rounded-3xl shadow-xl border border-gray-700 light:border-gray-300 glow-shadow-hover">
+            <h2 class="text-4xl sm:text-5xl font-bold text-sky-400 mb-8 text-center transition-colors duration-500"
+                id="about">About Me</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
+                <!-- LEFT COLUMN: Rectangular Profile Picture (Wider) -->
+                <div class="lg:col-span-2 flex justify-center">
+                    <img src="image/About.png" alt="Mehedi Hasan Profile"
+                        class="w-96 h-72 object-cover rounded-xl border-4 border-sky-400/50 shadow-2xl">
+                </div>
+                <!-- RIGHT COLUMN: Professional Description -->
+                <div
+                    class="lg:col-span-3 text-lg text-gray-300 light:text-gray-700 space-y-4 transition-colors duration-500">
+                    <p>
+                        An enthusiastic undergraduate student pursuing a bachelor's degree in Mechanical Engineering
+                        at Rajshahi University of Engineering and Technology (RUET).
+                    </p>
+                    <p>
+                        With strong skills in Computer-Aided Design (CAD) and SolidWorks, I specialize in
+                        product
+                        design and rendering at an intermediate level.
+                    </p>
+                    <p>
+                        I hold the prestigious Certified SolidWorks Associate (CSWA) and Certified SolidWorks
+                        Professional (CSWP) certifications, reflecting my dedication and expertise in the field.
+                    </p>
+                    <!-- Download CV Option - Updated Icon -->
+                    <a href="your_cv_file_link.pdf" download="Mehedi_Hasan_CV.pdf"
+                        class="inline-flex items-center mt-6 px-6 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 transform hover:scale-[1.02] transition duration-300">
+                        <i data-lucide="download" class="w-5 h-5 mr-2"></i> Download CV
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Row 3: Education & Achievements (Page 3) -->
+    <section id="education-page"
+        class="py-20 pt-16 flex items-center justify-center p-4 sm:p-8 bg-section transition-colors duration-500">
+        <div class="w-full lg:max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Box 1: Education (Updated Icons) -->
+            <div
+                class="card-bg rounded-3xl shadow-xl p-8 border border-gray-700 light:border-gray-300 glow-shadow-hover">
+                <h2 class="text-3xl font-bold text-sky-400 mb-6 transition-colors duration-500">Academic Background</h2>
+                <!-- Increased vertical gap between education items: gap-8 -> gap-14 -->
+                <div class="space-y-14">
+                    <!-- 1. University (B.Sc.) - RUET -->
+                    <div class="flex items-center space-x-6">
+                        <!-- University Logo -->
+                        <div class="w-20 h-20 flex-shrink-0 flex items-center justify-center rounded-lg bg-white/10 p-1">
+                            <img src="image/RUET.png" alt="RUET Logo" class="w-full h-full object-contain rounded-md">
+                        </div>
+                        <div>
+                            <h3
+                                class="text-xl font-semibold text-white light:text-gray-900 transition-colors duration-500">
+                                B.Sc. in Mechanical Engineering</h3>
+                            <p class="text-gray-400 light:text-gray-600 transition-colors duration-500">
+                                Rajshahi University of Engineering &amp; Technology (RUET)
+                            </p>
+                            <p class="text-sm text-gray-500 light:text-gray-500 mt-1">Jan 2023 - Present</p>
+                        </div>
+                    </div>
+                    <!-- 2. College (HSC) - GCC -->
+                    <div class="flex items-center space-x-6">
+                        <!-- College Logo -->
+                        <div class="w-20 h-20 flex-shrink-0 flex items-center justify-center rounded-lg bg-white/10 p-1">
+                            <img src="image/GCC.png" alt="GCC Logo" class="w-full h-full object-contain rounded-md">
+                        </div>
+                        <div>
+                            <h3
+                                class="text-xl font-semibold text-white light:text-gray-900 transition-colors duration-500">
+                                Higher Secondary Certificate (HSC), Science</h3>
+                            <p class="text-gray-400 light:text-gray-600 transition-colors duration-500">
+                                Gazipur Cantonment College (GCC)
+                            </p>
+                            <p class="text-sm text-gray-500 light:text-gray-500 mt-1">
+                                Jun 2019 - Feb 2022 | Grade: Golden GPA 5.00
+                            </p>
+                        </div>
+                    </div>
+                    <!-- 3. School (Primary/Secondary) - Hataykhari -->
+                    <div class="flex items-center space-x-6">
+                        <!-- School Logo -->
+                        <div class="w-20 h-20 flex-shrink-0 flex items-center justify-center rounded-lg bg-white/10 p-1">
+                            <img src="image/HPS.jpg" alt="HPSC Logo" class="w-full h-full object-contain rounded-md">
+                        </div>
+                        <div>
+                            <h3
+                                class="text-xl font-semibold text-white light:text-gray-900 transition-colors duration-500">
+                                School Education (Class 03-10)</h3>
+                            <p class="text-gray-400 light:text-gray-600 transition-colors duration-500">
+                                Hataykhari Public School &amp; College
+                            </p>
+                            <p class="text-sm text-gray-500 light:text-gray-500 mt-1">
+                                Jan 2011 - Feb 2019
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Box 2: Achievements (Updated Icons and Link Buttons) -->
+            <div
+                class="card-bg rounded-3xl shadow-xl p-8 border border-gray-700 light:border-gray-300 glow-shadow-hover">
+                <h2 class="text-3xl font-bold text-sky-400 mb-6 transition-colors duration-500">Professional
+                    Certifications </h2>
+                <div class="space-y-6">
+                    <!-- Certification 1: CSWP -->
+                    <div
+                        class="flex items-center justify-between gap-4 border-b border-gray-700/50 light:border-gray-300/50 pb-4">
+                        <div class="flex items-center space-x-4">
+                            <!-- Certification Logo -->
+                            <img src="image/SW.png" alt="CSWP Logo" class="w-16 h-16 object-contain rounded-lg flex-shrink-0 bg-white/10 p-1">
+                            <div class="flex-grow">
+                                <h3
+                                    class="text-lg font-semibold text-white light:text-gray-900 transition-colors duration-500">
+                                    SOLIDWORKS CAD Design Professional (CSWP)
+                                </h3>
+                                <p class="text-gray-400 light:text-gray-600 text-xs">Dassault Systèmes | Issued Aug 2024
+                                </p>
+                                <p class="text-xs text-gray-500 light:text-gray-500 mt-1">Credential ID C-4BQMETJS76</p>
+                            </div>
+                        </div>
+                        <a href="https://cv.virtualtester.com/qr/?b=SLDWRKS&i=C-4BQMETJS76" target="_blank"
+                            class="inline-flex items-center px-3 py-1 bg-sky-600 text-white text-sm font-medium rounded-lg shadow-md hover:bg-sky-700 transition duration-300 whitespace-nowrap flex-shrink-0">
+                            Show credential <i data-lucide="external-link" class="h-4 w-4 inline-block ml-1"></i>
+                        </a>
+                    </div>
+                    <!-- Certification 2: CSWA -->
+                    <div
+                        class="flex items-center justify-between gap-4 border-b border-gray-700/50 light:border-gray-300/50 pb-4">
+                        <div class="flex items-center space-x-4">
+                            <!-- Certification Logo -->
+                            <img src="image/SW.png" alt="CSWA Logo" class="w-16 h-16 object-contain rounded-lg flex-shrink-0 bg-white/10 p-1">
+                            <div class="flex-grow">
+                                <h3
+                                    class="text-lg font-semibold text-white light:text-gray-900 transition-colors duration-500">
+                                    SOLIDWORKS CAD Design Associate (CSWA)
+                                </h3>
+                                <p class="text-gray-400 light:text-gray-600 text-xs">Dassault Systèmes | Issued Jun 2024
+                                </p>
+                                <p class="text-xs text-gray-500 light:text-gray-500 mt-1">Credential ID C-HE8TOR64A7</p>
+                            </div>
+                        </div>
+                        <a href="https://cv.virtualtester.com/qr/?b=SLDWRKS&i=C-HE8TQR64A7" target="_blank"
+                            class="inline-flex items-center px-3 py-1 bg-sky-600 text-white text-sm font-medium rounded-lg shadow-md hover:bg-sky-700 transition duration-300 whitespace-nowrap flex-shrink-0">
+                            Show credential <i data-lucide="external-link" class="h-4 w-4 inline-block ml-1"></i>
+                        </a>
+                    </div>
+                    <!-- Certification 3: 3DSwymer Associate -->
+                    <div
+                        class="flex items-center justify-between gap-4 border-b border-gray-700/50 light:border-gray-300/50 pb-4">
+                        <div class="flex items-center space-x-4">
+                            <!-- Certification Logo -->
+                            <img src="image/SW.png" alt="3DSwymer Logo" class="w-16 h-16 object-contain rounded-lg flex-shrink-0 bg-white/10 p-1">
+                            <div class="flex-grow">
+                                <h3
+                                    class="text-lg font-semibold text-white light:text-gray-900 transition-colors duration-500">
+                                    3DSwymer Associate
+                                </h3>
+                                <p class="text-gray-400 light:text-gray-600 text-xs">Dassault Systèmes | Issued Sep 2024
+                                </p>
+                                <p class="text-xs text-gray-500 light:text-gray-500 mt-1">Credential ID C-DNRM5W4P7E</p>
+                            </div>
+                        </div>
+                        <a href="https://cv.virtualtester.com/qr/?b=SLDWRKS&i=C-DNRM5W4P7E" target="_blank"
+                            class="inline-flex items-center px-3 py-1 bg-sky-600 text-white text-sm font-medium rounded-lg shadow-md hover:bg-sky-700 transition duration-300 whitespace-nowrap flex-shrink-0">
+                            Show credential <i data-lucide="external-link" class="h-4 w-4 inline-block ml-1"></i>
+                        </a>
+                    </div>
+                    <!-- Certification 4: Manufacturing Associate -->
+                    <div class="flex items-center justify-between gap-4">
+                        <div class="flex items-center space-x-4">
+                            <!-- Certification Logo -->
+                            <img src="image/SW.png" alt="Additive Manufacturing Logo" class="w-16 h-16 object-contain rounded-lg flex-shrink-0 bg-white/10 p-1">
+                            <div class="flex-grow">
+                                <h3
+                                    class="text-lg font-semibold text-white light:text-gray-900 transition-colors duration-500">
+                                    SOLIDWORKS Additive Manufacturing Associate
+                                </h3>
+                                <p class="text-gray-400 light:text-gray-600 text-xs">Dassault Systèmes | Issued Jun 2025
+                                </p>
+                                <p class="text-xs text-gray-500 light:text-gray-500 mt-1">Credential ID C-SUTZCK2BP6</p>
+                            </div>
+                        </div>
+                        <a href="https://cv.virtualtester.com/qr/?b=SLDWRKS&i=C-SUTZCK2BP6" target="_blank"
+                            class="inline-flex items-center px-3 py-1 bg-sky-600 text-white text-sm font-medium rounded-lg shadow-md hover:bg-sky-700 transition duration-300 whitespace-nowrap flex-shrink-0">
+                            Show credential <i data-lucide="external-link" class="h-4 w-4 inline-block ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Row 4: My Skills (Page 4) -->
+    <section id="skills-page"
+        class="py-20 pt-16 flex items-center justify-center p-4 sm:p-8 bg-section transition-colors duration-500">
+        <div class="w-full lg:max-w-6xl mx-auto grid grid-cols-1 gap-8">
+            <div
+                class="card-bg rounded-3xl shadow-xl p-8 border border-gray-700 light:border-gray-300 glow-shadow-hover">
+                <h2 class="text-3xl font-bold text-sky-400 mb-6 transition-colors duration-500">My Skills</h2>
+                <!-- Dynamic Content Container -->
+                <div id="skills-container">
+                    <!-- Skills will be rendered here by JavaScript -->
+                </div>
+                <!-- Skill Group Component Template -->
+                <template id="skill-group-template">
+                    <div class="mb-6">
+                        <h3 class="text-2xl font-semibold mb-4 text-emerald-400"></h3>
+                        <div class="space-y-4">
+                            <!-- Skill items will be appended here -->
+                        </div>
+                    </div>
+                </template>
+                <!-- Skill Item Component Template -->
+                <template id="skill-item-template">
+                    <div
+                        class="skill-item p-3 rounded-lg transform transition duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-sky-500/20 cursor-pointer bg-gray-900/50 light:bg-gray-100 border border-transparent hover:border-sky-500/50">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-lg font-medium text-white light:text-gray-900"></span>
+                            <span class="text-sm font-semibold text-gray-400"></span>
+                        </div>
+                        <!-- Track: Updated to use existing dark/light gray for track -->
+                        <div class="w-full bg-gray-700 light:bg-gray-200 rounded-full h-2.5 shadow-inner">
+                            <!-- Bar: Using secondary-bar gradient for a premium look -->
+                            <div class="bg-gradient-to-r from-sky-600 to-sky-400 h-2.5 rounded-full transition-all duration-1000 ease-out"
+                                style="width: 0;"></div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </section>
+    <!-- Row 4.5: Portfolio (New Section) -->
+  <section id="portfolio-page"
+    class="py-20 pt-16 flex items-center justify-center p-4 sm:p-8 bg-section transition-colors duration-500"
+  >
+    <div class="w-full lg:max-w-6xl mx-auto p-8 card-bg rounded-3xl shadow-xl border border-gray-700 light:border-gray-300 glow-shadow-hover">
+        <h1 class="text-3xl font-bold text-sky-400 mb-4 transition-colors duration-500">
+    3D Modeling & Mechanical Design Showcase
+</h1>
+        <!-- Slider Wrapper: Hides overflow -->
+        <div id="portfolio-slider" class="overflow-hidden relative">
+            <!-- Slider Track: Holds all 12 items side-by-side -->
+            <div id="slider-track" class="slider-track gap-4">
+                <!-- Card 1 -->
+                <div class="neon-card p-6 flex flex-col justify-between">
+                    <img src="https://placehold.co/750x1000/0ea5e9/fff?text=1" alt="Project 1" class="w-full h-[240px] object-cover rounded-lg mb-4">
+                    <h2 class="text-xl font-bold text-blue-300 mb-2">1. 3D Engine Model</h2>
+                    <p class="text-sm text-gray-400 mb-4">Designed a detailed 3D model of a mechanical engine using SolidWorks and rendered it with KeyShot.</p>
+                    <button class="group text-white hover:text-[var(--neon-color)] text-base font-semibold self-start mt-2 underline underline-offset-4">View Project <span class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
+                </div>
+                <!-- Card 2 -->
+                <div class="neon-card p-6 flex flex-col justify-between">
+                    <img src="https://placehold.co/750x1000/0ea5e9/fff?text=2" alt="Project 2" class="w-full h-[240px] object-cover rounded-lg mb-4">
+                    <h2 class="text-xl font-bold text-blue-300 mb-2">2. Portfolio Website</h2>
+                    <p class="text-sm text-gray-400 mb-4">Developed this responsive portfolio using HTML, Tailwind CSS, and JavaScript, focusing on a dark, neon theme.</p>
+                    <button class="group text-white hover:text-[var(--neon-color)] text-base font-semibold self-start mt-2 underline underline-offset-4">View Project <span class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
+                </div>
+                <!-- Card 3 -->
+                <div class="neon-card p-6 flex flex-col justify-between">
+                    <img src="https://placehold.co/750x1000/0ea5e9/fff?text=3" alt="Project 3" class="w-full h-[240px] object-cover rounded-lg mb-4">
+                    <h2 class="text-xl font-bold text-blue-300 mb-2">3. CAD Assembly Project</h2>
+                    <p class="text-sm text-gray-400 mb-4">Created a complex assembly of mechanical parts demonstrating advanced CAD techniques and motion studies.</p>
+                    <button class="group text-white hover:text-[var(--neon-color)] text-base font-semibold self-start mt-2 underline underline-offset-4">View Project <span class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
+                </div>
+                <!-- Card 4 -->
+                <div class="neon-card p-6 flex flex-col justify-between">
+                    <img src="https://placehold.co/750x1000/0ea5e9/fff?text=4" alt="Project 4" class="w-full h-[240px] object-cover rounded-lg mb-4">
+                    <h2 class="text-xl font-bold text-blue-300 mb-2">4. Simulation Analysis</h2>
+                    <p class="text-sm text-gray-400 mb-4">Performed FEA and motion analysis on mechanical components to ensure reliability and structural integrity under load.</p>
+                    <button class="group text-white hover:text-[var(--neon-color)] text-base font-semibold self-start mt-2 underline underline-offset-4">View Project <span class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
+                </div>
+                <!-- Card 5 -->
+                <div class="neon-card p-6 flex flex-col justify-between">
+                    <img src="https://placehold.co/750x1000/0ea5e9/fff?text=5" alt="Project 5" class="w-full h-[240px] object-cover rounded-lg mb-4">
+                    <h2 class="text-xl font-bold text-blue-300 mb-2">5. Product Visualization</h2>
+                    <p class="text-sm text-gray-400 mb-4">Rendered photorealistic images for product marketing and presentations using KeyShot and advanced lighting techniques.</p>
+                    <button class="group text-white hover:text-[var(--neon-color)] text-base font-semibold self-start mt-2 underline underline-offset-4">View Project <span class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
+                </div>
+                <!-- Card 6 -->
+                <div class="neon-card p-6 flex flex-col justify-between">
+                    <img src="https://placehold.co/750x1000/0ea5e9/fff?text=6" alt="Project 6" class="w-full h-[240px] object-cover rounded-lg mb-4">
+                    <h2 class="text-xl font-bold text-blue-300 mb-2">6. Concept Sketches</h2>
+                    <p class="text-sm text-gray-400 mb-4">Created initial concept sketches and digital mockups for client proposals, translating ideas into tangible forms.</p>
+                    <button class="group text-white hover:text-[var(--neon-color)] text-base font-semibold self-start mt-2 underline underline-offset-4">View Project <span class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
+                </div>
+                <!-- Card 7 -->
+                <div class="neon-card p-6 flex flex-col justify-between">
+                    <img src="https://placehold.co/750x1000/0ea5e9/fff?text=7" alt="Project 7" class="w-full h-[240px] object-cover rounded-lg mb-4">
+                    <h2 class="text-xl font-bold text-blue-300 mb-2">7. Reverse Engineering</h2>
+                    <p class="text-sm text-gray-400 mb-4">Recreated legacy parts and assemblies from physical samples using 3D scanning and CAD tools to produce accurate models.</p>
+                    <button class="group text-white hover:text-[var(--neon-color)] text-base font-semibold self-start mt-2 underline underline-offset-4">View Project <span class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
+                </div>
+                <!-- Card 8 -->
+                <div class="neon-card p-6 flex flex-col justify-between">
+                    <img src="https://placehold.co/750x1000/0ea5e9/fff?text=8" alt="Project 8" class="w-full h-[240px] object-cover rounded-lg mb-4">
+                    <h2 class="text-xl font-bold text-blue-300 mb-2">8. Sheet Metal Design</h2>
+                    <p class="text-sm text-gray-400 mb-4">Designed and unfolded specialized sheet metal parts for manufacturing and prototyping, optimizing material usage.</p>
+                    <button class="group text-white hover:text-[var(--neon-color)] text-base font-semibold self-start mt-2 underline underline-offset-4">View Project <span class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
+                </div>
+                <!-- Card 9 -->
+                <div class="neon-card p-6 flex flex-col justify-between">
+                    <img src="https://placehold.co/750x1000/0ea5e9/fff?text=9" alt="Project 9" class="w-full h-[240px] object-cover rounded-lg mb-4">
+                    <h2 class="text-xl font-bold text-blue-300 mb-2">9. 3D Printing Project</h2>
+                    <p class="text-sm text-gray-400 mb-4">Prepared and optimized models for additive manufacturing and 3D printing, focusing on support structure minimization.</p>
+                    <button class="group text-white hover:text-[var(--neon-color)] text-base font-semibold self-start mt-2 underline underline-offset-4">View Project <span class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
+                </div>
+                <!-- Card 10 -->
+                <div class="neon-card p-6 flex flex-col justify-between">
+                    <img src="https://placehold.co/750x1000/0ea5e9/fff?text=10" alt="Project 10" class="w-full h-[240px] object-cover rounded-lg mb-4">
+                    <h2 class="text-xl font-bold text-blue-300 mb-2">10. Fixture Design</h2>
+                    <p class="text-sm text-gray-400 mb-4">Developed custom jigs and fixtures for production environments to ensure consistent part positioning and quality control.</p>
+                    <button class="group text-white hover:text-[var(--neon-color)] text-base font-semibold self-start mt-2 underline underline-offset-4">View Project <span class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
+                </div>
+                <!-- Card 11 -->
+                <div class="neon-card p-6 flex flex-col justify-between">
+                    <img src="https://placehold.co/750x1000/0ea5e9/fff?text=11" alt="Project 11" class="w-full h-[240px] object-cover rounded-lg mb-4">
+                    <h2 class="text-xl font-bold text-blue-300 mb-2">11. Piping & Routing</h2>
+                    <p class="text-sm text-gray-400 mb-4">Designed complex piping layouts and cable routing paths for industrial machinery, adhering to safety standards.</p>
+                    <button class="group text-white hover:text-[var(--neon-color)] text-base font-semibold self-start mt-2 underline underline-offset-4">View Project <span class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
+                </div>
+                <!-- Card 12 -->
+                <div class="neon-card p-6 flex flex-col justify-between">
+                    <img src="https://placehold.co/750x1000/0ea5e9/fff?text=12" alt="Project 12" class="w-full h-[240px] object-cover rounded-lg mb-4">
+                    <h2 class="text-xl font-bold text-blue-300 mb-2">12. Design Optimization</h2>
+                    <p class="text-sm text-gray-400 mb-4">Executed design optimization processes to reduce material weight while maintaining structural integrity and performance.</p>
+                    <button class="group text-white hover:text-[var(--neon-color)] text-base font-semibold self-start mt-2 underline underline-offset-4">View Project <span class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
+                </div>
+            </div>
+            <!-- Navigation Controls -->
+            <div class="flex flex-col items-center mt-8">
+                <!-- Dot Indicators Container -->
+                <div id="slider-dots" class="flex space-x-3 mb-6"></div>
+                <!-- Previous/Next Buttons -->
+                <div class="flex justify-center space-x-6">
+                    <button id="prev-btn" class="px-6 py-2 rounded-full bg-sky-400 text-white font-semibold hover:bg-sky-600 transition disabled:opacity-30 disabled:cursor-not-allowed">
+                        &larr; Prev
+                    </button>
+                    <button id="next-btn" class="px-6 py-2 rounded-full bg-sky-400 text-white font-semibold hover:bg-sky-600 transition disabled:opacity-30 disabled:cursor-not-allowed">
+                        Next &rarr;
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        :root {
+            --neon-color: #00FFFF;
+        }
+        .neon-card {
+            background-color: #161b22;
+            border-radius: 12px;
+            border: 1px solid #2d3748;
+            transition: all 0.3s;
+            min-width: calc((100% / 3) - (16px * 2 / 3));
+        }
+        .neon-card:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 15px 20px rgba(0, 255, 255, 0.3), 0 5px 10px rgba(0, 255, 255, 0.1);
+            border-color: var(--neon-color);
+        }
+        .slider-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #64748b; /* Tailwind slate-500 */
+            transition: background-color 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        .slider-dot.active {
+            background-color: #38bdf8; /* Tailwind sky-400 */
+            box-shadow: 0 0 6px #38bdf8, 0 0 12px #38bdf8;
+        }
+        .neon-button {
+            background-color: var(--neon-color);
+            color: #161b22;
+            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            transition: all 0.3s;
+            text-shadow: 0 0 2px var(--neon-color);
+        }
+        .neon-button:hover:not(:disabled) {
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+            transform: scale(1.05);
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const track = document.getElementById('slider-track');
+            const dotsContainer = document.getElementById('slider-dots');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const totalItems = 12;
+            const itemsPerSlide = 3;
+            const totalSlides = Math.ceil(totalItems / itemsPerSlide);
+            let currentSlide = 0;
+            function updateSlider() {
+                const offset = currentSlide * 100;
+                track.style.transform = `translateX(-${offset}%)`;
+                prevBtn.disabled = currentSlide === 0;
+                nextBtn.disabled = currentSlide === totalSlides - 1;
+                updateDots();
+            }
+            function initializeDots() {
+                for (let i = 0; i < totalSlides; i++) {
+                    const dot = document.createElement('div');
+                    dot.classList.add('slider-dot');
+                    dot.dataset.slideIndex = i;
+                    dot.addEventListener('click', () => {
+                        currentSlide = i;
+                        updateSlider();
+                    });
+                    dotsContainer.appendChild(dot);
+                }
+            }
+            function updateDots() {
+                const dots = dotsContainer.querySelectorAll('.slider-dot');
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                });
+            }
+            function nextSlide() {
+                if (currentSlide < totalSlides - 1) {
+                    currentSlide++;
+                    updateSlider();
+                }
+            }
+            function prevSlide() {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    updateSlider();
+                }
+            }
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+            window.addEventListener('resize', updateSlider);
+            initializeDots();
+            updateSlider();
+        });
+    </script>
+</section>
+    <!-- Row 5: Contact (Page 5) - UPDATED TO TWO BOXES -->
+    <section id="contact-page"
+        class="py-20 pt-16 flex items-center justify-center p-4 sm:p-8 bg-section transition-colors duration-500">
+        <div class="w-full lg:max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-sky-400 mb-12 text-center transition-colors duration-500">Get In Touch
+            </h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+                <!-- Left Column: Contact Information and Social Links -->
+                <div
+                    class="card-bg p-8 rounded-3xl shadow-xl border border-gray-700 light:border-gray-300 flex flex-col justify-between glow-shadow-hover">
+                    <div>
+                        <h3 class="text-3xl font-bold text-sky-400 mb-4 transition-colors duration-500">Contact Details</h3>
+                        <p class="text-gray-400 light:text-gray-600 mb-8">Feel free to reach out via any of the methods
+                            below.</p>
+
+                        <div class="space-y-6">
+                            <!-- 1. Location - Added contact-item class for JS interaction -->
+                            <div
+                                class="contact-item flex items-start space-x-4 p-3 rounded-xl transition-all duration-300 hover:scale-[1.01] hover:bg-sky-600/10 hover:shadow-lg hover:shadow-sky-500/20 cursor-pointer">
+                                <div class="flex-shrink-0 p-3 rounded-xl bg-sky-600/20 text-sky-400">
+                                    <i data-lucide="map-pin" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-lg text-white light:text-gray-900">Location</p>
+                                    <p class="text-gray-400 light:text-gray-600">RUET, Rajshahi-6204, Bangladesh</p>
+                                </div>
+                            </div>
+                            <!-- 2. Phone Number - Added contact-item class for JS interaction -->
+                            <div
+                                class="contact-item flex items-start space-x-4 p-3 rounded-xl transition-all duration-300 hover:scale-[1.01] hover:bg-sky-600/10 hover:shadow-lg hover:shadow-sky-500/20 cursor-pointer">
+                                <div class="flex-shrink-0 p-3 rounded-xl bg-sky-600/20 text-sky-400">
+                                    <i data-lucide="phone" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-lg text-white light:text-gray-900">Phone Number</p>
+                                    <p class="text-gray-400 light:text-gray-600">+880 1880 168384</p>
+                                </div>
+                            </div>
+                            <!-- 3. Email Address - Added contact-item class for JS interaction -->
+                            <div
+                                class="contact-item flex items-start space-x-4 p-3 rounded-xl transition-all duration-300 hover:scale-[1.01] hover:bg-sky-600/10 hover:shadow-lg hover:shadow-sky-500/20 cursor-pointer">
+                                <div class="flex-shrink-0 p-3 rounded-xl bg-sky-600/20 text-sky-400">
+                                    <i data-lucide="mail" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-lg text-white light:text-gray-900">Email Address</p>
+                                    <p class="text-gray-400 light:text-gray-600">mehedi168384@gmail.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Media Icons (UPDATED TO 2x3 GRID) -->
+                    <div class="mt-8 pt-6 border-t border-gray-700 light:border-gray-300 text-center">
+                        <h4 class="text-xl font-semibold text-white light:text-gray-900 mb-4">Connect with me</h4>
+                        <!-- New Grid Layout: 3 columns with centering and gap -->
+                        <div class="grid grid-cols-3 gap-y-4 gap-x-2 justify-items-center mx-auto max-w-sm">
+                            <!-- 1. LinkedIn (Existing URL) -->
+                            <a href="https://www.linkedin.com/in/mehedihasan79?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                                target="_blank" class="text-gray-400 hover:text-sky-400 transition duration-300"
+                                title="LinkedIn">
+                                <i data-lucide="linkedin" class="w-8 h-8"></i>
+                            </a>
+                            <!-- 2. Facebook (Existing URL) -->
+                            <a href="https://www.facebook.com/share/1BcT4TakQ5/" target="_blank"
+                                class="text-gray-400 hover:text-sky-400 transition duration-300" title="Facebook">
+                                <i data-lucide="facebook" class="w-8 h-8"></i>
+                            </a>
+                            <!-- 3. Instagram (Existing URL) -->
+                            <a href="https://www.instagram.com/mehedi.hasan_79?igsh=ZXRjeXJubmg1bHk5" target="_blank"
+                                class="text-gray-400 hover:text-sky-400 transition duration-300" title="Instagram">
+                                <i data-lucide="instagram" class="w-8 h-8"></i>
+                            </a>
+                            <!-- 4. Threads (Existing URL) - Using at-sign as the closest representation in Lucide -->
+                            <a href="https://www.threads.com/@mehedi.hasan_79" target="_blank"
+                                class="text-gray-400 hover:text-sky-400 transition duration-300" title="Threads">
+                                <i data-lucide="at-sign" class="w-8 h-8"></i>
+                            </a>
+                            <!-- 5. X / Twitter (NEW) -->
+                            <a href="https://x.com/mehedi_hasan_79" target="_blank"
+                                class="text-gray-400 hover:text-sky-400 transition duration-300" title="X (Twitter)">
+                                <i data-lucide="twitter" class="w-8 h-8"></i>
+                            </a>
+                            <!-- 6. GitHub (NEW URL) -->
+                            <a href="https://github.com/mdmehedihasan079" target="_blank"
+                                class="text-gray-400 hover:text-sky-400 transition duration-300" title="GitHub">
+                                <i data-lucide="github" class="w-8 h-8"></i>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Send Us A Message Form -->
+                <div
+                    class="card-bg p-8 rounded-3xl shadow-xl border border-gray-700 light:border-gray-300 glow-shadow-hover" >
+                    <h3 class="text-3xl font-bold text-sky-400 mb-4 transition-colors duration-500">Send Me a Message</h3>
+                    <p class="text-gray-400 light:text-gray-600 mb-8">I look forward to hearing about your project or
+                        opportunity.</p>
+
+                    <form id="contact-form" class="space-y-5">
+                        <!-- Full Name -->
+                        <div>
+                            <label for="full-name"
+                                class="block text-sm font-medium text-gray-300 light:text-gray-700 mb-1">Full
+                                Name</label>
+                            <input type="text" id="full-name" name="fullName" placeholder="Your name" required
+                                class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-sky-500 focus:border-sky-500 placeholder-gray-400 text-white light:bg-gray-100 light:border-gray-300 light:text-gray-900 transition duration-150">
+                        </div>
+
+                        <!-- Email Address -->
+                        <div>
+                            <label for="email"
+                                class="block text-sm font-medium text-gray-300 light:text-gray-700 mb-1">Email
+                                Address</label>
+                            <input type="email" id="email" name="email" placeholder="your.email@example.com" required
+                                class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-sky-500 focus:border-sky-500 placeholder-gray-400 text-white light:bg-gray-100 light:border-gray-300 light:text-gray-900 transition duration-150">
+                        </div>
+
+                        <!-- Subject -->
+                        <div>
+                            <label for="subject"
+                                class="block text-sm font-medium text-gray-300 light:text-gray-700 mb-1">Subject</label>
+                            <input type="text" id="subject" name="subject"
+                                placeholder="Project Inquiry, Job Offer, etc." required
+                                class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-sky-500 focus:border-sky-500 placeholder-gray-400 text-white light:bg-gray-100 light:border-gray-300 light:text-gray-900 transition duration-150">
+                        </div>
+
+                        <!-- Message -->
+                        <div>
+                            <label for="message"
+                                class="block text-sm font-medium text-gray-300 light:text-gray-700 mb-1">Message</label>
+                            <textarea id="message" name="message" rows="6" placeholder="I'd like to discuss..." required
+                                class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-sky-500 focus:border-sky-500 placeholder-gray-400 text-white light:bg-gray-100 light:border-gray-300 light:text-gray-900 transition duration-150 resize-none"></textarea>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit"
+                            class="w-full flex items-center justify-center px-6 py-3 border border-transparent text-base font-semibold rounded-lg text-white bg-sky-600 hover:bg-sky-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 focus:ring-offset-[#161b22] light:focus:ring-offset-white">
+                            <i data-lucide="send" class="w-5 h-5 mr-2 -ml-1 transform rotate-45"></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Closing Message / Final CTA -->
+    <section class="py-12 px-4 sm:px-8 transition-colors duration-500">
+        <div
+            class="max-w-4xl mx-auto text-center p-8 rounded-2xl border-4 border-sky-600/30 shadow-2xl bg-[#161b22] light:bg-white glow-shadow-hover">
+            <p class="text-2xl sm:text-3xl font-light italic text-gray-300 light:text-gray-700 leading-snug">
+                Thank you for exploring my portfolio. I’d love to hear from you—<span
+                    class="font-semibold text-sky-400 light:text-sky-600">feel free to reach out!</span>
+            </p>
+        </div>
+    </section>
+
+
+    <!-- START: Enhanced Footer Section (Replaces old simple footer) -->
+    <footer class="bg-footer-bg text-text-light border-t border-gray-800">
+        <!-- REDUCED VERTICAL PADDING: py-16 -> py-12 (3rem) -->
+        <div class="container mx-auto px-6 py-12">
+            <!-- REDUCED GRID GAP: gap-12 -> gap-8 (2rem) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- 1. Brand / About Section -->
+                <div>
+                    <!-- Reduced margin: mb-4 -> mb-3 -->
+                    <div class="flex items-center space-x-2 mb-3">
+                        <!-- Icon: Code Chevron (Lucide Icon) -->
+                        <i data-lucide="code" class="w-6 h-6 text-accent-teal"></i>
+                        <!-- ATTENTION-GRABBING NAME STYLE APPLIED HERE -->
+                        <!-- UPDATED: Changed font-extrabold to font-semibold and added hover:font-extrabold and whitespace-nowrap -->
+                        <h3
+                            class="text-2xl font-semibold hover:font-extrabold text-accent-teal tracking-widest uppercase hover:text-white transition duration-300 whitespace-nowrap">
+                            MD Mehedi Hasan</h3>
+                    </div>
+                    <p class="text-sm leading-relaxed max-w-sm">
+                        Designing precise mechanical solutions with advanced CAD and 3D modeling. Let’s bring ideas to
+                        life together.
+                    </p>
+                </div>
+                <!-- 2. Quick Links (Updated Links) -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4 border-l-2 border-accent-teal pl-3">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home"
+                                class="text-sm hover:text-accent-teal transition duration-200 inline-block hover:translate-x-1">Home</a>
+                        </li>
+                        <li><a href="#about-page"
+                                class="text-sm hover:text-accent-teal transition duration-200 inline-block hover:translate-x-1">About</a>
+                        </li>
+                        <li><a href="#education-page"
+                                class="text-sm hover:text-accent-teal transition duration-200 inline-block hover:translate-x-1">Education</a>
+                        </li>
+                        <li><a href="#skills-page"
+                                class="text-sm hover:text-accent-teal transition duration-200 inline-block hover:translate-x-1">My
+                                Skills</a></li>
+                        <li><a href="#contact-page"
+                                class="text-sm hover:text-accent-teal transition duration-200 inline-block hover:translate-x-1">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 3. Get In Touch / CTA -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4 border-l-2 border-accent-teal pl-3">Get In Touch</h4>
+                    <p class="text-sm mb-4">Have a project in mind?</p>
+                    <a href="#contact-page"
+                        class="inline-block px-5 py-2 text-sm font-medium bg-gray-800 text-white rounded-lg shadow-lg hover:bg-accent-teal transition duration-300">
+                        Let's talk
+                    </a>
+                    <p class="text-xs mt-4 text-gray-500">Based in Rajshahi, Bangladesh</p>
+                </div>
+                <!-- 4. Follow Me & Newsletter (Updated Social Icons with Lucide) -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4 border-l-2 border-accent-teal pl-3">Follow Me</h4>
+                    <!-- Social Icons (LinkedIn, Facebook, Instagram, Threads, Twitter, GitHub) -->
+                    <div class="flex space-x-4 mb-6">
+                        <!-- LinkedIn -->
+                        <a href="https://www.linkedin.com/in/mehedihasan79?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                            target="_blank"
+                            class="p-2 border border-gray-700 rounded-full hover:bg-gray-700 text-text-light hover:text-accent-teal transition duration-300"
+                            aria-label="LinkedIn">
+                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        </a>
+                        <!-- Facebook -->
+                        <a href="https://www.facebook.com/share/1BcT4TakQ5/" target="_blank"
+                            class="p-2 border border-gray-700 rounded-full hover:bg-gray-700 text-text-light hover:text-accent-teal transition duration-300"
+                            aria-label="Facebook">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/mehedi.hasan_79?igsh=ZXRjeXJubmg1bHk5" target="_blank"
+                            class="p-2 border border-gray-700 rounded-full hover:bg-gray-700 text-text-light hover:text-accent-teal transition duration-300"
+                            aria-label="Instagram">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <!-- Threads (Using Lucide 'at-sign' as before) -->
+                        <a href="https://www.threads.com/@mehedi.hasan_79" target="_blank"
+                            class="p-2 border border-gray-700 rounded-full hover:bg-gray-700 text-text-light hover:text-accent-teal transition duration-300"
+                            aria-label="Threads">
+                            <i data-lucide="at-sign" class="w-5 h-5"></i>
+                        </a>
+                        <!-- X / Twitter -->
+                        <a href="https://x.com/mehedi_hasan_79" target="_blank"
+                            class="p-2 border border-gray-700 rounded-full hover:bg-gray-700 text-text-light hover:text-accent-teal transition duration-300"
+                            aria-label="Twitter">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <!-- GitHub -->
+                        <a href="https://github.com/mdmehedihasan079" target="_blank"
+                            class="p-2 border border-gray-700 rounded-full hover:bg-gray-700 text-text-light hover:text-accent-teal transition duration-300"
+                            aria-label="GitHub">
+                            <i data-lucide="github" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                    <!-- Newsletter Form -->
+                    <p class="text-sm mb-3">Join my newsletter for updates</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Email address" aria-label="Email address for newsletter"
+                            class="p-2.5 w-full text-sm bg-gray-800 border border-gray-700 text-white rounded-l-lg focus:ring-accent-teal focus:border-accent-teal focus:outline-none">
+                        <button type="submit"
+                            class="px-5 py-2.5 text-sm font-medium bg-gray-700 text-white rounded-r-lg hover:bg-accent-teal transition duration-300">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <!-- Divider -->
+            <!-- REDUCED MARGIN AND PADDING: mt-12 pt-8 -> mt-8 pt-6 -->
+            <div class="border-t border-gray-800 mt-8 pt-6">
+                <p class="text-center text-xs text-gray-500">
+                    &copy; 2025 MD Mehedi Hasan. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- END: Enhanced Footer Section -->
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollTopBtn" onclick="scrollToTop()"
+        class="bg-gray-700 p-3 rounded-full shadow-xl hover:bg-accent-teal text-white transition duration-300 focus:outline-none focus:ring-4 focus:ring-accent-teal focus:ring-opacity-50"
+        aria-label="Scroll to top">
+        <!-- Up Arrow Icon -->
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 10l7-7m0 0l7 7m-7-7v18">
+            </path>
+        </svg>
+    </button>
+
+
+    <script>
+        // --- JavaScript for Smooth Scrolling ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Scroll smoothly to the target element, adjusting for fixed navbar height (approx 64px + margin)
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // --- JavaScript for Dark/Light Mode Toggle ---
+        const themeToggleEl = document.getElementById('theme-toggle');
+        const htmlEl = document.documentElement;
+        const themeIconPathEl = document.getElementById('theme-icon');
+
+        // SVG path for Sun icon (Light Mode)
+        const sunIconPath = "M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z";
+        // SVG path for Moon icon (Dark Mode)
+        const moonIconPath = "M20.354 15.354A9 9 0 018.646 3.646 12 12 0 0015.354 20.354z";
+
+        function updateTheme(isLight) {
+            if (isLight) {
+                // Set Light Mode
+                htmlEl.classList.add('light');
+                themeIconPathEl.setAttribute('d', sunIconPath);
+                themeIconPathEl.parentElement.classList.remove('text-yellow-300');
+                themeIconPathEl.parentElement.classList.add('text-sky-600'); // Sun is light blue in light mode
+                localStorage.setItem('theme', 'light');
+            } else {
+                // Set Dark Mode
+                htmlEl.classList.remove('light');
+                themeIconPathEl.setAttribute('d', moonIconPath);
+                themeIconPathEl.parentElement.classList.add('text-yellow-300'); // Moon is yellow
+                themeIconPathEl.parentElement.classList.remove('text-sky-600');
+                localStorage.setItem('theme', 'dark');
+            }
+            // Re-render Lucide icons after theme change to ensure colors/styles are applied correctly
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        }
+
+        // 1. Initial Load: Check localStorage for preferred theme
+        const savedTheme = localStorage.getItem('theme');
+        // Check if user prefers light mode system-wide if no saved theme
+        const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+
+        if (savedTheme === 'light' || (!savedTheme && prefersLight)) {
+            updateTheme(true);
+        } else {
+            // Default to dark
+            updateTheme(false);
+        }
+
+        // 2. Click Listener: Toggle theme
+        themeToggleEl.addEventListener('click', () => {
+            const isLight = htmlEl.classList.contains('light');
+            updateTheme(!isLight);
+        });
+
+        // --- JavaScript for Rotating Titles (Home Page) ---
+        const titles = ["Learner", "Mechanical Design Engineer", "3D Modeling & Rendering Specialist"];
+        let titleIndex = 0;
+        const rotatingTitleEl = document.getElementById('rotating-title');
+
+        // Function to rotate the title with fade effect
+        function rotateTitle() {
+            if (rotatingTitleEl) {
+                // 1. Start fade out
+                rotatingTitleEl.classList.add('opacity-0');
+                // 2. Wait for fade out (500ms), then change text and fade back in
+                setTimeout(() => {
+                    rotatingTitleEl.textContent = titles[titleIndex];
+                    titleIndex = (titleIndex + 1) % titles.length; // Cycle to the next title
+                    rotatingTitleEl.classList.remove('opacity-0'); // Start fade in
+                }, 500); // This duration matches the CSS transition duration
+            }
+        }
+
+        // Start rotation after DOM is loaded
+        if (rotatingTitleEl) {
+            rotateTitle(); // Set initial title immediately
+            // Rotate every 2000ms (2 seconds. This is the total cycle time.
+            setInterval(rotateTitle, 2000);
+        }
+
+        // --- JavaScript for Skill Dashboard Rendering (New Content) ---
+        // Data structure for skills
+        const skillsData = [{
+            group: "CAD & 3D Modeling",
+            items: [{
+                name: "SolidWorks",
+                score: 80
+            }, {
+                name: "KeyShot",
+                score: 60
+            }, {
+                name: "Blender",
+                score: 70
+            }, {
+                name: "AutoCAD",
+                score: 60
+            }]
+        }, {
+            group: "Web Design Skills",
+            items: [{
+                name: "HTML",
+                score: 90
+            }, {
+                name: "CSS",
+                score: 80
+            }, {
+                name: "JavaScript",
+                score: 60
+            }]
+        }, {
+            group: "Software & Tools",
+            items: [{
+                name: "Microsoft 365",
+                score: 90
+            }, {
+                name: "Visual Studio",
+                score: 70
+            }, {
+                name: "Canva",
+                score: 80
+            }]
+        }];
+
+        // --- DOM Elements ---
+        const skillsContainer = document.getElementById('skills-container');
+        const groupTemplate = document.getElementById('skill-group-template')?.content;
+        const itemTemplate = document.getElementById('skill-item-template')?.content;
+
+        /**
+         * Creates and populates a single skill group element (div) from the template.
+         * @param {Object} groupData - The data for the skill group.
+         * @returns {HTMLElement|null} The populated skill group div element, or null if template is missing.
+         */
+        function createGroupElement(groupData) {
+            if (!groupTemplate || !itemTemplate) return null;
+
+            // Clone the main group structure
+            const groupFragment = document.importNode(groupTemplate, true);
+            // Get the root div element from the fragment
+            const groupElement = groupFragment.querySelector('div');
+            if (!groupElement) return null;
+
+            const groupTitle = groupElement.querySelector('h3');
+            const groupBody = groupElement.querySelector('.space-y-4');
+            groupTitle.textContent = groupData.group;
+
+            // Render skill items inside this group
+            groupData.items.forEach(skill => {
+                const itemClone = document.importNode(itemTemplate, true);
+                const itemDiv = itemClone.querySelector('.skill-item');
+                if (!itemDiv) return;
+
+                const nameSpan = itemDiv.querySelector('.text-lg');
+                const scoreSpan = itemDiv.querySelector('.text-sm');
+                // Target the progress bar div which now has the gradient class
+                const progressBar = itemDiv.querySelector('.bg-gradient-to-r');
+
+                nameSpan.textContent = skill.name;
+                scoreSpan.textContent = `${skill.score}%`;
+
+                if (progressBar) {
+                    // Use requestAnimationFrame for smooth progress bar transition on load
+                    requestAnimationFrame(() => {
+                        progressBar.style.width = `${skill.score}%`;
+                    });
+                }
+                groupBody.appendChild(itemClone);
+            });
+
+            return groupElement;
+        }
+
+        /**
+         * Renders the skill dashboard with a responsive grid layout for all groups.
+         */
+        function renderSkills() {
+            if (!skillsContainer) {
+                console.error("Skills container not found.");
+                return;
+            }
+
+            // Clear existing content just in case
+            skillsContainer.innerHTML = '';
+
+            // 1. Setup the container for ALL groups (responsive grid)
+            const mainGrid = document.createElement('div');
+            // 1 column on mobile, 2 columns on medium screens, 3 columns on large screens
+            mainGrid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8';
+
+            // Add all skill groups to the main grid
+            skillsData.forEach(groupData => {
+                const groupElement = createGroupElement(groupData);
+                if (groupElement) {
+                    mainGrid.appendChild(groupElement);
+                }
+            });
+
+            // Append the grid to the main container
+            skillsContainer.appendChild(mainGrid);
+
+            // Create Lucide icons after the skill elements are added to the DOM
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        }
+
+        // Initialize rendering on window load to ensure all templates are available and visible for the animation
+        window.addEventListener('load', renderSkills);
+
+        // --- JavaScript for Contact Item Buffering Animation ---
+        const contactItems = document.querySelectorAll('.contact-item');
+
+        contactItems.forEach(item => {
+            // Add class to start buffering animation
+            item.addEventListener('mouseenter', () => {
+                item.classList.add('contact-buffering-active');
+            });
+
+            // Remove class to stop buffering animation
+            item.addEventListener('mouseleave', () => {
+                item.classList.remove('contact-buffering-active');
+            });
+        });
+
+        // --- Form Submission Logic (Contact Page) ---
+        const form = document.getElementById('contact-form');
+        const confirmationMessage = document.getElementById('confirmation-message');
+
+        /**
+         * Clears the form and shows a confirmation message (mock submission).
+         * @param {Event} event The form submission event.
+         */
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            // In a real application, you would send this data to a server here (e.g., using fetch API).
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            console.log("Mock submission data:", data);
+
+            form.reset();
+
+            // Show confirmation message
+            confirmationMessage.classList.add('show');
+            // Re-render icons if needed, though they shouldn't change for the message box
+            if (typeof lucide !== 'undefined') { lucide.createIcons(); }
+
+            setTimeout(() => {
+                confirmationMessage.classList.remove('show');
+            }, 5000);
+
+            console.log("Form submitted successfully. Mock data sent.");
+        }
+
+        if (form) {
+            form.addEventListener('submit', handleFormSubmit);
+        }
+
+        // --- JavaScript for Scroll to Top Button (NEW) ---
+        const btn = document.getElementById('scrollTopBtn');
+
+        // Function to scroll to the top of the document
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Show or hide the button based on scroll position (500px threshold)
+        window.addEventListener('scroll', function () {
+            if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+                btn.classList.add('show');
+            } else {
+                btn.classList.remove('show');
+            }
+        });
+
+        // Attach the function globally (needed for onclick attribute)
+        window.scrollToTop = scrollToTop;
+
+        // Final icon rendering to ensure all elements including the new footer and scroll button are initialized
+        window.addEventListener('load', () => {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
+    </script>
+</body>
+
+</html>
