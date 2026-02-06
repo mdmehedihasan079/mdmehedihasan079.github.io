@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MD Mehedi Hasan | Responsive Footer</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure Tailwind for custom colors and font -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'footer-bg': '#101827', // Deep dark background
+                        'text-light': '#E0E7FF', // Light grayish-blue text
+                        'accent-teal': '#20C997', // Vibrant teal accent color
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                },
+            }
+        }
+    </script>
+    <style>
+        /* Apply Inter font and dark background to the whole page for context */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b111e;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        /* Styling for the social icons using Lucide */
+        .social-icon-wrapper {
+            transition: all 0.3s ease;
+        }
+
+        .social-icon-wrapper:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(32, 201, 151, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Main Content Placeholder -->
+    <main class="text-white p-10 flex-grow">
+        <h1 class="text-4xl text-center text-accent-teal mb-4">Portfolio Content Above</h1>
+        <p class="text-center text-text-light">Scroll down to see the footer.</p>
+    </main>
+
+    <!-- START: Enhanced Footer Section (Based on user input) -->
+    <footer class="bg-footer-bg text-text-light border-t border-gray-800">
+        <!-- REDUCED VERTICAL PADDING: py-12 (3rem) -->
+        <div class="container mx-auto px-6 py-12">
+            <!-- REDUCED GRID GAP: gap-8 (2rem) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- 1. Brand / About Section -->
+                <div>
+                    <!-- Reduced margin: mb-3 -->
+                    <div class="flex items-center space-x-2 mb-3">
+                        <!-- Icon: Code Chevron (Lucide Icon) -->
+                        <i data-lucide="code" class="w-6 h-6 text-accent-teal"></i>
+                        <!-- ATTENTION-GRABBING NAME STYLE -->
+                        <h3
+                            class="text-2xl font-semibold hover:font-extrabold text-accent-teal tracking-widest uppercase hover:text-white transition duration-300 whitespace-nowrap">
+                            MD Mehedi Hasan</h3>
+                    </div>
+                    <p class="text-sm leading-relaxed max-w-sm">
+                        Designing precise mechanical solutions with advanced CAD and 3D modeling. Let’s bring ideas to
+                        life together.
+                    </p>
+                </div>
+                <!-- 2. Quick Links -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4 border-l-2 border-accent-teal pl-3">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home"
+                                class="text-sm hover:text-accent-teal transition duration-200 inline-block hover:translate-x-1">Home</a>
+                        </li>
+                        <li><a href="#about-page"
+                                class="text-sm hover:text-accent-teal transition duration-200 inline-block hover:translate-x-1">About</a>
+                        </li>
+                        <li><a href="#education-page"
+                                class="text-sm hover:text-accent-teal transition duration-200 inline-block hover:translate-x-1">Education</a>
+                        </li>
+                        <li><a href="#skills-page"
+                                class="text-sm hover:text-accent-teal transition duration-200 inline-block hover:translate-x-1">My
+                                Skills</a></li>
+                        <li><a href="#contact-page"
+                                class="text-sm hover:text-accent-teal transition duration-200 inline-block hover:translate-x-1">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 3. Get In Touch / CTA -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4 border-l-2 border-accent-teal pl-3">Get In Touch</h4>
+                    <p class="text-sm mb-4">Have a project in mind?</p>
+                    <a href="#contact-page"
+                        class="inline-block px-5 py-2 text-sm font-medium bg-gray-800 text-white rounded-lg shadow-lg hover:bg-accent-teal transition duration-300">
+                        Let's talk
+                    </a>
+                    <p class="text-xs mt-4 text-gray-500">Based in Rajshahi, Bangladesh</p>
+                </div>
+                <!-- 4. Follow Me & Newsletter -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4 border-l-2 border-accent-teal pl-3">Follow Me</h4>
+                    <!-- Social Icons (LinkedIn, Facebook, Instagram, Threads, Twitter, GitHub) -->
+                    <div class="flex flex-wrap space-x-3 space-y-3 mb-6 items-center">
+                        <span class="hidden">Spacer for flex-wrap on mobile</span>
+                        <!-- LinkedIn -->
+                        <a href="https://www.linkedin.com/in/mehedihasan79?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                            target="_blank"
+                            class="social-icon-wrapper p-2 border border-gray-700 rounded-full hover:bg-gray-700 text-text-light hover:text-accent-teal"
+                            aria-label="LinkedIn">
+                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        </a>
+                        <!-- Facebook -->
+                        <a href="https://www.facebook.com/share/1BcT4TakQ5/" target="_blank"
+                            class="social-icon-wrapper p-2 border border-gray-700 rounded-full hover:bg-gray-700 text-text-light hover:text-accent-teal"
+                            aria-label="Facebook">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/mehedi.hasan_79?igsh=ZXRjeXJubmg1bHk5" target="_blank"
+                            class="social-icon-wrapper p-2 border border-gray-700 rounded-full hover:bg-gray-700 text-text-light hover:text-accent-teal"
+                            aria-label="Instagram">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <!-- Threads (Using Lucide 'at-sign' as before) -->
+                        <a href="https://www.threads.com/@mehedi.hasan_79" target="_blank"
+                            class="social-icon-wrapper p-2 border border-gray-700 rounded-full hover:bg-gray-700 text-text-light hover:text-accent-teal"
+                            aria-label="Threads">
+                            <i data-lucide="at-sign" class="w-5 h-5"></i>
+                        </a>
+                        <!-- X / Twitter -->
+                        <a href="https://x.com/mehedi_hasan_79" target="_blank"
+                            class="social-icon-wrapper p-2 border border-gray-700 rounded-full hover:bg-gray-700 text-text-light hover:text-accent-teal"
+                            aria-label="Twitter">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <!-- GitHub -->
+                        <a href="https://github.com/mdmehedihasan079" target="_blank"
+                            class="social-icon-wrapper p-2 border border-gray-700 rounded-full hover:bg-gray-700 text-text-light hover:text-accent-teal"
+                            aria-label="GitHub">
+                            <i data-lucide="github" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                    <!-- Newsletter Form -->
+                    <p class="text-sm mb-3">Join my newsletter for updates</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Email address" aria-label="Email address for newsletter"
+                            class="p-2.5 w-full text-sm bg-gray-800 border border-gray-700 text-white rounded-l-lg focus:ring-accent-teal focus:border-accent-teal focus:outline-none">
+                        <button type="submit"
+                            class="px-5 py-2.5 text-sm font-medium bg-gray-700 text-white rounded-r-lg hover:bg-accent-teal transition duration-300">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <!-- Divider -->
+            <div class="border-t border-gray-800 mt-8 pt-6">
+                <p class="text-center text-xs text-gray-500">
+                    &copy; 2025 MD Mehedi Hasan. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- END: Enhanced Footer Section -->
+
+    <!-- Load Lucide icons script for rendering data-lucide attributes -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
