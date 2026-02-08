@@ -12,6 +12,7 @@
     <!-- Load Inter font -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
 
         /* ...existing code... */
         body {
@@ -87,55 +88,6 @@
             color: #059669;
         }
 
-        .marquee-container {
-            overflow: hidden;
-            white-space: nowrap;
-            box-sizing: content-box;
-            padding: 0.75rem 1rem; /* Increased horizontal padding for better spacing */
-            border-radius: 0.5rem; /* Changed from 9999px to match rounded-lg */
-            background-color: #161b22; /* Changed to match card-bg for consistency */
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5); /* Softened the inner shadow */
-        }
-
-        .light .marquee-container {
-            background-color: #f0f8ff;
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); 
-            padding: 0.75rem 1rem; /* Matched horizontal padding for light mode */
-        }
-
-        .marquee-content {
-            display: inline-block;
-            animation: marquee-scroll 30s linear infinite;
-        }
-
-        .marquee-text {
-            font-size: 1.25rem;
-            font-weight: 400;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            vertical-align: middle;
-            line-height: 1;
-            color: #b7e0f2;
-            text-shadow: none;
-            margin-right: 4rem;
-            padding: 0 0.5rem;
-        }
-
-        .light .marquee-text {
-            color: #4b5563;
-            text-shadow: none;
-        }
-
-        @keyframes marquee-scroll {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
         .rotating-title-container {
             min-height: 2.5rem;
         }
@@ -196,6 +148,10 @@
             border-bottom: 2.5px solid #0e7490 !important;
             color: #0e7490 !important;
         }
+
+        nav a.text-2xl {
+            font-family: 'Montserrat', sans-serif;
+        }
     </style>
 
     <script>
@@ -227,6 +183,7 @@
                 { id: '#home', el: document.getElementById('home') },
                 { id: '#about-page', el: document.getElementById('about-page') },
                 { id: '#education-page', el: document.getElementById('education-page') },
+                { id: '#certifications', el: document.getElementById('certifications') },
                 { id: '#skills-page', el: document.getElementById('skills-page') },
                 { id: '#portfolio-page', el: document.getElementById('portfolio-page') },
                 { id: '#contact-page', el: document.getElementById('contact-page') }
@@ -294,7 +251,7 @@
                 <!-- LEFT SIDE: Name and Mobile Menu Toggle -->
                 <div class="flex items-center space-x-4 -ml-2">
                     <a href="#home"
-                        class="text-xl font-bold text-sky-400 transition-all duration-300 transform hover:scale-110 hover:text-white light:hover:text-gray-900 origin-left">
+                        class="text-2xl font-bold text-sky-400 transition-all duration-300 transform hover:scale-110 hover:text-white light:hover:text-gray-900 origin-left">
                         MD Mehedi Hasan
                     </a>
                     <!-- Mobile Menu Button (Hamburger) - placeholder, JS not fully implemented for mobile menu -->
@@ -315,6 +272,8 @@
                         class="nav-link px-3 py-1.5 pb-2 rounded-md text-sm font-medium text-gray-300 light:text-gray-700 hover:bg-sky-700/50 light:hover:bg-sky-200 hover:text-white light:hover:text-black transition duration-200">About</a>
                     <a href="#education-page"
                         class="nav-link px-3 py-1.5 pb-2 rounded-md text-sm font-medium text-gray-300 light:text-gray-700 hover:bg-sky-700/50 light:hover:bg-sky-200 hover:text-white light:hover:text-black transition duration-200">Education</a>
+                    <a href="#certifications"
+                        class="nav-link px-3 py-1.5 pb-2 rounded-md text-sm font-medium text-gray-300 light:text-gray-700 hover:bg-sky-700/50 light:hover:bg-sky-200 hover:text-white light:hover:text-black transition duration-200">Certifications</a>
                     <a href="#skills-page"
                         class="nav-link px-3 py-1.5 pb-2 rounded-md text-sm font-medium text-gray-300 light:text-gray-700 hover:bg-sky-700/50 light:hover:bg-sky-200 hover:text-white light:hover:text-black transition duration-200">My
                         Skills</a>
@@ -351,18 +310,6 @@
         class="min-h-screen pt-16 flex items-center justify-center p-4 sm:p-8 bg-section transition-colors duration-500">
         <div
             class="w-full lg:max-w-6xl mx-auto flex flex-col items-center justify-start card-bg rounded-3xl shadow-2xl p-6 sm:p-12 border-4 border-sky-600/50 transition-all duration-500 glow-shadow-hover">
-
-            <!-- ENHANCED MARQUEE SCROLLER CONTAINER -->
-            <div class="marquee-container w-full max-w-4xl mx-auto mt-2 mb-10">
-                <div class="marquee-content">
-                    <span class="marquee-text">Mechanical Design Engineer | Creating and Rendering High-Quality 3D
-                        Models
-                        | Let’s Bring Ideas to Life!</span>
-                    <span class="marquee-text">Mechanical Design Engineer | Creating and Rendering High-Quality 3D
-                        Models
-                        | Let’s Bring Ideas to Life!</span>
-                </div>
-            </div>
 
             <!-- TWO-COLUMN LAYOUT FOR MAIN CONTENT -->
             <div
@@ -447,40 +394,44 @@
     <!-- Row 3: Education & Achievements (Page 3) -->
     <section id="education-page"
         class="py-20 pt-16 flex items-center justify-center p-4 sm:p-8 bg-section transition-colors duration-500">
-        <div class="w-full lg:max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="w-full lg:max-w-6xl mx-auto grid grid-cols-1 gap-8">
             <!-- Box 1: Education (Updated Icons) -->
             <div
                 class="card-bg rounded-3xl shadow-xl p-8 border border-gray-700 light:border-gray-300 glow-shadow-hover">
                 <h2 class="text-3xl font-bold text-sky-400 mb-6 transition-colors duration-500">Academic Background</h2>
-                <!-- Increased vertical gap between education items: gap-8 -> gap-14 -->
-                <div class="space-y-14">
+                <div class="flex flex-col">
                     <!-- 1. University (B.Sc.) - RUET -->
-                    <div class="flex items-center space-x-6">
+                    <div class="flex items-center space-x-6 p-4 rounded-xl transition-all duration-300 hover:bg-white/5 light:hover:bg-gray-100 hover:scale-[1.02] hover:shadow-md mb-8">
                         <!-- University Logo -->
-                        <div class="w-20 h-20 flex-shrink-0 flex items-center justify-center rounded-lg bg-white/10 p-1">
+                        <div class="w-16 h-16 flex-shrink-0 flex items-center justify-center rounded-lg bg-white/10 p-1">
                             <img src="image/RUET.png" alt="RUET Logo" class="w-full h-full object-contain rounded-md">
                         </div>
                         <div>
                             <h3
-                                class="text-xl font-semibold text-white light:text-gray-900 transition-colors duration-500">
+                                class="text-lg font-medium text-gray-300 light:text-gray-600 transition-colors duration-500">
                                 B.Sc. in Mechanical Engineering</h3>
-                            <p class="text-gray-400 light:text-gray-600 transition-colors duration-500">
+                            <p class="text-xl font-bold text-white light:text-gray-900 transition-colors duration-500">
                                 Rajshahi University of Engineering &amp; Technology (RUET)
                             </p>
                             <p class="text-sm text-gray-500 light:text-gray-500 mt-1">Jan 2023 - Present</p>
                         </div>
                     </div>
+
+                    <!-- Earlier Education Subsection -->
+                    <div class="pt-8 border-t border-gray-700/50 light:border-gray-300/50">
+                        <h3 class="text-xl font-semibold text-gray-400 light:text-gray-600 mb-6 pl-1">Earlier Education</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- 2. College (HSC) - GCC -->
-                    <div class="flex items-center space-x-6">
+                    <div class="flex items-center space-x-4 p-4 rounded-xl h-full transition-all duration-300 hover:bg-white/5 light:hover:bg-gray-100 hover:scale-[1.02] hover:shadow-md">
                         <!-- College Logo -->
-                        <div class="w-20 h-20 flex-shrink-0 flex items-center justify-center rounded-lg bg-white/10 p-1">
+                        <div class="w-16 h-16 flex-shrink-0 flex items-center justify-center rounded-lg bg-white/10 p-1">
                             <img src="image/GCC.png" alt="GCC Logo" class="w-full h-full object-contain rounded-md">
                         </div>
                         <div>
                             <h3
-                                class="text-xl font-semibold text-white light:text-gray-900 transition-colors duration-500">
+                                class="text-lg font-medium text-gray-300 light:text-gray-600 transition-colors duration-500">
                                 Higher Secondary Certificate (HSC), Science</h3>
-                            <p class="text-gray-400 light:text-gray-600 transition-colors duration-500">
+                            <p class="text-xl font-bold text-white light:text-gray-900 transition-colors duration-500">
                                 Gazipur Cantonment College (GCC)
                             </p>
                             <p class="text-sm text-gray-500 light:text-gray-500 mt-1">
@@ -489,16 +440,16 @@
                         </div>
                     </div>
                     <!-- 3. School (Primary/Secondary) - Hataykhari -->
-                    <div class="flex items-center space-x-6">
+                    <div class="flex items-center space-x-4 p-4 rounded-xl h-full transition-all duration-300 hover:bg-white/5 light:hover:bg-gray-100 hover:scale-[1.02] hover:shadow-md">
                         <!-- School Logo -->
-                        <div class="w-20 h-20 flex-shrink-0 flex items-center justify-center rounded-lg bg-white/10 p-1">
+                        <div class="w-16 h-16 flex-shrink-0 flex items-center justify-center rounded-lg bg-white/10 p-1">
                             <img src="image/HPS.jpg" alt="HPSC Logo" class="w-full h-full object-contain rounded-md">
                         </div>
                         <div>
                             <h3
-                                class="text-xl font-semibold text-white light:text-gray-900 transition-colors duration-500">
+                                class="text-lg font-medium text-gray-300 light:text-gray-600 transition-colors duration-500">
                                 School Education (Class 03-10)</h3>
-                            <p class="text-gray-400 light:text-gray-600 transition-colors duration-500">
+                            <p class="text-xl font-bold text-white light:text-gray-900 transition-colors duration-500">
                                 Hataykhari Public School &amp; College
                             </p>
                             <p class="text-sm text-gray-500 light:text-gray-500 mt-1">
@@ -506,95 +457,94 @@
                             </p>
                         </div>
                     </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Box 2: Achievements (Updated Icons and Link Buttons) -->
-            <div
+            <div id="certifications"
                 class="card-bg rounded-3xl shadow-xl p-8 border border-gray-700 light:border-gray-300 glow-shadow-hover">
                 <h2 class="text-3xl font-bold text-sky-400 mb-6 transition-colors duration-500">Professional
                     Certifications </h2>
-                <div class="space-y-6">
+                <div class="space-y-4">
                     <!-- Certification 1: CSWP -->
-                    <div
-                        class="flex items-center justify-between gap-4 border-b border-gray-700/50 light:border-gray-300/50 pb-4">
+                    <div class="flex items-center justify-between gap-4 p-4 rounded-xl transition-all duration-300 hover:bg-white/5 light:hover:bg-gray-100 hover:scale-[1.02] hover:shadow-md">
                         <div class="flex items-center space-x-4">
                             <!-- Certification Logo -->
                             <img src="image/SW.png" alt="CSWP Logo" class="w-16 h-16 object-contain rounded-lg flex-shrink-0 bg-white/10 p-1">
                             <div class="flex-grow">
                                 <h3
-                                    class="text-lg font-semibold text-white light:text-gray-900 transition-colors duration-500">
+                                    class="text-lg font-bold text-white light:text-gray-900 transition-colors duration-500">
                                     SOLIDWORKS CAD Design Professional (CSWP)
                                 </h3>
-                                <p class="text-gray-400 light:text-gray-600 text-xs">Dassault Systèmes | Issued Aug 2024
+                                <p class="text-gray-400 light:text-gray-600 text-sm font-medium">Dassault Systèmes | Issued Aug 2024
                                 </p>
-                                <p class="text-xs text-gray-500 light:text-gray-500 mt-1">Credential ID C-4BQMETJS76</p>
+                                <p class="text-sm text-gray-500 light:text-gray-500 mt-1">Credential ID C-4BQMETJS76</p>
                             </div>
                         </div>
                         <a href="https://cv.virtualtester.com/qr/?b=SLDWRKS&i=C-4BQMETJS76" target="_blank"
-                            class="inline-flex items-center px-3 py-1 bg-sky-600 text-white text-sm font-medium rounded-lg shadow-md hover:bg-sky-700 transition duration-300 whitespace-nowrap flex-shrink-0">
+                            class="inline-flex items-center px-4 py-2 bg-sky-600 text-white text-sm font-medium rounded-lg shadow-md hover:bg-sky-700 transition duration-300 whitespace-nowrap flex-shrink-0">
                             Show credential <i data-lucide="external-link" class="h-4 w-4 inline-block ml-1"></i>
                         </a>
                     </div>
                     <!-- Certification 2: CSWA -->
-                    <div
-                        class="flex items-center justify-between gap-4 border-b border-gray-700/50 light:border-gray-300/50 pb-4">
+                    <div class="flex items-center justify-between gap-4 p-4 rounded-xl transition-all duration-300 hover:bg-white/5 light:hover:bg-gray-100 hover:scale-[1.02] hover:shadow-md">
                         <div class="flex items-center space-x-4">
                             <!-- Certification Logo -->
                             <img src="image/SW.png" alt="CSWA Logo" class="w-16 h-16 object-contain rounded-lg flex-shrink-0 bg-white/10 p-1">
                             <div class="flex-grow">
                                 <h3
-                                    class="text-lg font-semibold text-white light:text-gray-900 transition-colors duration-500">
+                                    class="text-lg font-bold text-white light:text-gray-900 transition-colors duration-500">
                                     SOLIDWORKS CAD Design Associate (CSWA)
                                 </h3>
-                                <p class="text-gray-400 light:text-gray-600 text-xs">Dassault Systèmes | Issued Jun 2024
+                                <p class="text-gray-400 light:text-gray-600 text-sm font-medium">Dassault Systèmes | Issued Jun 2024
                                 </p>
-                                <p class="text-xs text-gray-500 light:text-gray-500 mt-1">Credential ID C-HE8TOR64A7</p>
+                                <p class="text-sm text-gray-500 light:text-gray-500 mt-1">Credential ID C-HE8TOR64A7</p>
                             </div>
                         </div>
                         <a href="https://cv.virtualtester.com/qr/?b=SLDWRKS&i=C-HE8TQR64A7" target="_blank"
-                            class="inline-flex items-center px-3 py-1 bg-sky-600 text-white text-sm font-medium rounded-lg shadow-md hover:bg-sky-700 transition duration-300 whitespace-nowrap flex-shrink-0">
+                            class="inline-flex items-center px-4 py-2 bg-sky-600 text-white text-sm font-medium rounded-lg shadow-md hover:bg-sky-700 transition duration-300 whitespace-nowrap flex-shrink-0">
                             Show credential <i data-lucide="external-link" class="h-4 w-4 inline-block ml-1"></i>
                         </a>
                     </div>
                     <!-- Certification 3: 3DSwymer Associate -->
-                    <div
-                        class="flex items-center justify-between gap-4 border-b border-gray-700/50 light:border-gray-300/50 pb-4">
+                    <div class="flex items-center justify-between gap-4 p-4 rounded-xl transition-all duration-300 hover:bg-white/5 light:hover:bg-gray-100 hover:scale-[1.02] hover:shadow-md">
                         <div class="flex items-center space-x-4">
                             <!-- Certification Logo -->
                             <img src="image/SW.png" alt="3DSwymer Logo" class="w-16 h-16 object-contain rounded-lg flex-shrink-0 bg-white/10 p-1">
                             <div class="flex-grow">
                                 <h3
-                                    class="text-lg font-semibold text-white light:text-gray-900 transition-colors duration-500">
+                                    class="text-lg font-bold text-white light:text-gray-900 transition-colors duration-500">
                                     3DSwymer Associate
                                 </h3>
-                                <p class="text-gray-400 light:text-gray-600 text-xs">Dassault Systèmes | Issued Sep 2024
+                                <p class="text-gray-400 light:text-gray-600 text-sm font-medium">Dassault Systèmes | Issued Sep 2024
                                 </p>
-                                <p class="text-xs text-gray-500 light:text-gray-500 mt-1">Credential ID C-DNRM5W4P7E</p>
+                                <p class="text-sm text-gray-500 light:text-gray-500 mt-1">Credential ID C-DNRM5W4P7E</p>
                             </div>
                         </div>
                         <a href="https://cv.virtualtester.com/qr/?b=SLDWRKS&i=C-DNRM5W4P7E" target="_blank"
-                            class="inline-flex items-center px-3 py-1 bg-sky-600 text-white text-sm font-medium rounded-lg shadow-md hover:bg-sky-700 transition duration-300 whitespace-nowrap flex-shrink-0">
+                            class="inline-flex items-center px-4 py-2 bg-sky-600 text-white text-sm font-medium rounded-lg shadow-md hover:bg-sky-700 transition duration-300 whitespace-nowrap flex-shrink-0">
                             Show credential <i data-lucide="external-link" class="h-4 w-4 inline-block ml-1"></i>
                         </a>
                     </div>
                     <!-- Certification 4: Manufacturing Associate -->
-                    <div class="flex items-center justify-between gap-4">
+                    <div class="flex items-center justify-between gap-4 p-4 rounded-xl transition-all duration-300 hover:bg-white/5 light:hover:bg-gray-100 hover:scale-[1.02] hover:shadow-md">
                         <div class="flex items-center space-x-4">
                             <!-- Certification Logo -->
                             <img src="image/SW.png" alt="Additive Manufacturing Logo" class="w-16 h-16 object-contain rounded-lg flex-shrink-0 bg-white/10 p-1">
                             <div class="flex-grow">
                                 <h3
-                                    class="text-lg font-semibold text-white light:text-gray-900 transition-colors duration-500">
+                                    class="text-lg font-bold text-white light:text-gray-900 transition-colors duration-500">
                                     SOLIDWORKS Additive Manufacturing Associate
                                 </h3>
-                                <p class="text-gray-400 light:text-gray-600 text-xs">Dassault Systèmes | Issued Jun 2025
+                                <p class="text-gray-400 light:text-gray-600 text-sm font-medium">Dassault Systèmes | Issued Jun 2025
                                 </p>
-                                <p class="text-xs text-gray-500 light:text-gray-500 mt-1">Credential ID C-SUTZCK2BP6</p>
+                                <p class="text-sm text-gray-500 light:text-gray-500 mt-1">Credential ID C-SUTZCK2BP6</p>
                             </div>
                         </div>
                         <a href="https://cv.virtualtester.com/qr/?b=SLDWRKS&i=C-SUTZCK2BP6" target="_blank"
-                            class="inline-flex items-center px-3 py-1 bg-sky-600 text-white text-sm font-medium rounded-lg shadow-md hover:bg-sky-700 transition duration-300 whitespace-nowrap flex-shrink-0">
+                            class="inline-flex items-center px-4 py-2 bg-sky-600 text-white text-sm font-medium rounded-lg shadow-md hover:bg-sky-700 transition duration-300 whitespace-nowrap flex-shrink-0">
                             Show credential <i data-lucide="external-link" class="h-4 w-4 inline-block ml-1"></i>
                         </a>
                     </div>
@@ -628,7 +578,7 @@
                 <!-- Skill Item Component Template -->
                 <template id="skill-item-template">
                     <div
-                        class="skill-item p-3 rounded-lg transform transition duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-sky-500/20 cursor-pointer bg-gray-900/50 light:bg-gray-100 border border-transparent hover:border-sky-500/50">
+                        class="skill-item p-3 rounded-lg transition-all duration-300 hover:bg-white/5 light:hover:bg-gray-100 hover:scale-[1.02] hover:shadow-md cursor-pointer">
                         <div class="flex justify-between items-center mb-1">
                             <span class="text-lg font-medium text-white light:text-gray-900"></span>
                             <span class="text-sm font-semibold text-gray-400"></span>
@@ -649,9 +599,17 @@
     class="py-20 pt-16 flex items-center justify-center p-4 sm:p-8 bg-section transition-colors duration-500"
   >
     <div class="w-full lg:max-w-6xl mx-auto p-8 card-bg rounded-3xl shadow-xl border border-gray-700 light:border-gray-300 glow-shadow-hover">
-        <h1 class="text-3xl font-bold text-sky-400 mb-4 transition-colors duration-500">
+        <!-- Header Row: Title + PDF Download -->
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8">
+            <h1 class="text-3xl font-bold text-sky-400 transition-colors duration-500 mb-6 lg:mb-0">
     3D Modeling & Mechanical Design Showcase
 </h1>
+            <!-- Design Portfolio (PDF) Compact Button -->
+            <div class="flex items-center space-x-2 px-4 py-2 rounded-lg bg-sky-600 text-white shadow-md hover:bg-sky-700 transition-all duration-300 group cursor-pointer">
+                <i data-lucide="download" class="w-4 h-4 text-white"></i>
+                <button class="text-sm font-medium text-white bg-transparent cursor-pointer">Design Portfolio (PDF)</button>
+            </div>
+        </div>
         <!-- Slider Wrapper: Hides overflow -->
         <div id="portfolio-slider" class="overflow-hidden relative">
             <!-- Slider Track: Holds all 12 items side-by-side -->
@@ -769,9 +727,12 @@
             min-width: calc((100% / 3) - (16px * 2 / 3));
         }
         .neon-card:hover {
-            transform: translateY(-6px) scale(1.01);
-            box-shadow: 0 15px 20px rgba(0, 255, 255, 0.3), 0 5px 10px rgba(0, 255, 255, 0.1);
-            border-color: var(--neon-color);
+            transform: scale(1.02);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        .light .neon-card:hover {
+            background-color: #f3f4f6;
         }
         .slider-track {
             display: flex;
@@ -878,7 +839,7 @@
                         <div class="space-y-6">
                             <!-- 1. Location - Added contact-item class for JS interaction -->
                             <div
-                                class="contact-item flex items-start space-x-4 p-3 rounded-xl transition-all duration-300 hover:scale-[1.01] hover:bg-sky-600/10 hover:shadow-lg hover:shadow-sky-500/20 cursor-pointer">
+                                class="contact-item flex items-start space-x-4 p-3 rounded-xl transition-all duration-300 hover:bg-white/5 light:hover:bg-gray-100 hover:scale-[1.02] hover:shadow-md cursor-pointer">
                                 <div class="flex-shrink-0 p-3 rounded-xl bg-sky-600/20 text-sky-400">
                                     <i data-lucide="map-pin" class="w-6 h-6"></i>
                                 </div>
@@ -889,7 +850,7 @@
                             </div>
                             <!-- 2. Phone Number - Added contact-item class for JS interaction -->
                             <div
-                                class="contact-item flex items-start space-x-4 p-3 rounded-xl transition-all duration-300 hover:scale-[1.01] hover:bg-sky-600/10 hover:shadow-lg hover:shadow-sky-500/20 cursor-pointer">
+                                class="contact-item flex items-start space-x-4 p-3 rounded-xl transition-all duration-300 hover:bg-white/5 light:hover:bg-gray-100 hover:scale-[1.02] hover:shadow-md cursor-pointer">
                                 <div class="flex-shrink-0 p-3 rounded-xl bg-sky-600/20 text-sky-400">
                                     <i data-lucide="phone" class="w-6 h-6"></i>
                                 </div>
@@ -900,7 +861,7 @@
                             </div>
                             <!-- 3. Email Address - Added contact-item class for JS interaction -->
                             <div
-                                class="contact-item flex items-start space-x-4 p-3 rounded-xl transition-all duration-300 hover:scale-[1.01] hover:bg-sky-600/10 hover:shadow-lg hover:shadow-sky-500/20 cursor-pointer">
+                                class="contact-item flex items-start space-x-4 p-3 rounded-xl transition-all duration-300 hover:bg-white/5 light:hover:bg-gray-100 hover:scale-[1.02] hover:shadow-md cursor-pointer">
                                 <div class="flex-shrink-0 p-3 rounded-xl bg-sky-600/20 text-sky-400">
                                     <i data-lucide="mail" class="w-6 h-6"></i>
                                 </div>
