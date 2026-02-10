@@ -149,8 +149,58 @@
             color: #0e7490 !important;
         }
 
+        /* Tab Content Styling - Unified wrapper for consistent alignment */
+        .tab-content {
+            display: block;
+            min-height: auto;
+            padding-top: 0; /* Heading spacing handled by heading class */
+        }
+
+        .tab-content.hidden {
+            display: none !important;
+        }
+
+        /* Unified heading class for all tab headings - ensures consistent start point */
+        .tab-heading {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Consistent spacing after headings */
+        .tab-heading + .h-0.5 {
+            margin-bottom: 2rem; /* mb-8 */
+        }
+
+        /* About section container - auto height, no fixed constraints */
+        #about-tabs-container {
+            height: auto;
+            max-height: none;
+            overflow: visible;
+        }
+
+        /* About section main box - ensures natural height expansion */
+        #about-tabs-container > .card-bg {
+            height: auto;
+            max-height: none;
+            overflow: visible;
+        }
+
         nav a.text-2xl {
             font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Tab Content - Expands naturally with content */
+        #about-tabs-container > div:not(.flex) {
+            width: 100%;
+        }
+
+        /* --- Hide Original Education and Certifications Sections --- */
+        #education-page {
+            display: none;
+        }
+
+        #certifications {
+            display: none;
         }
     </style>
 
@@ -182,8 +232,7 @@
             const sections = [
                 { id: '#home', el: document.getElementById('home') },
                 { id: '#about-page', el: document.getElementById('about-page') },
-                { id: '#education-page', el: document.getElementById('education-page') },
-                { id: '#certifications', el: document.getElementById('certifications') },
+                { id: '#research-page', el: document.getElementById('research-page') },
                 { id: '#skills-page', el: document.getElementById('skills-page') },
                 { id: '#portfolio-page', el: document.getElementById('portfolio-page') },
                 { id: '#contact-page', el: document.getElementById('contact-page') }
@@ -270,10 +319,8 @@
                         class="nav-link px-3 py-1.5 pb-2 rounded-md text-sm font-medium text-gray-300 light:text-gray-700 hover:bg-sky-700/50 light:hover:bg-sky-200 hover:text-white light:hover:text-black transition duration-200">Home</a>
                     <a href="#about-page"
                         class="nav-link px-3 py-1.5 pb-2 rounded-md text-sm font-medium text-gray-300 light:text-gray-700 hover:bg-sky-700/50 light:hover:bg-sky-200 hover:text-white light:hover:text-black transition duration-200">About</a>
-                    <a href="#education-page"
-                        class="nav-link px-3 py-1.5 pb-2 rounded-md text-sm font-medium text-gray-300 light:text-gray-700 hover:bg-sky-700/50 light:hover:bg-sky-200 hover:text-white light:hover:text-black transition duration-200">Education</a>
-                    <a href="#certifications"
-                        class="nav-link px-3 py-1.5 pb-2 rounded-md text-sm font-medium text-gray-300 light:text-gray-700 hover:bg-sky-700/50 light:hover:bg-sky-200 hover:text-white light:hover:text-black transition duration-200">Certifications</a>
+                    <a href="#research-page"
+                        class="nav-link px-3 py-1.5 pb-2 rounded-md text-sm font-medium text-gray-300 light:text-gray-700 hover:bg-sky-700/50 light:hover:bg-sky-200 hover:text-white light:hover:text-black transition duration-200">Research</a>
                     <a href="#skills-page"
                         class="nav-link px-3 py-1.5 pb-2 rounded-md text-sm font-medium text-gray-300 light:text-gray-700 hover:bg-sky-700/50 light:hover:bg-sky-200 hover:text-white light:hover:text-black transition duration-200">My
                         Skills</a>
@@ -355,37 +402,223 @@
     <!-- Row 2: About Me (Page 2) -->
     <section id="about-page"
         class="py-20 pt-16 flex items-center justify-center p-4 sm:p-8 bg-section transition-colors duration-500">
-        <div
-            class="w-full lg:max-w-6xl mx-auto p-8 sm:p-12 card-bg rounded-3xl shadow-xl border border-gray-700 light:border-gray-300 glow-shadow-hover">
-            <h2 class="text-4xl sm:text-5xl font-bold text-sky-400 mb-8 text-center transition-colors duration-500"
-                id="about">About Me</h2>
-            <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
-                <!-- LEFT COLUMN: Rectangular Profile Picture (Wider) -->
-                <div class="lg:col-span-2 flex justify-center">
-                    <img src="image/About.png" alt="Mehedi Hasan Profile"
-                        class="w-96 h-72 object-cover rounded-xl border-4 border-sky-400/50 shadow-2xl">
+        <div id="about-tabs-container" class="w-full lg:max-w-6xl mx-auto">
+            
+            <!-- MAIN BOX: Contains header sub-box + all content -->
+            <div class="card-bg rounded-3xl shadow-xl p-8 sm:p-10 border border-gray-700 light:border-gray-300 glow-shadow-hover">
+                
+                <!-- SUB BOX: Header with heading and pill tabs -->
+                <div class="bg-gray-800/50 light:bg-gray-100 rounded-2xl p-6 sm:p-8 mb-8 border border-gray-700/30 light:border-gray-300/30 flex flex-col items-center justify-center">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-sky-400 mb-6 text-center transition-colors duration-500" id="about">About Me</h2>
+                    
+                    <!-- Pill-style Tab Navigation -->
+                    <div class="flex justify-center items-center p-1.5 bg-gray-700/50 light:bg-gray-200 rounded-full w-fit border border-gray-600/30 light:border-gray-300/50 backdrop-blur-sm">
+                        <button class="tab-header px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-sky-600 text-white shadow-md" data-tab="about">About</button>
+                        <button class="tab-header px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 text-gray-400 hover:text-white hover:bg-white/5 light:text-gray-600 light:hover:text-gray-900 light:hover:bg-gray-300/50" data-tab="education">Education</button>
+                        <button class="tab-header px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 text-gray-400 hover:text-white hover:bg-white/5 light:text-gray-600 light:hover:text-gray-900 light:hover:bg-gray-300/50" data-tab="experience">Experience</button>
+                        <button class="tab-header px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 text-gray-400 hover:text-white hover:bg-white/5 light:text-gray-600 light:hover:text-gray-900 light:hover:bg-gray-300/50" data-tab="certifications">Certifications</button>
+                    </div>
                 </div>
-                <!-- RIGHT COLUMN: Professional Description -->
-                <div
-                    class="lg:col-span-3 text-lg text-gray-300 light:text-gray-700 space-y-4 transition-colors duration-500">
-                    <p>
-                        An enthusiastic undergraduate student pursuing a bachelor's degree in Mechanical Engineering
-                        at Rajshahi University of Engineering and Technology (RUET).
-                    </p>
-                    <p>
-                        With strong skills in Computer-Aided Design (CAD) and SolidWorks, I specialize in
-                        product
-                        design and rendering at an intermediate level.
-                    </p>
-                    <p>
-                        I hold the prestigious Certified SolidWorks Associate (CSWA) and Certified SolidWorks
-                        Professional (CSWP) certifications, reflecting my dedication and expertise in the field.
-                    </p>
-                    <!-- Download CV Option - Updated Icon -->
-                    <a href="your_cv_file_link.pdf" download="Mehedi_Hasan_CV.pdf"
-                        class="inline-flex items-center mt-6 px-6 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 transform hover:scale-[1.02] transition duration-300">
-                        <i data-lucide="download" class="w-5 h-5 mr-2"></i> Download CV
-                    </a>
+
+                <!-- TAB CONTENT AREA (still inside main box) -->
+                <div id="tab-about" class="tab-content">
+                    <h3 class="tab-heading text-3xl font-bold text-sky-400 mb-2 transition-colors duration-500">Who I Am</h3>
+                    <div class="h-0.5 w-20 bg-sky-400 rounded-full mb-8"></div>
+                    <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
+                        <!-- LEFT COLUMN: Profile Picture -->
+                        <div class="lg:col-span-2">
+                            <img src="image/About.png" alt="Mehedi Hasan Profile" class="w-full h-auto object-cover rounded-xl shadow-lg">
+                        </div>
+                        <!-- RIGHT COLUMN: Professional Description -->
+                        <div class="lg:col-span-3 text-lg leading-relaxed text-justify text-gray-300 light:text-gray-700 space-y-4 transition-colors duration-500">
+                            <p>An enthusiastic undergraduate student pursuing a bachelor's degree in Mechanical Engineering at Rajshahi University of Engineering and Technology (RUET).</p>
+                            <p>With strong skills in Computer-Aided Design (CAD) and SolidWorks, I specialize in product design and rendering at an intermediate level.</p>
+                            <p>I hold the prestigious Certified SolidWorks Associate (CSWA) and Certified SolidWorks Professional (CSWP) certifications, reflecting my dedication and expertise in the field.</p>
+                            <a href="your_cv_file_link.pdf" download="Mehedi_Hasan_CV.pdf" class="inline-flex items-center mt-6 px-6 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 transition duration-300"><i data-lucide="download" class="w-5 h-5 mr-2"></i>Download CV</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Education Tab Content -->
+                <div id="tab-education" class="tab-content hidden">
+                    <h3 class="tab-heading text-3xl font-bold text-sky-400 mb-2 transition-colors duration-500">Academic Background</h3>
+                    <div class="h-0.5 w-20 bg-sky-400 rounded-full mb-8"></div>
+                    <div class="space-y-8">
+                        <!-- RUET Entry -->
+                        <div class="flex items-start gap-6 pb-8 border-b border-gray-700/30">
+                            <div class="w-16 h-16 flex-shrink-0 rounded-full bg-white/5 p-2 flex items-center justify-center">
+                                <img src="image/RUET.png" alt="RUET Logo" class="w-full h-full object-contain">
+                            </div>
+                            <div>
+                                <p class="text-lg text-gray-300 mb-1">B.Sc. in Mechanical Engineering</p>
+                                <p class="text-xl font-bold text-white">Rajshahi University of Engineering &amp; Technology (RUET)</p>
+                                <p class="text-sm text-gray-400 mt-2">Jan 2023 - Present</p>
+                            </div>
+                        </div>
+
+                        <!-- Earlier Education Subheading -->
+                        <div>
+                            <h4 class="text-xl font-medium text-gray-400 mb-6">Earlier Education</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <!-- GCC -->
+                                <div class="flex items-start gap-4">
+                                    <div class="w-14 h-14 flex-shrink-0 rounded-full bg-white/5 p-2 flex items-center justify-center">
+                                        <img src="image/GCC.png" alt="GCC Logo" class="w-full h-full object-contain">
+                                    </div>
+                                    <div>
+                                        <p class="text-lg text-gray-300">Higher Secondary Certificate (HSC), Science</p>
+                                        <p class="text-xl font-bold text-white">Gazipur Cantonment College (GCC)</p>
+                                        <p class="text-sm text-gray-400 mt-1">Jun 2019 - Feb 2022 | Grade: Golden GPA 5.00</p>
+                                    </div>
+                                </div>
+
+                                <!-- Hataykhari -->
+                                <div class="flex items-start gap-4">
+                                    <div class="w-14 h-14 flex-shrink-0 rounded-full bg-white/5 p-2 flex items-center justify-center">
+                                        <img src="image/HPS.jpg" alt="HPSC Logo" class="w-full h-full object-contain">
+                                    </div>
+                                    <div>
+                                        <p class="text-lg text-gray-300">School Education (Class 03-10)</p>
+                                        <p class="text-xl font-bold text-white">Hataykhari Public School &amp; College</p>
+                                        <p class="text-sm text-gray-400 mt-1">Jan 2011 - Feb 2019</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience Tab Content -->
+                <div id="tab-experience" class="tab-content hidden">
+                    <h3 class="tab-heading text-3xl font-bold text-sky-400 mb-2 transition-colors duration-500">Professional Experience</h3>
+                    <div class="h-0.5 w-20 bg-sky-400 rounded-full mb-8"></div>
+                    <div class="flex flex-col">
+                        <!-- Experience 1 -->
+                        <div class="flex flex-col gap-4 py-6 border-b border-gray-700/50 light:border-gray-300/50">
+                            <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                                <div>
+                                    <h4 class="text-xl font-bold text-white light:text-gray-900 transition-colors duration-500">ABC Engineering Solutions</h4>
+                                    <p class="text-lg font-medium text-sky-400 light:text-sky-600 transition-colors duration-500">Mechanical Engineering Intern</p>
+                                    <p class="text-sm text-gray-500 light:text-gray-500 mt-1">Jun 2024 – Sep 2024</p>
+                                </div>
+                                <a href="#" class="inline-flex items-center px-4 py-2 bg-sky-600 text-white text-sm font-medium rounded-lg shadow-md hover:bg-sky-700 transition duration-300 whitespace-nowrap flex-shrink-0">
+                                    View Details <i data-lucide="external-link" class="h-4 w-4 inline-block ml-1"></i>
+                                </a>
+                            </div>
+                            <p class="text-gray-300 light:text-gray-700 leading-relaxed transition-colors duration-500">
+                                Worked on CAD modeling, technical drawings, and basic product optimization. Collaborated with senior engineers on real-world mechanical design tasks.
+                            </p>
+                        </div>
+                        <!-- Experience 2 -->
+                        <div class="flex flex-col gap-4 py-6">
+                            <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                                <div>
+                                    <h4 class="text-xl font-bold text-white light:text-gray-900 transition-colors duration-500">University Project Team</h4>
+                                    <p class="text-lg font-medium text-sky-400 light:text-sky-600 transition-colors duration-500">Academic Project Lead</p>
+                                    <p class="text-sm text-gray-500 light:text-gray-500 mt-1">Jan 2024 – May 2024</p>
+                                </div>
+                                <a href="#" class="inline-flex items-center px-4 py-2 bg-sky-600 text-white text-sm font-medium rounded-lg shadow-md hover:bg-sky-700 transition duration-300 whitespace-nowrap flex-shrink-0">
+                                    Project Link <i data-lucide="external-link" class="h-4 w-4 inline-block ml-1"></i>
+                                </a>
+                            </div>
+                            <p class="text-gray-300 light:text-gray-700 leading-relaxed transition-colors duration-500">
+                                Led a team project focused on mechanical system analysis and simulation. Responsible for design planning, calculations, and final presentation.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certifications Tab Content -->
+                <div id="tab-certifications" class="tab-content hidden">
+                    <h3 class="tab-heading text-3xl font-bold text-sky-400 mb-2 transition-colors duration-500">Professional Certifications</h3>
+                    <div class="h-0.5 w-20 bg-sky-400 rounded-full mb-8"></div>
+                    <div class="space-y-4">
+                        <!-- Certification 1: CSWP -->
+                        <div class="flex items-center justify-between gap-4 py-4 border-b border-gray-700/50 light:border-gray-300/50">
+                            <div class="flex items-center space-x-4">
+                                <img src="image/SW.png" alt="CSWP Logo" class="w-16 h-16 object-contain rounded-lg flex-shrink-0 bg-white/10 p-1">
+                                <div class="flex-grow">
+                                    <h4 class="text-lg font-bold text-white light:text-gray-900 transition-colors duration-500">SOLIDWORKS CAD Design Professional (CSWP)</h4>
+                                    <p class="text-gray-400 light:text-gray-600 text-sm font-medium">Dassault Systèmes | Issued Aug 2024</p>
+                                    <p class="text-sm text-gray-500 light:text-gray-500 mt-1">Credential ID C-4BQMETJS76</p>
+                                </div>
+                            </div>
+                            <a href="https://cv.virtualtester.com/qr/?b=SLDWRKS&i=C-4BQMETJS76" target="_blank" class="inline-flex items-center px-4 py-2 bg-sky-600 text-white text-sm font-medium rounded-lg shadow-md hover:bg-sky-700 transition duration-300 whitespace-nowrap flex-shrink-0">
+                                Show credential <i data-lucide="external-link" class="h-4 w-4 inline-block ml-1"></i>
+                            </a>
+                        </div>
+                        <!-- Certification 2: CSWA -->
+                        <div class="flex items-center justify-between gap-4 py-4 border-b border-gray-700/50 light:border-gray-300/50">
+                            <div class="flex items-center space-x-4">
+                                <img src="image/SW.png" alt="CSWA Logo" class="w-16 h-16 object-contain rounded-lg flex-shrink-0 bg-white/10 p-1">
+                                <div class="flex-grow">
+                                    <h4 class="text-lg font-bold text-white light:text-gray-900 transition-colors duration-500">SOLIDWORKS CAD Design Associate (CSWA)</h4>
+                                    <p class="text-gray-400 light:text-gray-600 text-sm font-medium">Dassault Systèmes | Issued Jun 2024</p>
+                                    <p class="text-sm text-gray-500 light:text-gray-500 mt-1">Credential ID C-HE8TOR64A7</p>
+                                </div>
+                            </div>
+                            <a href="https://cv.virtualtester.com/qr/?b=SLDWRKS&i=C-HE8TQR64A7" target="_blank" class="inline-flex items-center px-4 py-2 bg-sky-600 text-white text-sm font-medium rounded-lg shadow-md hover:bg-sky-700 transition duration-300 whitespace-nowrap flex-shrink-0">
+                                Show credential <i data-lucide="external-link" class="h-4 w-4 inline-block ml-1"></i>
+                            </a>
+                        </div>
+                        <!-- Certification 3: 3DSwymer Associate -->
+                        <div class="flex items-center justify-between gap-4 py-4 border-b border-gray-700/50 light:border-gray-300/50">
+                            <div class="flex items-center space-x-4">
+                                <img src="image/SW.png" alt="3DSwymer Logo" class="w-16 h-16 object-contain rounded-lg flex-shrink-0 bg-white/10 p-1">
+                                <div class="flex-grow">
+                                    <h4 class="text-lg font-bold text-white light:text-gray-900 transition-colors duration-500">3DSwymer Associate</h4>
+                                    <p class="text-gray-400 light:text-gray-600 text-sm font-medium">Dassault Systèmes | Issued Sep 2024</p>
+                                    <p class="text-sm text-gray-500 light:text-gray-500 mt-1">Credential ID C-DNRM5W4P7E</p>
+                                </div>
+                            </div>
+                            <a href="https://cv.virtualtester.com/qr/?b=SLDWRKS&i=C-DNRM5W4P7E" target="_blank" class="inline-flex items-center px-4 py-2 bg-sky-600 text-white text-sm font-medium rounded-lg shadow-md hover:bg-sky-700 transition duration-300 whitespace-nowrap flex-shrink-0">
+                                Show credential <i data-lucide="external-link" class="h-4 w-4 inline-block ml-1"></i>
+                            </a>
+                        </div>
+                        <!-- Certification 4: Manufacturing Associate -->
+                        <div class="flex items-center justify-between gap-4 py-4">
+                            <div class="flex items-center space-x-4">
+                                <img src="image/SW.png" alt="Additive Manufacturing Logo" class="w-16 h-16 object-contain rounded-lg flex-shrink-0 bg-white/10 p-1">
+                                <div class="flex-grow">
+                                    <h4 class="text-lg font-bold text-white light:text-gray-900 transition-colors duration-500">SOLIDWORKS Additive Manufacturing Associate</h4>
+                                    <p class="text-gray-400 light:text-gray-600 text-sm font-medium">Dassault Systèmes | Issued Jun 2025</p>
+                                    <p class="text-sm text-gray-500 light:text-gray-500 mt-1">Credential ID C-SUTZCK2BP6</p>
+                                </div>
+                            </div>
+                            <a href="https://cv.virtualtester.com/qr/?b=SLDWRKS&i=C-SUTZCK2BP6" target="_blank" class="inline-flex items-center px-4 py-2 bg-sky-600 text-white text-sm font-medium rounded-lg shadow-md hover:bg-sky-700 transition duration-300 whitespace-nowrap flex-shrink-0">
+                                Show credential <i data-lucide="external-link" class="h-4 w-4 inline-block ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Row 2.5: Research & Publications -->
+    <section id="research-page"
+        class="py-20 pt-16 flex items-center justify-center p-4 sm:p-8 bg-section transition-colors duration-500">
+        <div class="w-full lg:max-w-6xl mx-auto grid grid-cols-1 gap-8">
+            <div class="card-bg rounded-3xl shadow-xl p-8 border border-gray-700 light:border-gray-300 glow-shadow-hover">
+                <h2 class="text-3xl font-bold text-sky-400 mb-6 transition-colors duration-500">Research &amp; Publications</h2>
+                <div class="space-y-6">
+                    <!-- Research Item 1 -->
+                    <div class="p-6 rounded-xl bg-gray-800/50 light:bg-gray-50 border border-gray-700/30 light:border-gray-200 transition-all duration-300">
+                        <h3 class="text-lg font-bold text-white light:text-gray-900 mb-2 transition-colors duration-500">
+                            Efficient Energy Recovery from Wastewater Using Microbial Fuel Cells
+                        </h3>
+                        <p class="text-gray-300 light:text-gray-700 text-sm font-medium mb-1">
+                            <span class="text-sky-400 light:text-sky-600">MD Mehedi Hasan</span>, Co-author Name, Co-author Name
+                        </p>
+                        <p class="text-gray-400 light:text-gray-600 text-sm mb-2">
+                            2nd International Conference on Renewable Energy and Environment, 2024
+                        </p>
+                        <a href="https://doi.org/10.1234/abcd5678" target="_blank" class="text-sky-500 hover:text-sky-400 text-sm hover:underline mb-3 inline-block transition-colors">
+                            https://doi.org/10.1234/abcd5678
+                        </a>
+                        <p class="text-gray-400 light:text-gray-600 text-sm leading-relaxed mt-2">
+                            This study explores the application of microbial fuel cells (MFCs) for efficient energy recovery from wastewater, highlighting key operational parameters and performance enhancement.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1112,7 +1345,6 @@
         </svg>
     </button>
 
-
     <script>
         // --- JavaScript for Smooth Scrolling ---
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1414,6 +1646,57 @@
             }
         });
     </script>
+
+    <!-- About Section Tabbed Interface -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const tabsContainer = document.getElementById("about-tabs-container");
+            if (!tabsContainer) return;
+
+            const tabButtons = tabsContainer.querySelectorAll(".tab-header");
+            const tabPanels = tabsContainer.querySelectorAll(".tab-content");
+            const STORAGE_KEY = "aboutTabActive";
+
+            function setActiveTab(tabName) {
+                // Update panels
+                tabPanels.forEach(panel => {
+                    panel.classList.toggle(
+                        "hidden",
+                        panel.id !== `tab-${tabName}`
+                    );
+                });
+
+                // Update tab buttons
+                tabButtons.forEach(btn => {
+                    const isActive = btn.dataset.tab === tabName;
+
+                    if (isActive) {
+                        btn.classList.add("bg-sky-600", "text-white", "shadow-md");
+                        btn.classList.remove("text-gray-400", "hover:text-white", "hover:bg-white/5", "light:text-gray-600", "light:hover:text-gray-900", "light:hover:bg-gray-300/50");
+                    } else {
+                        btn.classList.remove("bg-sky-600", "text-white", "shadow-md");
+                        btn.classList.add("text-gray-400", "hover:text-white", "hover:bg-white/5", "light:text-gray-600", "light:hover:text-gray-900", "light:hover:bg-gray-300/50");
+                    }
+                });
+
+                // Save state
+                sessionStorage.setItem(STORAGE_KEY, tabName);
+            }
+
+            // Restore previous tab (if exists)
+            const savedTab = sessionStorage.getItem(STORAGE_KEY) || "about";
+            setActiveTab(savedTab);
+
+            // Click handling
+            tabButtons.forEach(button => {
+                button.addEventListener("click", () => {
+                    const tabName = button.dataset.tab;
+                    setActiveTab(tabName);
+                });
+            });
+        });
+    </script>
+
 </body>
 
 </html>
