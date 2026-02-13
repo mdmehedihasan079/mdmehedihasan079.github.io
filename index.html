@@ -220,6 +220,31 @@
             /* emerald-400 */
             border-radius: 9999px;
         }
+
+        /* ===== Portfolio Slider Fix ===== */
+
+        #slider-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        #slider-track>.neon-card {
+            flex: 0 0 100%;
+        }
+
+        /* Tablet */
+        @media (min-width: 640px) {
+            #slider-track>.neon-card {
+                flex: 0 0 50%;
+            }
+        }
+
+        /* Desktop */
+        @media (min-width: 1024px) {
+            #slider-track>.neon-card {
+                flex: 0 0 33.3333%;
+            }
+        }
     </style>
 
     <script>
@@ -242,10 +267,12 @@
     </script>
 
     <script>
-        // ...your existing JavaScript code...
+        document.addEventListener('DOMContentLoaded', function () {
 
-        // --- Active Nav Underline on Scroll and Click ---
-        window.addEventListener('DOMContentLoaded', function () {
+            /* ===============================
+               ACTIVE NAV UNDERLINE
+            =============================== */
+
             const navLinks = document.querySelectorAll('.nav-link.pb-2');
             const sections = [
                 { id: '#home', el: document.getElementById('home') },
@@ -256,42 +283,124 @@
                 { id: '#contact-page', el: document.getElementById('contact-page') }
             ];
 
-            function clearActiveLinks() {
-                navLinks.forEach(link => link.classList.remove('active-nav'));
-            }
-
             function setActiveNav() {
-                let scrollPos = window.scrollY + 90; // Offset for navbar height
+                let scrollPos = window.scrollY + 100;
                 let currentId = '#home';
-                for (let i = 0; i < sections.length; i++) {
-                    const section = sections[i].el;
-                    if (section && section.offsetTop <= scrollPos) {
-                        currentId = sections[i].id;
+
+                sections.forEach(section => {
+                    if (section.el && section.el.offsetTop <= scrollPos) {
+                        currentId = section.id;
                     }
-                }
+                });
+
                 navLinks.forEach(link => {
-                    if (link.getAttribute('href') === currentId) {
-                        link.classList.add('active-nav');
-                    } else {
-                        link.classList.remove('active-nav');
-                    }
+                    link.classList.toggle(
+                        'active-nav',
+                        link.getAttribute('href') === currentId
+                    );
                 });
             }
 
             window.addEventListener('scroll', setActiveNav);
+            setActiveNav();
 
-            navLinks.forEach(link => {
-                link.addEventListener('click', function () {
-                    clearActiveLinks();
-                    this.classList.add('active-nav');
+
+            /* ===============================
+               PORTFOLIO SLIDER FIXED
+            =============================== */
+
+            const track = document.getElementById('slider-track');
+            const dotsContainer = document.getElementById('slider-dots');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            if (!track) return; // safety check
+
+            const totalItems = track.children.length;
+            let itemsPerSlide;
+            let totalSlides;
+            let currentSlide = 0;
+
+            function calculateSlides() {
+                if (window.innerWidth < 640) {
+                    itemsPerSlide = 1;
+                } else if (window.innerWidth < 1024) {
+                    itemsPerSlide = 2;
+                } else {
+                    itemsPerSlide = 3;
+                }
+
+                totalSlides = Math.ceil(totalItems / itemsPerSlide);
+            }
+
+            function updateSlider() {
+                const offset = currentSlide * 100;
+                track.style.transform = `translateX(-${offset}%)`;
+
+                if (prevBtn) prevBtn.disabled = currentSlide === 0;
+                if (nextBtn) nextBtn.disabled = currentSlide === totalSlides - 1;
+
+                updateDots();
+            }
+
+            function initializeDots() {
+                if (!dotsContainer) return;
+
+                dotsContainer.innerHTML = '';
+
+                for (let i = 0; i < totalSlides; i++) {
+                    const dot = document.createElement('div');
+                    dot.classList.add('slider-dot');
+
+                    dot.addEventListener('click', () => {
+                        currentSlide = i;
+                        updateSlider();
+                    });
+
+                    dotsContainer.appendChild(dot);
+                }
+            }
+
+            function updateDots() {
+                if (!dotsContainer) return;
+
+                const dots = dotsContainer.querySelectorAll('.slider-dot');
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
                 });
+            }
+
+            function nextSlide() {
+                if (currentSlide < totalSlides - 1) {
+                    currentSlide++;
+                    updateSlider();
+                }
+            }
+
+            function prevSlide() {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    updateSlider();
+                }
+            }
+
+            if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+            if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+
+            window.addEventListener('resize', () => {
+                currentSlide = 0;
+                calculateSlides();
+                initializeDots();
+                updateSlider();
             });
 
-            setActiveNav();
-        });
+            calculateSlides();
+            initializeDots();
+            updateSlider();
 
-        // ...rest of your JavaScript code...
+        });
     </script>
+
 </head>
 
 <body class="transition-colors duration-500">
@@ -944,7 +1053,8 @@
                 <!-- Slider Track: Holds all 12 items side-by-side -->
                 <div id="slider-track" class="flex gap-4 transition-transform duration-500">
                     <!-- Card 1 -->
-                   <div class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
+                    <div
+                        class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
 
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=1" alt="Project 1"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
@@ -961,7 +1071,8 @@
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
                     <!-- Card 2 -->
-                   <div class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
+                    <div
+                        class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
 
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=2" alt="Project 2"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
@@ -976,7 +1087,8 @@
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
                     <!-- Card 3 -->
-                    <div class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
+                    <div
+                        class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=3" alt="Project 3"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
@@ -990,7 +1102,8 @@
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
                     <!-- Card 4 -->
-                    <div class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
+                    <div
+                        class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=4" alt="Project 4"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
@@ -1004,7 +1117,8 @@
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
                     <!-- Card 5 -->
-                    <div class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
+                    <div
+                        class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=5" alt="Project 5"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
@@ -1018,7 +1132,8 @@
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
                     <!-- Card 6 -->
-                    <div class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
+                    <div
+                        class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=6" alt="Project 6"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
@@ -1032,7 +1147,8 @@
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
                     <!-- Card 7 -->
-                    <div class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
+                    <div
+                        class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=7" alt="Project 7"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
@@ -1046,7 +1162,8 @@
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
                     <!-- Card 8 -->
-                    <div class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
+                    <div
+                        class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=8" alt="Project 8"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
@@ -1060,7 +1177,8 @@
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
                     <!-- Card 9 -->
-                    <div class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
+                    <div
+                        class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=9" alt="Project 9"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
@@ -1074,7 +1192,8 @@
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
                     <!-- Card 10 -->
-                    <div class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
+                    <div
+                        class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=10" alt="Project 10"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
@@ -1088,7 +1207,8 @@
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
                     <!-- Card 11 -->
-                    <div class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
+                    <div
+                        class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=11" alt="Project 11"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
@@ -1102,7 +1222,8 @@
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
                     <!-- Card 12 -->
-                    <div class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
+                    <div
+                        class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=12" alt="Project 12"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
@@ -1227,8 +1348,10 @@
                     }
                     totalSlides = Math.ceil(totalItems / itemsPerSlide);
 
-                    const offset = currentSlide * 100;
-                    track.style.transform = `translateX(-${offset}%)`;
+                    const cardWidth = track.children[0].offsetWidth;
+                    const gap = 16; // because you use gap-4 (16px)
+                    const moveAmount = (cardWidth + gap) * itemsPerSlide * currentSlide;
+                    track.style.transform = `translateX(-${moveAmount}px)`;
                     prevBtn.disabled = currentSlide === 0;
                     nextBtn.disabled = currentSlide === totalSlides - 1;
                     updateDots();
