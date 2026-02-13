@@ -322,8 +322,8 @@
                         MD Mehedi Hasan
                     </a>
                     <!-- Mobile Menu Button (Hamburger) - placeholder, JS not fully implemented for mobile menu -->
-                    <button
-                        id="mobile-menu-btn" class="sm:hidden text-gray-300 light:text-gray-600 p-2 rounded-md hover:bg-sky-700/50 light:hover:bg-sky-200 transition duration-200">
+                    <button id="mobile-menu-btn"
+                        class="sm:hidden text-gray-300 light:text-gray-600 p-2 rounded-md hover:bg-sky-700/50 light:hover:bg-sky-200 transition duration-200">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4 6h16M4 12h16M4 18h16" />
@@ -369,14 +369,22 @@
             </div>
         </div>
         <!-- Mobile Menu (Hidden by default) -->
-        <div id="mobile-menu" class="hidden sm:hidden bg-[#161b22] light:bg-[#f3f4f6] border-t border-gray-700/50 light:border-gray-300/50">
+        <div id="mobile-menu"
+            class="hidden sm:hidden bg-[#161b22] light:bg-[#f3f4f6] border-t border-gray-700/50 light:border-gray-300/50">
             <div class="px-4 pt-2 pb-6 space-y-2 flex flex-col">
-                <a href="#home" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-gray-300 light:text-gray-700 hover:bg-sky-700/50 light:hover:bg-sky-200 hover:text-white light:hover:text-black transition duration-200">Home</a>
-                <a href="#about-page" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-gray-300 light:text-gray-700 hover:bg-sky-700/50 light:hover:bg-sky-200 hover:text-white light:hover:text-black transition duration-200">About</a>
-                <a href="#research-page" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-gray-300 light:text-gray-700 hover:bg-sky-700/50 light:hover:bg-sky-200 hover:text-white light:hover:text-black transition duration-200">Research</a>
-                <a href="#skills-page" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-gray-300 light:text-gray-700 hover:bg-sky-700/50 light:hover:bg-sky-200 hover:text-white light:hover:text-black transition duration-200">My Skills</a>
-                <a href="#portfolio-page" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-gray-300 light:text-gray-700 hover:bg-sky-700/50 light:hover:bg-sky-200 hover:text-white light:hover:text-black transition duration-200">Portfolio</a>
-                <a href="#contact-page" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-gray-300 light:text-gray-700 hover:bg-sky-700/50 light:hover:bg-sky-200 hover:text-white light:hover:text-black transition duration-200">Contact</a>
+                <a href="#home"
+                    class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-gray-300 light:text-gray-700 hover:bg-sky-700/50 light:hover:bg-sky-200 hover:text-white light:hover:text-black transition duration-200">Home</a>
+                <a href="#about-page"
+                    class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-gray-300 light:text-gray-700 hover:bg-sky-700/50 light:hover:bg-sky-200 hover:text-white light:hover:text-black transition duration-200">About</a>
+                <a href="#research-page"
+                    class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-gray-300 light:text-gray-700 hover:bg-sky-700/50 light:hover:bg-sky-200 hover:text-white light:hover:text-black transition duration-200">Research</a>
+                <a href="#skills-page"
+                    class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-gray-300 light:text-gray-700 hover:bg-sky-700/50 light:hover:bg-sky-200 hover:text-white light:hover:text-black transition duration-200">My
+                    Skills</a>
+                <a href="#portfolio-page"
+                    class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-gray-300 light:text-gray-700 hover:bg-sky-700/50 light:hover:bg-sky-200 hover:text-white light:hover:text-black transition duration-200">Portfolio</a>
+                <a href="#contact-page"
+                    class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-gray-300 light:text-gray-700 hover:bg-sky-700/50 light:hover:bg-sky-200 hover:text-white light:hover:text-black transition duration-200">Contact</a>
             </div>
         </div>
     </nav>
@@ -438,8 +446,7 @@
             <div class="py-8 px-4 sm:p-12">
 
                 <!-- SUB BOX: Header with heading and pill tabs -->
-                <div
-                    class="p-4 sm:p-8 mb-8 flex flex-col items-center justify-center">
+                <div class="p-4 sm:p-8 mb-8 flex flex-col items-center justify-center">
                     <h2 class="text-2xl sm:text-4xl font-bold text-sky-400 mb-8 text-center transition-colors duration-500"
                         id="about">
                         About Me
@@ -829,8 +836,7 @@
                 <div class="space-y-6">
 
                     <!-- Research Item -->
-                    <div
-                        class="py-6 border-b border-gray-700/40 light:border-gray-200 transition-all duration-300">
+                    <div class="py-6 border-b border-gray-700/40 light:border-gray-200 transition-all duration-300">
 
                         <h3
                             class="text-base sm:text-xl font-semibold text-white light:text-gray-900 mb-2 sm:mb-3 transition-colors duration-500">
@@ -883,7 +889,8 @@
                 <!-- Skill Group Template -->
                 <template id="skill-group-template">
                     <div class="mb-8">
-                        <h3 class="skill-group-title text-xl sm:text-3xl font-semibold text-sky-300 mb-4 sm:mb-6 transition-colors duration-500">
+                        <h3
+                            class="skill-group-title text-xl sm:text-3xl font-semibold text-sky-300 mb-4 sm:mb-6 transition-colors duration-500">
                         </h3>
 
                         <div class="space-y-4">
@@ -933,11 +940,11 @@
             </div>
 
             <!-- Slider Wrapper: Hides overflow -->
-            <div id="portfolio-slider" class="overflow-hidden relative">
+            <div id="portfolio-slider" class="overflow-hidden relative w-full">
                 <!-- Slider Track: Holds all 12 items side-by-side -->
                 <div id="slider-track" class="flex gap-4 transition-transform duration-500">
                     <!-- Card 1 -->
-                    <div class="neon-card w-full sm:w-[320px] flex-shrink-0 p-6 flex flex-col justify-between">
+                   <div class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
 
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=1" alt="Project 1"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
@@ -954,7 +961,8 @@
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
                     <!-- Card 2 -->
-                    <div class="neon-card w-full sm:w-[320px] flex-shrink-0 p-6 flex flex-col justify-between">
+                   <div class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
+
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=2" alt="Project 2"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
@@ -968,7 +976,7 @@
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
                     <!-- Card 3 -->
-                    <div class="neon-card w-full sm:w-[320px] flex-shrink-0 p-6 flex flex-col justify-between">
+                    <div class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=3" alt="Project 3"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
@@ -982,7 +990,7 @@
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
                     <!-- Card 4 -->
-                    <div class="neon-card w-full sm:w-[320px] flex-shrink-0 p-6 flex flex-col justify-between">
+                    <div class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=4" alt="Project 4"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
@@ -996,7 +1004,7 @@
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
                     <!-- Card 5 -->
-                    <div class="neon-card w-full sm:w-[320px] flex-shrink-0 p-6 flex flex-col justify-between">
+                    <div class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=5" alt="Project 5"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
@@ -1010,7 +1018,7 @@
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
                     <!-- Card 6 -->
-                    <div class="neon-card w-full sm:w-[320px] flex-shrink-0 p-6 flex flex-col justify-between">
+                    <div class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=6" alt="Project 6"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
@@ -1024,7 +1032,7 @@
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
                     <!-- Card 7 -->
-                    <div class="neon-card w-full sm:w-[320px] flex-shrink-0 p-6 flex flex-col justify-between">
+                    <div class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=7" alt="Project 7"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
@@ -1038,7 +1046,7 @@
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
                     <!-- Card 8 -->
-                    <div class="neon-card w-full sm:w-[320px] flex-shrink-0 p-6 flex flex-col justify-between">
+                    <div class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=8" alt="Project 8"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
@@ -1052,7 +1060,7 @@
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
                     <!-- Card 9 -->
-                    <div class="neon-card w-full sm:w-[320px] flex-shrink-0 p-6 flex flex-col justify-between">
+                    <div class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=9" alt="Project 9"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
@@ -1066,7 +1074,7 @@
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
                     <!-- Card 10 -->
-                    <div class="neon-card w-full sm:w-[320px] flex-shrink-0 p-6 flex flex-col justify-between">
+                    <div class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=10" alt="Project 10"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
@@ -1080,7 +1088,7 @@
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
                     <!-- Card 11 -->
-                    <div class="neon-card w-full sm:w-[320px] flex-shrink-0 p-6 flex flex-col justify-between">
+                    <div class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=11" alt="Project 11"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
@@ -1094,7 +1102,7 @@
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
                     <!-- Card 12 -->
-                    <div class="neon-card w-full sm:w-[320px] flex-shrink-0 p-6 flex flex-col justify-between">
+                    <div class="neon-card flex-shrink-0 w-full sm:w-[320px] px-4 sm:px-0 p-5 sm:p-6 flex flex-col justify-between">
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=12" alt="Project 12"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
@@ -1436,8 +1444,7 @@ light:text-gray-900 transition duration-150">
 
     <!-- NEW SECTION: Closing Message / Final CTA -->
     <section class="py-12 px-4 sm:px-8 transition-colors duration-500">
-        <div
-            class="max-w-4xl mx-auto text-center p-8">
+        <div class="max-w-4xl mx-auto text-center p-8">
             <p class="text-2xl sm:text-3xl font-light italic text-gray-300 light:text-gray-700 leading-snug">
                 Thank you for exploring my portfolio. I’d love to hear from you—<span
                     class="font-semibold text-sky-400 light:text-sky-600">feel free to reach out!</span>
