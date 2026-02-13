@@ -1030,16 +1030,17 @@
         </div>
     </section>
 
-    <!-- Row 4.5: Portfolio Section -->
+    <!-- Portfolio Section -->
     <section id="portfolio-page" class="py-16 px-4 sm:px-8 bg-section transition-colors duration-500">
         <div class="max-w-6xl mx-auto">
-            
+
             <!-- Header Section -->
             <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-12">
-                <h2 class="text-3xl sm:text-4xl font-bold text-sky-400">
+                <h2 class="text-3xl sm:text-4xl font-bold text-sky-400 text-center lg:text-left">
                     3D Modeling & Mechanical Design Showcase
                 </h2>
-                <div class="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-sky-600 text-white shadow-md hover:bg-sky-700 transition-all cursor-pointer w-fit">
+                <div
+                    class="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-sky-600 text-white shadow-md hover:bg-sky-700 transition-all cursor-pointer mx-auto lg:mx-0 w-fit">
                     <i data-lucide="download" class="w-4 h-4"></i>
                     <span class="text-sm font-medium">Design Portfolio (PDF)</span>
                 </div>
@@ -1048,19 +1049,22 @@
             <!-- Slider Wrapper -->
             <div id="portfolio-slider" class="relative overflow-hidden">
                 <div id="slider-track">
-                    <!-- All 12 Cards Injected Here -->
-                    <!-- I have used your HTML content for the card structure -->
+                    <!-- Cards are injected by JS -->
                 </div>
 
                 <!-- Controls -->
                 <div class="flex flex-col items-center mt-12">
-                    <div id="slider-dots" class="flex items-center space-x-3 mb-8"></div>
-                    
+                    <!-- Dot indicators: 12 on mobile, 4 on desktop -->
+                    <div id="slider-dots"
+                        class="flex flex-wrap justify-center items-center gap-3 mb-8 max-w-xs sm:max-w-none"></div>
+
                     <div class="flex justify-center space-x-6">
-                        <button id="prev-btn" class="px-8 py-3 rounded-full bg-slate-800 text-white font-semibold hover:bg-sky-600 disabled:opacity-20 disabled:cursor-not-allowed transition shadow-xl border border-slate-700">
+                        <button id="prev-btn"
+                            class="px-8 py-3 rounded-full bg-slate-800 text-white font-semibold hover:bg-sky-600 disabled:opacity-20 disabled:cursor-not-allowed transition shadow-xl border border-slate-700 select-none">
                             &larr; Prev
                         </button>
-                        <button id="next-btn" class="px-8 py-3 rounded-full bg-slate-800 text-white font-semibold hover:bg-sky-600 disabled:opacity-20 disabled:cursor-not-allowed transition shadow-xl border border-slate-700">
+                        <button id="next-btn"
+                            class="px-8 py-3 rounded-full bg-slate-800 text-white font-semibold hover:bg-sky-600 disabled:opacity-20 disabled:cursor-not-allowed transition shadow-xl border border-slate-700 select-none">
                             Next &rarr;
                         </button>
                     </div>
@@ -1070,7 +1074,6 @@
     </section>
 
     <script>
-        // Full data set based on your provided content
         const projects = [
             { id: 1, title: "1. 3D Engine Model", desc: "Designed a detailed 3D model of a mechanical engine using SolidWorks and rendered it with KeyShot." },
             { id: 2, title: "2. Portfolio Website", desc: "Developed this responsive portfolio using HTML, Tailwind CSS, and JavaScript, focusing on a dark, neon theme." },
@@ -1091,10 +1094,13 @@
             const dotsContainer = document.getElementById('slider-dots');
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
+            const slider = document.getElementById('portfolio-slider');
 
-            let currentIndex = 0;
+            let currentStep = 0;
+            let touchStartX = 0;
+            let touchEndX = 0;
 
-            // 1. Render all cards
+            // Render all cards
             projects.forEach(p => {
                 const card = document.createElement('div');
                 card.className = "neon-card p-6 flex flex-col justify-between rounded-xl";
@@ -1115,39 +1121,39 @@
 
             lucide.createIcons();
 
-            function getVisibleCount() {
+            function getItemsPerView() {
                 if (window.innerWidth >= 1024) return 3;
-                if (window.innerWidth >= 640) return 2;
-                return 1;
+                return 1; // Single card view for mobile and tablet to ensure full visibility
             }
 
             function updateSlider() {
-                const visible = getVisibleCount();
-                const maxIndex = projects.length - visible;
-                
-                // Boundaries
-                if (currentIndex > maxIndex) currentIndex = maxIndex;
-                if (currentIndex < 0) currentIndex = 0;
-
+                const itemsPerView = getItemsPerView();
                 const cardWidth = track.children[0].offsetWidth;
-                const gap = 16; // 16px to match --gap
-                
-                const translateX = currentIndex * (cardWidth + gap);
-                track.style.transform = `translateX(-${translateX}px)`;
+                const gap = 16;
 
-                prevBtn.disabled = currentIndex === 0;
-                nextBtn.disabled = currentIndex >= maxIndex;
+                // On Desktop: we move by 3 cards (page by page). On Mobile: move 1 by 1.
+                const scrollStep = itemsPerView === 3 ? 3 : 1;
+                const totalSteps = Math.ceil(projects.length / scrollStep);
 
-                renderDots(maxIndex + 1);
+                if (currentStep >= totalSteps) currentStep = totalSteps - 1;
+                if (currentStep < 0) currentStep = 0;
+
+                const offset = currentStep * scrollStep * (cardWidth + gap);
+                track.style.transform = `translateX(-${offset}px)`;
+
+                prevBtn.disabled = currentStep === 0;
+                nextBtn.disabled = currentStep >= totalSteps - 1;
+
+                renderDots(totalSteps);
             }
 
             function renderDots(count) {
                 dotsContainer.innerHTML = '';
                 for (let i = 0; i < count; i++) {
                     const dot = document.createElement('div');
-                    dot.className = `slider-dot ${i === currentIndex ? 'active' : ''}`;
+                    dot.className = `slider-dot ${i === currentStep ? 'active' : ''}`;
                     dot.onclick = () => {
-                        currentIndex = i;
+                        currentStep = i;
                         updateSlider();
                     };
                     dotsContainer.appendChild(dot);
@@ -1155,24 +1161,35 @@
             }
 
             nextBtn.onclick = () => {
-                if (currentIndex < projects.length - getVisibleCount()) {
-                    currentIndex++;
+                const totalSteps = Math.ceil(projects.length / (getItemsPerView() === 3 ? 3 : 1));
+                if (currentStep < totalSteps - 1) {
+                    currentStep++;
                     updateSlider();
                 }
             };
 
             prevBtn.onclick = () => {
-                if (currentIndex > 0) {
-                    currentIndex--;
+                if (currentStep > 0) {
+                    currentStep--;
                     updateSlider();
                 }
             };
 
-            window.addEventListener('resize', () => {
-                updateSlider();
-            });
+            // Swipe Support for mobile
+            slider.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
 
-            // Initial layout call
+            slider.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                const swipeDistance = touchStartX - touchEndX;
+                if (swipeDistance > 50) nextBtn.click();
+                if (swipeDistance < -50) prevBtn.click();
+            }, { passive: true });
+
+            window.addEventListener('resize', updateSlider);
+
+            // Initial trigger
             setTimeout(updateSlider, 100);
         });
     </script>
