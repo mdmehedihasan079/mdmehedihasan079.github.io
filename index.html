@@ -1260,40 +1260,31 @@
                 --neon-color: #00FFFF;
             }
 
+            /* Base Card Style */
             .neon-card {
+                flex-shrink: 0;
+                width: 100%;
+                /* Mobile default */
+                transition: all 0.3s ease;
                 background-color: transparent;
-                border-radius: 0;
-                border: none;
-                /* removed thin border */
-                transition: all 0.3s;
-                min-width: 100%;
+            }
+
+            /* Tablet: 2 Cards */
+            @media (min-width: 640px) {
+                .neon-card {
+                    width: calc((100% - 16px) / 2);
+                }
+            }
+
+            /* Desktop: 3 Cards */
+            @media (min-width: 1024px) {
+                .neon-card {
+                    width: calc((100% - 32px) / 3);
+                }
             }
 
             .neon-card:hover {
                 transform: scale(1.02);
-                box-shadow: none;
-                background-color: transparent;
-            }
-
-            .light .neon-card:hover {
-                background-color: transparent;
-            }
-
-            @media (min-width: 640px) {
-                .neon-card {
-                    min-width: calc((100% / 2) - 16px);
-                }
-            }
-
-            @media (min-width: 1024px) {
-                .neon-card {
-                    min-width: calc((100% / 3) - (16px * 2 / 3));
-                }
-            }
-
-            .slider-track {
-                display: flex;
-                transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             }
 
             .slider-dot {
@@ -1301,30 +1292,13 @@
                 height: 12px;
                 border-radius: 50%;
                 background-color: #64748b;
-                /* Tailwind slate-500 */
-                transition: background-color 0.3s, box-shadow 0.3s;
+                transition: all 0.3s;
                 cursor: pointer;
             }
 
             .slider-dot.active {
                 background-color: #38bdf8;
-                /* Tailwind sky-400 */
-                box-shadow: 0 0 6px #38bdf8, 0 0 12px #38bdf8;
-            }
-
-            .neon-button {
-                background-color: var(--neon-color);
-                color: #161b22;
-                font-weight: 700;
-                padding: 0.75rem 1.5rem;
-                border-radius: 9999px;
-                transition: all 0.3s;
-                text-shadow: 0 0 2px var(--neon-color);
-            }
-
-            .neon-button:hover:not(:disabled) {
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-                transform: scale(1.05);
+                box-shadow: 0 0 10px #38bdf8;
             }
         </style>
         <script>
@@ -1333,67 +1307,97 @@
                 const dotsContainer = document.getElementById('slider-dots');
                 const prevBtn = document.getElementById('prev-btn');
                 const nextBtn = document.getElementById('next-btn');
+
                 const totalItems = 12;
-                let itemsPerSlide = 3;
-                let totalSlides = Math.ceil(totalItems / itemsPerSlide);
                 let currentSlide = 0;
 
-                function updateSlider() {
-                    if (window.innerWidth < 640) {
-                        itemsPerSlide = 1;
-                    } else if (window.innerWidth < 1024) {
-                        itemsPerSlide = 2;
-                    } else {
-                        itemsPerSlide = 3;
-                    }
-                    totalSlides = Math.ceil(totalItems / itemsPerSlide);
+                function getItemsPerSlide() {
+                    if (window.innerWidth < 640) return 1;
+                    if (window.innerWidth < 1024) return 2;
+                    return 3;
+                }
 
-                    const cardWidth = track.children[0].offsetWidth;
-                    const gap = 16; // because you use gap-4 (16px)
-                    const moveAmount = (cardWidth + gap) * itemsPerSlide * currentSlide;
+                function updateSlider() {
+                    const itemsPerSlide = getItemsPerSlide();
+                    const totalSlides = Math.ceil(totalItems / itemsPerSlide);
+
+                    // Safety check for index out of bounds on resize
+                    if (currentSlide >= totalSlides) currentSlide = totalSlides - 1;
+
+                    // Percentage-based movement:
+                    // 100% / itemsPerSlide gives us the width of one card slot.
+                    // We add the gap offset by simply calculating the scroll width.
+                    const containerWidth = track.parentElement.offsetWidth;
+                    const cardElement = track.children[0];
+                    const cardWidth = cardElement.offsetWidth;
+                    const gap = 16; // gap-4
+
+                    // This is the bulletproof formula for horizontal translation with gaps
+                    const moveAmount = currentSlide * (cardWidth + gap) * itemsPerSlide;
+
                     track.style.transform = `translateX(-${moveAmount}px)`;
+
+                    // Update UI
                     prevBtn.disabled = currentSlide === 0;
                     nextBtn.disabled = currentSlide === totalSlides - 1;
-                    updateDots();
+                    updateDots(totalSlides);
                 }
+
                 function initializeDots() {
+                    const itemsPerSlide = getItemsPerSlide();
+                    const totalSlides = Math.ceil(totalItems / itemsPerSlide);
                     dotsContainer.innerHTML = '';
+
                     for (let i = 0; i < totalSlides; i++) {
                         const dot = document.createElement('div');
-                        dot.classList.add('slider-dot');
-                        dot.dataset.slideIndex = i;
-                        dot.addEventListener('click', () => {
+                        dot.className = 'slider-dot';
+                        if (i === currentSlide) dot.classList.add('active');
+                        dot.onclick = () => {
                             currentSlide = i;
                             updateSlider();
-                        });
+                        };
                         dotsContainer.appendChild(dot);
                     }
                 }
-                function updateDots() {
+
+                function updateDots(totalSlides) {
                     const dots = dotsContainer.querySelectorAll('.slider-dot');
-                    dots.forEach((dot, index) => {
-                        dot.classList.toggle('active', index === currentSlide);
+                    // If the number of dots changed (due to resize), re-init them
+                    if (dots.length !== totalSlides) {
+                        initializeDots();
+                        return;
+                    }
+                    dots.forEach((dot, i) => {
+                        dot.classList.toggle('active', i === currentSlide);
                     });
                 }
-                function nextSlide() {
+
+                nextBtn.onclick = () => {
+                    const totalSlides = Math.ceil(totalItems / getItemsPerSlide());
                     if (currentSlide < totalSlides - 1) {
                         currentSlide++;
                         updateSlider();
                     }
-                }
-                function prevSlide() {
+                };
+
+                prevBtn.onclick = () => {
                     if (currentSlide > 0) {
                         currentSlide--;
                         updateSlider();
                     }
-                }
-                nextBtn.addEventListener('click', nextSlide);
-                prevBtn.addEventListener('click', prevSlide);
+                };
+
+                // Debounced resize for performance
+                let resizeTimer;
                 window.addEventListener('resize', () => {
-                    currentSlide = 0; // Reset to first slide on resize to avoid offset issues
-                    updateSlider();
-                    initializeDots();
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(() => {
+                        updateSlider();
+                        initializeDots();
+                    }, 100);
                 });
+
+                // Initial Start
                 initializeDots();
                 updateSlider();
             });
