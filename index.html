@@ -1030,346 +1030,152 @@
         </div>
     </section>
 
-    <!-- Row 4.5: Portfolio (New Section) -->
-    <section id="portfolio-page" class="py-6 sm:py-10 px-4 sm:px-8 bg-section transition-colors duration-500">
-
-        <div class="w-full lg:max-w-6xl mx-auto py-8">
-            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-8">
-
-                <h2 class="text-3xl sm:text-4xl font-bold text-sky-400 transition-colors duration-500 mb-4 lg:mb-0">
+    <!-- Row 4.5: Portfolio Section -->
+    <section id="portfolio-page" class="py-16 px-4 sm:px-8 bg-section transition-colors duration-500">
+        <div class="max-w-6xl mx-auto">
+            
+            <!-- Header Section -->
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold text-sky-400">
                     3D Modeling & Mechanical Design Showcase
                 </h2>
-
-                <div
-                    class="flex items-center gap-2 px-4 py-2 rounded-lg bg-sky-600 text-white shadow-md hover:bg-sky-700 transition-all duration-300 cursor-pointer">
+                <div class="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-sky-600 text-white shadow-md hover:bg-sky-700 transition-all cursor-pointer w-fit">
                     <i data-lucide="download" class="w-4 h-4"></i>
                     <span class="text-sm font-medium">Design Portfolio (PDF)</span>
                 </div>
-
             </div>
 
-            <!-- Slider Wrapper: Hides overflow -->
-            <div id="portfolio-slider" class="overflow-hidden relative">
-                <!-- Slider Track: Holds all 12 items side-by-side -->
-                <div id="slider-track" class="flex gap-4 transition-transform duration-500">
-                    <!-- Card 1 -->
-                    <div class="neon-card w-full sm:w-[320px] flex-shrink-0 p-6 flex flex-col justify-between">
-
-                        <img src="https://placehold.co/750x1000/0ea5e9/fff?text=1" alt="Project 1"
-                            class="w-full h-[240px] object-cover rounded-lg mb-4">
-                        <h3
-                            class="text-xl sm:text-2xl font-semibold tracking-wide text-blue-300 mb-2 transition-colors duration-500">
-                            1. 3D Engine Model
-                        </h3>
-
-                        <p class="text-sm text-gray-400 mb-4">Designed a detailed 3D model of a mechanical engine using
-                            SolidWorks and rendered it with KeyShot.</p>
-                        <button
-                            class="group text-white hover:text-[var(--neon-color)] text-base font-semibold self-start mt-2 underline underline-offset-4">View
-                            Project <span
-                                class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="neon-card w-full sm:w-[320px] flex-shrink-0 p-6 flex flex-col justify-between">
-                        <img src="https://placehold.co/750x1000/0ea5e9/fff?text=2" alt="Project 2"
-                            class="w-full h-[240px] object-cover rounded-lg mb-4">
-                        <h3
-                            class="text-xl sm:text-2xl font-semibold tracking-wide text-blue-300 mb-2 transition-colors duration-500">
-                            2. Portfolio Website</h3>
-                        <p class="text-sm text-gray-400 mb-4">Developed this responsive portfolio using HTML, Tailwind
-                            CSS, and JavaScript, focusing on a dark, neon theme.</p>
-                        <button
-                            class="group text-white hover:text-[var(--neon-color)] text-base font-semibold self-start mt-2 underline underline-offset-4">View
-                            Project <span
-                                class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="neon-card w-full sm:w-[320px] flex-shrink-0 p-6 flex flex-col justify-between">
-                        <img src="https://placehold.co/750x1000/0ea5e9/fff?text=3" alt="Project 3"
-                            class="w-full h-[240px] object-cover rounded-lg mb-4">
-                        <h3
-                            class="text-xl sm:text-2xl font-semibold tracking-wide text-blue-300 mb-2 transition-colors duration-500">
-                            3. CAD Assembly Project</h3>
-                        <p class="text-sm text-gray-400 mb-4">Created a complex assembly of mechanical parts
-                            demonstrating advanced CAD techniques and motion studies.</p>
-                        <button
-                            class="group text-white hover:text-[var(--neon-color)] text-base font-semibold self-start mt-2 underline underline-offset-4">View
-                            Project <span
-                                class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
-                    </div>
-                    <!-- Card 4 -->
-                    <div class="neon-card w-full sm:w-[320px] flex-shrink-0 p-6 flex flex-col justify-between">
-                        <img src="https://placehold.co/750x1000/0ea5e9/fff?text=4" alt="Project 4"
-                            class="w-full h-[240px] object-cover rounded-lg mb-4">
-                        <h3
-                            class="text-xl sm:text-2xl font-semibold tracking-wide text-blue-300 mb-2 transition-colors duration-500">
-                            4. Simulation Analysis</h3>
-                        <p class="text-sm text-gray-400 mb-4">Performed FEA and motion analysis on mechanical components
-                            to ensure reliability and structural integrity under load.</p>
-                        <button
-                            class="group text-white hover:text-[var(--neon-color)] text-base font-semibold self-start mt-2 underline underline-offset-4">View
-                            Project <span
-                                class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
-                    </div>
-                    <!-- Card 5 -->
-                    <div class="neon-card w-full sm:w-[320px] flex-shrink-0 p-6 flex flex-col justify-between">
-                        <img src="https://placehold.co/750x1000/0ea5e9/fff?text=5" alt="Project 5"
-                            class="w-full h-[240px] object-cover rounded-lg mb-4">
-                        <h3
-                            class="text-xl sm:text-2xl font-semibold tracking-wide text-blue-300 mb-2 transition-colors duration-500">
-                            5. Product Visualization</h3>
-                        <p class="text-sm text-gray-400 mb-4">Rendered photorealistic images for product marketing and
-                            presentations using KeyShot and advanced lighting techniques.</p>
-                        <button
-                            class="group text-white hover:text-[var(--neon-color)] text-base font-semibold self-start mt-2 underline underline-offset-4">View
-                            Project <span
-                                class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
-                    </div>
-                    <!-- Card 6 -->
-                    <div class="neon-card w-full sm:w-[320px] flex-shrink-0 p-6 flex flex-col justify-between">
-                        <img src="https://placehold.co/750x1000/0ea5e9/fff?text=6" alt="Project 6"
-                            class="w-full h-[240px] object-cover rounded-lg mb-4">
-                        <h3
-                            class="text-xl sm:text-2xl font-semibold tracking-wide text-blue-300 mb-2 transition-colors duration-500">
-                            6. Concept Sketches</h3>
-                        <p class="text-sm text-gray-400 mb-4">Created initial concept sketches and digital mockups for
-                            client proposals, translating ideas into tangible forms.</p>
-                        <button
-                            class="group text-white hover:text-[var(--neon-color)] text-base font-semibold self-start mt-2 underline underline-offset-4">View
-                            Project <span
-                                class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
-                    </div>
-                    <!-- Card 7 -->
-                    <div class="neon-card w-full sm:w-[320px] flex-shrink-0 p-6 flex flex-col justify-between">
-                        <img src="https://placehold.co/750x1000/0ea5e9/fff?text=7" alt="Project 7"
-                            class="w-full h-[240px] object-cover rounded-lg mb-4">
-                        <h3
-                            class="text-xl sm:text-2xl font-semibold tracking-wide text-blue-300 mb-2 transition-colors duration-500">
-                            7. Reverse Engineering</h3>
-                        <p class="text-sm text-gray-400 mb-4">Recreated legacy parts and assemblies from physical
-                            samples using 3D scanning and CAD tools to produce accurate models.</p>
-                        <button
-                            class="group text-white hover:text-[var(--neon-color)] text-base font-semibold self-start mt-2 underline underline-offset-4">View
-                            Project <span
-                                class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
-                    </div>
-                    <!-- Card 8 -->
-                    <div class="neon-card w-full sm:w-[320px] flex-shrink-0 p-6 flex flex-col justify-between">
-                        <img src="https://placehold.co/750x1000/0ea5e9/fff?text=8" alt="Project 8"
-                            class="w-full h-[240px] object-cover rounded-lg mb-4">
-                        <h3
-                            class="text-xl sm:text-2xl font-semibold tracking-wide text-blue-300 mb-2 transition-colors duration-500">
-                            8. Sheet Metal Design</h3>
-                        <p class="text-sm text-gray-400 mb-4">Designed and unfolded specialized sheet metal parts for
-                            manufacturing and prototyping, optimizing material usage.</p>
-                        <button
-                            class="group text-white hover:text-[var(--neon-color)] text-base font-semibold self-start mt-2 underline underline-offset-4">View
-                            Project <span
-                                class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
-                    </div>
-                    <!-- Card 9 -->
-                    <div class="neon-card w-full sm:w-[320px] flex-shrink-0 p-6 flex flex-col justify-between">
-                        <img src="https://placehold.co/750x1000/0ea5e9/fff?text=9" alt="Project 9"
-                            class="w-full h-[240px] object-cover rounded-lg mb-4">
-                        <h3
-                            class="text-xl sm:text-2xl font-semibold tracking-wide text-blue-300 mb-2 transition-colors duration-500">
-                            9. 3D Printing Project</h3>
-                        <p class="text-sm text-gray-400 mb-4">Prepared and optimized models for additive manufacturing
-                            and 3D printing, focusing on support structure minimization.</p>
-                        <button
-                            class="group text-white hover:text-[var(--neon-color)] text-base font-semibold self-start mt-2 underline underline-offset-4">View
-                            Project <span
-                                class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
-                    </div>
-                    <!-- Card 10 -->
-                    <div class="neon-card w-full sm:w-[320px] flex-shrink-0 p-6 flex flex-col justify-between">
-                        <img src="https://placehold.co/750x1000/0ea5e9/fff?text=10" alt="Project 10"
-                            class="w-full h-[240px] object-cover rounded-lg mb-4">
-                        <h3
-                            class="text-xl sm:text-2xl font-semibold tracking-wide text-blue-300 mb-2 transition-colors duration-500">
-                            10. Fixture Design</h3>
-                        <p class="text-sm text-gray-400 mb-4">Developed custom jigs and fixtures for production
-                            environments to ensure consistent part positioning and quality control.</p>
-                        <button
-                            class="group text-white hover:text-[var(--neon-color)] text-base font-semibold self-start mt-2 underline underline-offset-4">View
-                            Project <span
-                                class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
-                    </div>
-                    <!-- Card 11 -->
-                    <div class="neon-card w-full sm:w-[320px] flex-shrink-0 p-6 flex flex-col justify-between">
-                        <img src="https://placehold.co/750x1000/0ea5e9/fff?text=11" alt="Project 11"
-                            class="w-full h-[240px] object-cover rounded-lg mb-4">
-                        <h3
-                            class="text-xl sm:text-2xl font-semibold tracking-wide text-blue-300 mb-2 transition-colors duration-500">
-                            11. Piping & Routing</h3>
-                        <p class="text-sm text-gray-400 mb-4">Designed complex piping layouts and cable routing paths
-                            for industrial machinery, adhering to safety standards.</p>
-                        <button
-                            class="group text-white hover:text-[var(--neon-color)] text-base font-semibold self-start mt-2 underline underline-offset-4">View
-                            Project <span
-                                class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
-                    </div>
-                    <!-- Card 12 -->
-                    <div class="neon-card w-full sm:w-[320px] flex-shrink-0 p-6 flex flex-col justify-between">
-                        <img src="https://placehold.co/750x1000/0ea5e9/fff?text=12" alt="Project 12"
-                            class="w-full h-[240px] object-cover rounded-lg mb-4">
-                        <h3
-                            class="text-xl sm:text-2xl font-semibold tracking-wide text-blue-300 mb-2 transition-colors duration-500">
-                            12. Design Optimization</h3>
-                        <p class="text-sm text-gray-400 mb-4">Executed design optimization processes to reduce material
-                            weight while maintaining structural integrity and performance.</p>
-                        <button
-                            class="group text-white hover:text-[var(--neon-color)] text-base font-semibold self-start mt-2 underline underline-offset-4">View
-                            Project <span
-                                class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
-                    </div>
+            <!-- Slider Wrapper -->
+            <div id="portfolio-slider" class="relative overflow-hidden">
+                <div id="slider-track">
+                    <!-- All 12 Cards Injected Here -->
+                    <!-- I have used your HTML content for the card structure -->
                 </div>
-                <!-- Navigation Controls -->
-                <div class="flex flex-col items-center mt-8">
-                    <!-- Dot Indicators Container -->
-                    <div id="slider-dots" class="flex space-x-3 mb-6"></div>
-                    <!-- Previous/Next Buttons -->
+
+                <!-- Controls -->
+                <div class="flex flex-col items-center mt-12">
+                    <div id="slider-dots" class="flex items-center space-x-3 mb-8"></div>
+                    
                     <div class="flex justify-center space-x-6">
-                        <button id="prev-btn"
-                            class="px-6 py-2 rounded-full bg-sky-400 text-white font-semibold hover:bg-sky-600 transition disabled:opacity-30 disabled:cursor-not-allowed">
+                        <button id="prev-btn" class="px-8 py-3 rounded-full bg-slate-800 text-white font-semibold hover:bg-sky-600 disabled:opacity-20 disabled:cursor-not-allowed transition shadow-xl border border-slate-700">
                             &larr; Prev
                         </button>
-                        <button id="next-btn"
-                            class="px-6 py-2 rounded-full bg-sky-400 text-white font-semibold hover:bg-sky-600 transition disabled:opacity-30 disabled:cursor-not-allowed">
+                        <button id="next-btn" class="px-8 py-3 rounded-full bg-slate-800 text-white font-semibold hover:bg-sky-600 disabled:opacity-20 disabled:cursor-not-allowed transition shadow-xl border border-slate-700">
                             Next &rarr;
                         </button>
                     </div>
                 </div>
             </div>
         </div>
-       <style>
-    :root {
-        --neon-color: #00FFFF;
-        --gap: 16px; /* Match the 'gap-4' from your HTML */
-    }
-
-    .neon-card {
-        background-color: transparent;
-        transition: all 0.3s;
-        flex-shrink: 0;
-        /* Mobile: 1 card */
-        width: 100%; 
-    }
-
-    @media (min-width: 640px) {
-        .neon-card {
-            /* Tablet: 2 cards (minus half the gap) */
-            width: calc((100% - var(--gap)) / 2);
-        }
-    }
-
-    @media (min-width: 1024px) {
-        .neon-card {
-            /* Desktop: 3 cards (minus portions of the gap) */
-            width: calc((100% - (var(--gap) * 2)) / 3);
-        }
-    }
-
-    .slider-dot {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background-color: #64748b;
-        transition: all 0.3s;
-        cursor: pointer;
-    }
-
-    .slider-dot.active {
-        background-color: #38bdf8;
-        box-shadow: 0 0 6px #38bdf8, 0 0 12px #38bdf8;
-    }
-</style>
-        <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const track = document.getElementById('slider-track');
-        const dotsContainer = document.getElementById('slider-dots');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-        
-        const totalItems = 12;
-        let currentSlide = 0;
-        let itemsPerSlide = 1;
-
-        function getItemsPerSlide() {
-            if (window.innerWidth >= 1024) return 3;
-            if (window.innerWidth >= 640) return 2;
-            return 1;
-        }
-
-        function updateSlider() {
-            const newItemsPerSlide = getItemsPerSlide();
-            
-            // If the layout changed (e.g. tablet to desktop), reset dots
-            if (newItemsPerSlide !== itemsPerSlide) {
-                itemsPerSlide = newItemsPerSlide;
-                initializeDots();
-                currentSlide = 0; // Reset to start to avoid layout breaks
-            }
-
-            const totalSlides = Math.ceil(totalItems / itemsPerSlide);
-            
-            // Calculate movement: Slide width + gap
-            const gap = 16;
-            const containerWidth = track.parentElement.offsetWidth;
-            const offset = currentSlide * (containerWidth + gap);
-
-            track.style.transform = `translateX(-${offset}px)`;
-            
-            prevBtn.disabled = currentSlide === 0;
-            nextBtn.disabled = currentSlide >= totalSlides - 1;
-            updateDots();
-        }
-
-        function initializeDots() {
-            dotsContainer.innerHTML = '';
-            const totalSlides = Math.ceil(totalItems / itemsPerSlide);
-            for (let i = 0; i < totalSlides; i++) {
-                const dot = document.createElement('div');
-                dot.classList.add('slider-dot');
-                dot.addEventListener('click', () => {
-                    currentSlide = i;
-                    updateSlider();
-                });
-                dotsContainer.appendChild(dot);
-            }
-        }
-
-        function updateDots() {
-            const dots = dotsContainer.querySelectorAll('.slider-dot');
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentSlide);
-            });
-        }
-
-        nextBtn.addEventListener('click', () => {
-            const totalSlides = Math.ceil(totalItems / itemsPerSlide);
-            if (currentSlide < totalSlides - 1) {
-                currentSlide++;
-                updateSlider();
-            }
-        });
-
-        prevBtn.addEventListener('click', () => {
-            if (currentSlide > 0) {
-                currentSlide--;
-                updateSlider();
-            }
-        });
-
-        window.addEventListener('resize', updateSlider);
-        
-        // Initial setup
-        itemsPerSlide = getItemsPerSlide();
-        initializeDots();
-        updateSlider();
-    });
-</script>
     </section>
+
+    <script>
+        // Full data set based on your provided content
+        const projects = [
+            { id: 1, title: "1. 3D Engine Model", desc: "Designed a detailed 3D model of a mechanical engine using SolidWorks and rendered it with KeyShot." },
+            { id: 2, title: "2. Portfolio Website", desc: "Developed this responsive portfolio using HTML, Tailwind CSS, and JavaScript, focusing on a dark, neon theme." },
+            { id: 3, title: "3. CAD Assembly Project", desc: "Created a complex assembly of mechanical parts demonstrating advanced CAD techniques and motion studies." },
+            { id: 4, title: "4. Simulation Analysis", desc: "Performed FEA and motion analysis on mechanical components to ensure reliability and structural integrity." },
+            { id: 5, title: "5. Product Visualization", desc: "Rendered photorealistic images for product marketing and presentations using KeyShot." },
+            { id: 6, title: "6. Concept Sketches", desc: "Created initial concept sketches and digital mockups for client proposals." },
+            { id: 7, title: "7. Reverse Engineering", desc: "Recreated legacy parts from physical samples using 3D scanning and CAD tools." },
+            { id: 8, title: "8. Sheet Metal Design", desc: "Designed and unfolded specialized sheet metal parts for manufacturing and prototyping." },
+            { id: 9, title: "9. 3D Printing Project", desc: "Prepared and optimized models for additive manufacturing and 3D printing." },
+            { id: 10, title: "10. Fixture Design", desc: "Developed custom jigs and fixtures for production environments to ensure quality." },
+            { id: 11, title: "11. Piping & Routing", desc: "Designed complex piping layouts and cable routing paths for industrial machinery." },
+            { id: 12, title: "12. Design Optimization", desc: "Executed design optimization processes to reduce material weight while maintaining performance." }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const track = document.getElementById('slider-track');
+            const dotsContainer = document.getElementById('slider-dots');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            let currentIndex = 0;
+
+            // 1. Render all cards
+            projects.forEach(p => {
+                const card = document.createElement('div');
+                card.className = "neon-card p-6 flex flex-col justify-between rounded-xl";
+                card.innerHTML = `
+                    <div>
+                        <img src="https://placehold.co/750x1000/0ea5e9/fff?text=${p.id}" alt="${p.title}"
+                             class="w-full h-[240px] object-cover rounded-lg mb-6">
+                        <h3 class="text-xl sm:text-2xl font-bold text-blue-300 mb-3">${p.title}</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed mb-6">${p.desc}</p>
+                    </div>
+                    <button class="group text-white hover:text-cyan-400 text-base font-semibold self-start flex items-center gap-2 underline underline-offset-8">
+                        View Project 
+                        <span class="inline-block transition-transform duration-300 group-hover:translate-x-2">→</span>
+                    </button>
+                `;
+                track.appendChild(card);
+            });
+
+            lucide.createIcons();
+
+            function getVisibleCount() {
+                if (window.innerWidth >= 1024) return 3;
+                if (window.innerWidth >= 640) return 2;
+                return 1;
+            }
+
+            function updateSlider() {
+                const visible = getVisibleCount();
+                const maxIndex = projects.length - visible;
+                
+                // Boundaries
+                if (currentIndex > maxIndex) currentIndex = maxIndex;
+                if (currentIndex < 0) currentIndex = 0;
+
+                const cardWidth = track.children[0].offsetWidth;
+                const gap = 16; // 16px to match --gap
+                
+                const translateX = currentIndex * (cardWidth + gap);
+                track.style.transform = `translateX(-${translateX}px)`;
+
+                prevBtn.disabled = currentIndex === 0;
+                nextBtn.disabled = currentIndex >= maxIndex;
+
+                renderDots(maxIndex + 1);
+            }
+
+            function renderDots(count) {
+                dotsContainer.innerHTML = '';
+                for (let i = 0; i < count; i++) {
+                    const dot = document.createElement('div');
+                    dot.className = `slider-dot ${i === currentIndex ? 'active' : ''}`;
+                    dot.onclick = () => {
+                        currentIndex = i;
+                        updateSlider();
+                    };
+                    dotsContainer.appendChild(dot);
+                }
+            }
+
+            nextBtn.onclick = () => {
+                if (currentIndex < projects.length - getVisibleCount()) {
+                    currentIndex++;
+                    updateSlider();
+                }
+            };
+
+            prevBtn.onclick = () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateSlider();
+                }
+            };
+
+            window.addEventListener('resize', () => {
+                updateSlider();
+            });
+
+            // Initial layout call
+            setTimeout(updateSlider, 100);
+        });
+    </script>
     <!-- Row 5: Contact (Page 5) - UPDATED TO TWO BOXES -->
     <section id="contact-page" class="py-6 sm:py-10 px-4 sm:px-8 bg-section transition-colors duration-500">
         <div class="w-full lg:max-w-6xl mx-auto">
@@ -1538,14 +1344,14 @@ light:text-gray-900 transition duration-150">
 
     <!-- NEW SECTION: Closing Message / Final CTA -->
     <section class="py-12 px-4 sm:px-8 transition-colors duration-500">
-        <div class="max-w-4xl mx-auto text-center p-8">
+        <div
+            class="max-w-4xl mx-auto text-center p-8 rounded-2xl border-4 border-sky-600/30 shadow-2xl bg-[#161b22] light:bg-white glow-shadow-hover">
             <p class="text-2xl sm:text-3xl font-light italic text-gray-300 light:text-gray-700 leading-snug">
                 Thank you for exploring my portfolio. I’d love to hear from you—<span
                     class="font-semibold text-sky-400 light:text-sky-600">feel free to reach out!</span>
             </p>
         </div>
     </section>
-
 
     <!-- START: Enhanced Footer Section (Replaces old simple footer) -->
     <footer class="bg-footer-bg text-text-light border-t border-gray-800">
