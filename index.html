@@ -214,6 +214,13 @@
             /* emerald-400 */
             border-radius: 9999px;
         }
+
+        /* Add this at the very bottom of your existing <style> section */
+        @media (max-width: 480px) {
+            nav a.text-2xl {
+                font-size: 1.1rem !important;
+            }
+        }
     </style>
 
     <script>
@@ -316,7 +323,7 @@
                         MD Mehedi Hasan
                     </a>
                     <!-- Mobile Menu Button (Hamburger) - placeholder, JS not fully implemented for mobile menu -->
-                    <button
+                    <button id="mobile-menu-button"
                         class="sm:hidden text-gray-300 light:text-gray-600 p-2 rounded-md hover:bg-sky-700/50 light:hover:bg-sky-200 transition duration-200">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -356,11 +363,25 @@
                     </button>
                     <!-- Let's Talk Button -->
                     <a href="#contact-page"
-                        class="px-3 py-1.5 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 transition duration-300 text-sm">
+                        class="relative z-50 px-3 py-1.5 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 transition duration-300 text-sm">
                         Let's Talk
                     </a>
                 </div>
             </div>
+        </div>
+        <div id="mobile-menu" class="hidden sm:hidden nav-bg border-b border-gray-700/50 px-4 pt-2 pb-4 space-y-1">
+            <a href="#home"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-sky-700/50">Home</a>
+            <a href="#about-page"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-sky-700/50">About</a>
+            <a href="#research-page"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-sky-700/50">Research</a>
+            <a href="#skills-page"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-sky-700/50">Skills</a>
+            <a href="#portfolio-page"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-sky-700/50">Portfolio</a>
+            <a href="#contact-page"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-sky-700/50">Contact</a>
         </div>
     </nav>
 
@@ -1154,22 +1175,22 @@
             }
 
             .slider-dot {
-                width: 12px;
-                height: 12px;
-                border-radius: 50%;
-                background-color: #374151;
-                /* Darker gray for inactive dots */
-                transition: all 0.3s ease;
-                cursor: pointer;
-            }
+    min-width: 12px;
+    min-height: 12px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #4b5563; /* Dark gray for inactive */
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: inline-block; /* Ensures they don't collapse */
+}
 
-            .slider-dot.active {
-                background-color: #38bdf8 !important;
-                /* Sky Blue */
-                box-shadow: 0 0 10px #38bdf8, 0 0 20px #38bdf8;
-                /* The Glow */
-                transform: scale(1.2);
-            }
+.slider-dot.active {
+    background-color: #38bdf8 !important;
+    box-shadow: 0 0 10px #38bdf8, 0 0 20px #38bdf8;
+    transform: scale(1.3);
+}
 
             .neon-button {
                 background-color: var(--neon-color);
@@ -1200,6 +1221,7 @@
                     /* More space between dots */
                 }
             }
+
             .slider-dot:hover {
                 background-color: #7dd3fc;
                 /* sky-300 */
@@ -1208,113 +1230,104 @@
         </style>
         <script>
             document.addEventListener('DOMContentLoaded', () => {
-                const track = document.getElementById('slider-track');
-                const dotsContainer = document.getElementById('slider-dots');
-                const prevBtn = document.getElementById('prev-btn');
-                const nextBtn = document.getElementById('next-btn');
-                const cards = document.querySelectorAll('.neon-card');
+    const track = document.getElementById('slider-track');
+    const dotsContainer = document.getElementById('slider-dots');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const cards = document.querySelectorAll('.neon-card');
 
-                let currentSlide = 0;
+    let currentSlide = 0;
 
-                function getItemsPerView() {
-                    return window.innerWidth < 768 ? 1 : 3;
-                }
+    function getItemsPerView() {
+        return window.innerWidth < 768 ? 1 : 3;
+    }
 
-                function getTotalSlides() {
-                    return Math.ceil(cards.length / getItemsPerView());
-                }
+    function getTotalSlides() {
+        return Math.ceil(cards.length / getItemsPerView());
+    }
 
-                // --- The Missing Function ---
-                function updateDots() {
-                    const dots = dotsContainer.querySelectorAll('.slider-dot');
-                    dots.forEach((dot, index) => {
-                        // Toggles the 'active' class to trigger the glow CSS
-                        dot.classList.toggle('active', index === currentSlide);
-                    });
-                }
-
-                function updateSlider() {
-                    const itemsPerView = getItemsPerView();
-                    const gap = 16;
-                    const cardWidth = cards[0].offsetWidth;
-
-                    // Calculate movement: on mobile, it moves 1 card. On desktop, it moves 3.
-                    const moveAmount = (cardWidth + gap) * itemsPerView;
-
-                    track.style.transform = `translateX(-${currentSlide * moveAmount}px)`;
-
-                    // Update button disabled states
-                    prevBtn.disabled = currentSlide === 0;
-                    nextBtn.disabled = currentSlide >= getTotalSlides() - 1;
-
-                    // Call the dot update
-                    updateDots();
-                }
-
-                function initializeDots() {
-                    dotsContainer.innerHTML = '';
-                    const total = getTotalSlides();
-                    for (let i = 0; i < total; i++) {
-                        const dot = document.createElement('div');
-                        dot.classList.add('slider-dot');
-                        dot.addEventListener('click', () => {
-                            currentSlide = i;
-                            updateSlider();
-                        });
-                        dotsContainer.appendChild(dot);
-                    }
-                }
-
-                // --- Touch/Swipe Support ---
-                let touchStartX = 0;
-                track.addEventListener('touchstart', e => touchStartX = e.touches[0].clientX);
-                track.addEventListener('touchend', e => {
-                    const touchEndX = e.changedTouches[0].clientX;
-                    const total = getTotalSlides();
-                    // Swipe Left -> Next
-                    if (touchStartX - touchEndX > 50 && currentSlide < total - 1) {
-                        currentSlide++;
-                        updateSlider();
-                    }
-                    // Swipe Right -> Prev
-                    else if (touchEndX - touchStartX > 50 && currentSlide > 0) {
-                        currentSlide--;
-                        updateSlider();
-                    }
-                });
-
-                function nextSlide() {
-                    if (currentSlide < getTotalSlides() - 1) {
-                        currentSlide++;
-                        updateSlider();
-                    }
-                }
-
-                function prevSlide() {
-                    if (currentSlide > 0) {
-                        currentSlide--;
-                        updateSlider();
-                    }
-                }
-
-                nextBtn.addEventListener('click', nextSlide);
-                prevBtn.addEventListener('click', prevSlide);
-
-                // Optimized resize handling
-                window.addEventListener('resize', () => {
-                    const total = getTotalSlides();
-                    // Prevent index out of bounds when switching from Mobile to Desktop
-                    if (currentSlide >= total) {
-                        currentSlide = total - 1;
-                    }
-                    initializeDots();
-                    updateSlider();
-                });
-
-                // Run initial setup
-                initializeDots();
+    function initializeDots() {
+        dotsContainer.innerHTML = '';
+        const total = getTotalSlides();
+        for (let i = 0; i < total; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('slider-dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                currentSlide = i;
                 updateSlider();
             });
+            dotsContainer.appendChild(dot);
+        }
+    }
+
+    function updateSlider() {
+        const itemsPerView = getItemsPerView();
+        const totalSlides = getTotalSlides();
+        
+        // Ensure index is valid
+        if (currentSlide >= totalSlides) currentSlide = totalSlides - 1;
+        if (currentSlide < 0) currentSlide = 0;
+
+        // Calculate offset
+        const gap = 16; // gap-4 in tailwind
+        const cardWidth = cards[0].offsetWidth;
+        const moveAmount = (cardWidth + gap) * itemsPerView;
+
+        track.style.transform = `translateX(-${currentSlide * moveAmount}px)`;
+
+        // Update Dots
+        const dots = dotsContainer.querySelectorAll('.slider-dot');
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentSlide);
+        });
+
+        // Update Buttons
+        prevBtn.disabled = currentSlide === 0;
+        nextBtn.disabled = currentSlide >= totalSlides - 1;
+    }
+
+    nextBtn.addEventListener('click', () => {
+        if (currentSlide < getTotalSlides() - 1) {
+            currentSlide++;
+            updateSlider();
+        }
+    });
+
+    prevBtn.addEventListener('click', () => {
+        if (currentSlide > 0) {
+            currentSlide--;
+            updateSlider();
+        }
+    });
+
+    // Resize handler
+    window.addEventListener('resize', () => {
+        initializeDots();
+        updateSlider();
+    });
+
+    // Let's Talk Scroll Logic (Cleaned up)
+    const letsTalkBtn = document.querySelector('a[href="#contact-page"]');
+    if (letsTalkBtn) {
+        letsTalkBtn.addEventListener('click', function (e) {
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu) mobileMenu.classList.add('hidden');
+
+            const target = document.getElementById('contact-page');
+            if (target) {
+                e.preventDefault();
+                const offset = 80;
+                const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                window.scrollTo({ top: elementPosition - offset, behavior: 'smooth' });
+            }
+        });
+    }
+
+    // Initial Start
+    initializeDots();
+    updateSlider();
+});
         </script>
     </section>
     <!-- Row 5: Contact (Page 5) - UPDATED TO TWO BOXES -->
