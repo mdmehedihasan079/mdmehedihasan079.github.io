@@ -24,12 +24,12 @@
 
         .nav-bg {
             background-color: #ffffff;
-            border-bottom: 1px solid rgba(30,87,190,0.08);
+            border-bottom: 1px solid rgba(30, 87, 190, 0.08);
         }
 
         .card-bg {
             background-color: #ffffff;
-            border: 1px solid rgba(30,87,190,0.08);
+            border: 1px solid rgba(30, 87, 190, 0.08);
             box-shadow: 0 8px 24px rgba(30, 87, 190, 0.05);
             transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
         }
@@ -258,25 +258,27 @@
     </div>
 
     <!-- Fixed Navigation Bar -->
-    <nav
-        class="fixed top-0 left-0 w-full nav-bg z-50 shadow-sm">
+    <nav class="fixed top-0 left-0 w-full nav-bg z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
+            <div class="flex justify-between items-center h-16">
                 <!-- LEFT SIDE: Name and Mobile Menu Toggle -->
-                <div class="flex items-center space-x-4 -ml-2">
+                <div class="flex items-center -ml-2">
                     <a href="#home"
                         class="text-2xl font-bold text-[#1e57be] transition-all duration-300 transform hover:scale-110 origin-left">
                         MD Mehedi Hasan
                     </a>
-                    <!-- Mobile Menu Button (Hamburger) - placeholder, JS not fully implemented for mobile menu -->
-                    <button id="mobile-menu-btn"
-                        class="md:hidden text-[#63747a] p-2 rounded-md hover:text-[#1e57be] transition duration-200">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
                 </div>
+                <!-- CENTER: Hamburger (Mobile Only) -->
+                <button id="mobile-menu-btn"
+                    class="md:hidden text-[#1e57be] hover:text-[#6cc9ff] transition duration-200 p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8">
+                        <rect x="3" y="3" width="7" height="7" rx="2"></rect>
+                        <rect x="14" y="3" width="7" height="7" rx="2"></rect>
+                        <rect x="3" y="14" width="7" height="7" rx="2"></rect>
+                        <rect x="14" y="14" width="7" height="7" rx="2"></rect>
+                    </svg>
+                </button>
                 <!-- CENTER: Navigation Links (Hidden on mobile) -->
                 <div class="hidden md:flex md:flex-1 md:justify-center md:space-x-4 items-center">
                     <!-- ...existing code... -->
@@ -307,26 +309,48 @@
                 </div>
             </div>
         </div>
-        <!-- Mobile Menu (Hidden by default) -->
-        <div id="mobile-menu"
-            class="hidden md:hidden bg-[#ffffff] border-t border-[#1e57be]/10">
-            <div class="px-4 pt-2 pb-6 space-y-2 flex flex-col">
-                <a href="#home"
-                    class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-[#63747a] hover:text-[#1e57be] transition duration-200">Home</a>
-                <a href="#about-page"
-                    class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-[#63747a] hover:text-[#1e57be] transition duration-200">About</a>
-                <a href="#research-page"
-                    class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-[#63747a] hover:text-[#1e57be] transition duration-200">Research</a>
-                <a href="#skills-page"
-                    class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-[#63747a] hover:text-[#1e57be] transition duration-200">My
-                    Skills</a>
-                <a href="#portfolio-page"
-                    class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-[#63747a] hover:text-[#1e57be] transition duration-200">Portfolio</a>
-                <a href="#contact-page"
-                    class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-[#63747a] hover:text-[#1e57be] transition duration-200">Contact</a>
-            </div>
-        </div>
     </nav>
+
+    <!-- Mobile Full-Screen Overlay Menu -->
+    <div id="mobile-overlay"
+        class="fixed top-0 left-0 right-0 bg-[#f7f8fd] z-50 md:hidden shadow-lg py-6 px-6 transform -translate-y-full transition-transform duration-300">
+        <div class="grid grid-cols-3 gap-y-6 gap-x-8 text-center">
+            <!-- Row 1 -->
+            <a href="#home"
+                class="mobile-nav-link flex flex-col items-center space-y-1 text-[#63747a] hover:text-[#1e57be] transition duration-200">
+                <i data-lucide="home" class="w-7 h-7 text-[#1e57be]"></i>
+                <span class="text-sm font-medium">Home</span>
+            </a>
+            <a href="#about-page"
+                class="mobile-nav-link flex flex-col items-center space-y-1 text-[#63747a] hover:text-[#1e57be] transition duration-200">
+                <i data-lucide="user" class="w-7 h-7 text-[#1e57be]"></i>
+                <span class="text-sm font-medium">About</span>
+            </a>
+            <a href="#research-page"
+                class="mobile-nav-link relative flex flex-col items-center space-y-1 text-[#63747a] hover:text-[#1e57be] transition duration-200">
+                <span id="close-menu"
+                    class="absolute -top-3 right-1 text-xs text-[#1e57be] cursor-pointer hover:text-[#6cc9ff] transition">✕</span>
+                <i data-lucide="file-text" class="w-7 h-7 text-[#1e57be]"></i>
+                <span class="text-sm font-medium">Research</span>
+            </a>
+            <!-- Row 2 -->
+            <a href="#skills-page"
+                class="mobile-nav-link flex flex-col items-center space-y-1 text-[#63747a] hover:text-[#1e57be] transition duration-200">
+                <i data-lucide="wrench" class="w-7 h-7 text-[#1e57be]"></i>
+                <span class="text-sm font-medium">Skills</span>
+            </a>
+            <a href="#portfolio-page"
+                class="mobile-nav-link flex flex-col items-center space-y-1 text-[#63747a] hover:text-[#1e57be] transition duration-200">
+                <i data-lucide="folder" class="w-7 h-7 text-[#1e57be]"></i>
+                <span class="text-sm font-medium">Portfolio</span>
+            </a>
+            <a href="#contact-page"
+                class="mobile-nav-link flex flex-col items-center space-y-1 text-[#63747a] hover:text-[#1e57be] transition duration-200">
+                <i data-lucide="mail" class="w-7 h-7 text-[#1e57be]"></i>
+                <span class="text-sm font-medium">Contact</span>
+            </a>
+        </div>
+    </div>
 
     <!-- Row 1: Home (Page 1) -->
     <section id="home"
@@ -358,8 +382,7 @@
                         Mechanical Engineer
                     </p>
 
-                    <p
-                        class="text-lg text-[#63747a] max-w-2xl font-light transition-colors duration-500 lg:max-w-full">
+                    <p class="text-lg text-[#63747a] max-w-2xl font-light transition-colors duration-500 lg:max-w-full">
                         Undergraduate student at RUET. Experienced in CAD Design, 3D Modeling & Rendering and Basic
                         Programming.
                     </p>
@@ -577,8 +600,7 @@
 
                             </div>
 
-                            <p
-                                class="text-base text-[#63747a] leading-relaxed mt-2 transition-colors duration-500">
+                            <p class="text-base text-[#63747a] leading-relaxed mt-2 transition-colors duration-500">
                                 Worked on CAD modeling, technical drawings, and basic product optimization. Collaborated
                                 with senior engineers on real-world mechanical design tasks.
                             </p>
@@ -613,8 +635,7 @@
 
                             </div>
 
-                            <p
-                                class="text-base text-[#63747a] leading-relaxed mt-2 transition-colors duration-500">
+                            <p class="text-base text-[#63747a] leading-relaxed mt-2 transition-colors duration-500">
                                 Led a team project focused on mechanical system analysis and simulation. Responsible for
                                 design planning, calculations, and final presentation.
                             </p>
@@ -733,31 +754,31 @@
 
                             <div class="flex items-start space-x-4 w-full md:flex-1">
                                 <img src="image/SW.png" alt="Additive Manufacturing Logo"
-                                    class="w-16 h-16 object-contain rounded-lg flex-shrink-0 bg-white/10 p-2 mt-1">
+                                    class="w-16 h-16 object-contain rounded-lg flex-shrink-0 bg-[#f7f8fd] p-2 mt-1">
 
                                 <div class="flex-1">
                                     <h4
-                                        class="text-xl md:text-2xl font-semibold text-white light:text-gray-900 mb-1 transition-colors duration-500">
+                                        class="text-xl md:text-2xl font-semibold text-[#1e57be] mb-1 transition-colors duration-500">
                                         SOLIDWORKS Additive Manufacturing Associate
                                     </h4>
 
-                                    <p class="text-base text-gray-400 light:text-gray-600 mt-1">
+                                    <p class="text-base text-[#63747a] mt-1">
                                         Dassault Systèmes | Issued Jun 2025
                                     </p>
 
-                                    <p class="text-sm text-gray-500 mt-2 tracking-wide">
+                                    <p class="text-sm text-[#8fa9b1] mt-2 tracking-wide">
                                         Credential ID C-SUTZCK2BP6
                                     </p>
                                 </div>
                             </div>
 
                             <a href="https://cv.virtualtester.com/qr/?b=SLDWRKS&i=C-SUTZCK2BP6" target="_blank"
-                                class="inline-flex items-center justify-center w-full md:w-auto px-4 py-2 bg-sky-600 text-white text-sm font-medium rounded-lg shadow-md hover:bg-sky-700 transition duration-300 whitespace-nowrap flex-shrink-0 mt-2 md:mt-0">
+                                class="inline-flex items-center justify-center w-full md:w-auto px-4 py-2 bg-[#1e57be] text-white text-sm font-medium rounded-lg shadow-md hover:bg-[#6cc9ff] transition duration-300 whitespace-nowrap flex-shrink-0 mt-2 md:mt-0">
                                 Show Credential
                                 <i data-lucide="external-link" class="h-4 w-4 ml-1"></i>
                             </a>
+
                         </div>
-                    </div>
     </section>
 
     <!-- Research & Publications -->
@@ -765,9 +786,9 @@
 
         <div class="w-full lg:max-w-6xl mx-auto">
 
-            <div class="card-bg rounded-3xl shadow-xl p-8 sm:p-12">
+            <div class="card-bg rounded-3xl p-8 sm:p-12">
 
-                <h2 class="text-2xl sm:text-4xl font-bold text-sky-400 mb-6 transition-colors duration-500">
+                <h2 class="text-2xl sm:text-4xl font-bold text-[#1e57be] mb-6 transition-colors duration-500">
                     Research & Publications
                 </h2>
 
@@ -775,40 +796,39 @@
 
                     <!-- Research Item -->
                     <div
-                        class="p-6 rounded-xl bg-gray-800/40 light:bg-gray-50 border border-gray-700/40 light:border-gray-200 transition-all duration-300">
+                        class="p-6 rounded-xl bg-[#f7f8fd] border border-[rgba(30,87,190,0.06)] transition-all duration-300">
 
-                        <h3
-                            class="text-xl sm:text-2xl font-bold text-sky-400 mb-4 leading-snug transition-colors">
+                        <h3 class="text-xl sm:text-2xl font-bold text-[#1e57be] mb-4 leading-snug transition-colors">
                             Efficient Energy Recovery from Wastewater Using Microbial Fuel Cells
                         </h3>
 
                         <div class="flex flex-wrap gap-4 mb-6">
                             <span
-                                class="flex items-center text-sm font-medium text-sky-400 bg-sky-400/10 px-3 py-1 rounded-full">
+                                class="flex items-center text-sm font-medium text-[#1e57be] bg-[rgba(30,87,190,0.08)] px-3 py-1 rounded-full">
                                 <i data-lucide="user" class="w-3.5 h-3.5 mr-2"></i> MD Mehedi Hasan
                             </span>
                             <span
-                                class="flex items-center text-sm font-medium text-gray-400 bg-white/5 px-3 py-1 rounded-full">
+                                class="flex items-center text-sm font-medium text-[#63747a] bg-white border border-[#1e57be]/10 px-3 py-1 rounded-full">
                                 <i data-lucide="users" class="w-3.5 h-3.5 mr-2"></i> Co-authors Available
                             </span>
                         </div>
 
                         <div class="space-y-3 mb-8">
-                            <p class="text-gray-300 flex items-start gap-3 text-sm sm:text-base">
-                                <i data-lucide="calendar" class="w-5 h-5 text-sky-500 shrink-0 mt-0.5"></i>
+                            <p class="text-[#63747a] flex items-start gap-3 text-sm sm:text-base">
+                                <i data-lucide="calendar" class="w-5 h-5 text-[#1e57be] shrink-0 mt-0.5"></i>
                                 <span>2nd International Conference on Renewable Energy and Environment, 2024</span>
                             </p>
                             <p class="flex items-start gap-3">
-                                <i data-lucide="link-2" class="w-5 h-5 text-emerald-500 shrink-0 mt-0.5"></i>
+                                <i data-lucide="link-2" class="w-5 h-5 text-[#1e57be] shrink-0 mt-0.5"></i>
                                 <a href="https://doi.org/10.1234/abcd5678" target="_blank"
-                                    class="text-sky-500 hover:text-sky-400 hover:underline text-sm break-all font-medium transition-colors">
+                                    class="text-[#1e57be] hover:text-[#6cc9ff] hover:underline text-sm break-all font-medium transition-colors">
                                     https://doi.org/10.1234/abcd5678
                                 </a>
                             </p>
                         </div>
 
-                        <div class="border-t border-white/5 pt-6">
-                            <p class="text-gray-400 line-height-fix text-base italic leading-relaxed">
+                        <div class="border-t border-[#1e57be]/10 pt-6">
+                            <p class="text-[#8fa9b1] line-height-fix text-base italic leading-relaxed">
                                 "This study explores the application of microbial fuel cells (MFCs) for efficient energy
                                 recovery from wastewater, highlighting key operational parameters and performance
                                 enhancement through novel substrate utilization."
@@ -844,9 +864,9 @@
                         <h3
                             class="text-2xl sm:text-3xl font-semibold text-[#1e57be] mb-4 sm:mb-6 transition-colors duration-500">
                         </h3>
-                        <div class="h-0.5 w-20 bg-[#1e57be] rounded-full mb-8"></div>
+                        <div class="h-0.5 w-20 bg-[#1e57be] rounded-full mb-4 sm:mb-8"></div>
 
-                        <div class="space-y-4">
+                        <div class="skills-grid grid grid-cols-2 gap-4 md:grid-cols-1">
                             <!-- Skill items -->
                         </div>
                     </div>
@@ -855,15 +875,15 @@
                 <!-- Skill Item Template -->
                 <template id="skill-item-template">
                     <div
-                        class="skill-item p-4 rounded-lg transition-all duration-300 hover:bg-[#f7f8fd] hover:scale-[1.02] hover:shadow-md cursor-pointer">
+                        class="skill-item p-3 sm:p-4 rounded-lg transition-all duration-300 hover:bg-[#f7f8fd] hover:scale-[1.02] cursor-pointer">
 
-                        <div class="flex justify-between items-center mb-2 gap-2">
-                            <span class="text-lg font-medium text-[#63747a]"></span>
-                            <span class="text-sm font-semibold text-[#8fa9b1]"></span>
+                        <div class="flex justify-between items-center mb-1 sm:mb-2 gap-2">
+                            <span class="skill-name text-sm sm:text-lg font-semibold text-[#63747a]"></span>
+                            <span class="skill-score text-xs sm:text-sm font-semibold text-[#1e57be]"></span>
                         </div>
 
-                        <div class="w-full bg-[#8fa9b1]/20 rounded-full h-2 shadow-inner">
-                            <div class="bg-[#1e57be] h-2 rounded-full transition-all duration-1000 ease-out"
+                        <div class="w-full bg-[#8fa9b1]/25 rounded-full h-2 shadow-inner">
+                            <div class="bg-gradient-to-r from-[#1e57be] to-[#6cc9ff] h-2 rounded-full transition-all duration-1000 ease-out"
                                 style="width: 0;"></div>
                         </div>
 
@@ -948,7 +968,8 @@
                         <h3
                             class="text-xl sm:text-2xl font-semibold tracking-wide text-[#1e57be] mb-2 transition-colors duration-500">
                             4. Simulation Analysis</h3>
-                        <p class="text-sm text-[#63747a] mb-4">Performed FEA and motion analysis on mechanical components
+                        <p class="text-sm text-[#63747a] mb-4">Performed FEA and motion analysis on mechanical
+                            components
                             to ensure reliability and structural integrity under load.</p>
                         <button
                             class="group text-[#1e57be] hover:text-[#6cc9ff] text-base font-semibold self-start mt-2 underline underline-offset-4">View
@@ -1283,7 +1304,8 @@
                 <!-- Left Column: Contact Information and Social Links -->
                 <div class="card-bg p-8 sm:p-12 rounded-3xl flex flex-col justify-between">
                     <div>
-                        <h3 class="text-2xl sm:text-3xl font-semibold text-[#1e57be] mb-4 transition-colors duration-500">
+                        <h3
+                            class="text-2xl sm:text-3xl font-semibold text-[#1e57be] mb-4 transition-colors duration-500">
                             Contact Details
                         </h3>
 
@@ -1373,7 +1395,8 @@
                 <!-- Right Column: Send Us A Message Form -->
                 <div class="card-bg p-8 sm:p-12 rounded-3xl flex flex-col justify-between">
                     <div>
-                        <h3 class="text-2xl sm:text-3xl font-semibold text-[#1e57be] mb-4 transition-colors duration-500">
+                        <h3
+                            class="text-2xl sm:text-3xl font-semibold text-[#1e57be] mb-4 transition-colors duration-500">
                             Send Me a Message
                         </h3>
 
@@ -1385,8 +1408,7 @@
 
                             <!-- Full Name -->
                             <div>
-                                <label for="full-name"
-                                    class="block text-sm font-medium text-[#63747a] mb-1">Full
+                                <label for="full-name" class="block text-sm font-medium text-[#63747a] mb-1">Full
                                     Name</label>
                                 <input type="text" id="full-name" name="fullName" placeholder="Your name" required
                                     class="w-full px-4 py-2.5 bg-[#f7f8fd] border border-[#1e57be]/20 rounded-lg
@@ -1397,8 +1419,7 @@ text-[#63747a] transition duration-150">
 
                             <!-- Email Address -->
                             <div>
-                                <label for="email"
-                                    class="block text-sm font-medium text-[#63747a] mb-1">Email
+                                <label for="email" class="block text-sm font-medium text-[#63747a] mb-1">Email
                                     Address</label>
                                 <input type="email" id="email" name="email" placeholder="your.email@example.com"
                                     required
@@ -1437,8 +1458,7 @@ text-[#63747a] transition duration-150">
 
     <!-- NEW SECTION: Closing Message / Final CTA -->
     <section class="py-12 px-4 sm:px-8 transition-colors duration-500">
-        <div
-            class="max-w-4xl mx-auto text-center p-8 rounded-2xl border-4 border-[#1e57be]/30 bg-white">
+        <div class="max-w-4xl mx-auto text-center p-8 rounded-2xl border-4 border-[#1e57be]/30 bg-white">
             <p class="text-2xl sm:text-3xl font-light italic text-[#63747a] leading-snug">
                 Thank you for exploring my portfolio. I’d love to hear from you—<span
                     class="font-semibold text-[#1e57be]">feel free to reach out!</span>
@@ -1478,57 +1498,49 @@ text-[#63747a] transition duration-150">
                         Quick Links
                     </h4>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <ul class="grid grid-cols-2 gap-x-6 gap-y-3 text-sm leading-relaxed">
+                        <li>
+                            <a href="#home"
+                                class="hover:text-[#1e57be] transition duration-200 inline-block hover:translate-x-1">
+                                Home
+                            </a>
+                        </li>
 
-                        <!-- Column 1 -->
-                        <ul class="space-y-2">
-                            <li>
-                                <a href="#home"
-                                    class="text-sm hover:text-[#1e57be] transition duration-200 inline-block hover:translate-x-1">
-                                    Home
-                                </a>
-                            </li>
+                        <li>
+                            <a href="#about-page"
+                                class="hover:text-[#1e57be] transition duration-200 inline-block hover:translate-x-1">
+                                About
+                            </a>
+                        </li>
 
-                            <li>
-                                <a href="#about-page"
-                                    class="text-sm hover:text-[#1e57be] transition duration-200 inline-block hover:translate-x-1">
-                                    About
-                                </a>
-                            </li>
+                        <li>
+                            <a href="#research-page"
+                                class="hover:text-[#1e57be] transition duration-200 inline-block hover:translate-x-1">
+                                Research
+                            </a>
+                        </li>
 
-                            <li>
-                                <a href="#research-page"
-                                    class="text-sm hover:text-[#1e57be] transition duration-200 inline-block hover:translate-x-1">
-                                    Research
-                                </a>
-                            </li>
-                        </ul>
+                        <li>
+                            <a href="#skills-page"
+                                class="hover:text-[#1e57be] transition duration-200 inline-block hover:translate-x-1">
+                                My Skills
+                            </a>
+                        </li>
 
-                        <!-- Column 2 -->
-                        <ul class="space-y-2">
-                            <li>
-                                <a href="#skills-page"
-                                    class="text-sm hover:text-[#1e57be] transition duration-200 inline-block hover:translate-x-1">
-                                    My Skills
-                                </a>
-                            </li>
+                        <li>
+                            <a href="#portfolio-page"
+                                class="hover:text-[#1e57be] transition duration-200 inline-block hover:translate-x-1">
+                                Portfolio
+                            </a>
+                        </li>
 
-                            <li>
-                                <a href="#portfolio-page"
-                                    class="text-sm hover:text-[#1e57be] transition duration-200 inline-block hover:translate-x-1">
-                                    Portfolio
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#contact-page"
-                                    class="text-sm hover:text-[#1e57be] transition duration-200 inline-block hover:translate-x-1">
-                                    Contact
-                                </a>
-                            </li>
-                        </ul>
-
-                    </div>
+                        <li>
+                            <a href="#contact-page"
+                                class="hover:text-[#1e57be] transition duration-200 inline-block hover:translate-x-1">
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
                 </div>
 
                 <!-- 3. Get In Touch / CTA -->
@@ -1725,7 +1737,7 @@ text-[#63747a] transition duration-150">
             if (!groupElement) return null;
 
             const groupTitle = groupElement.querySelector('h3');
-            const groupBody = groupElement.querySelector('.space-y-4');
+            const groupBody = groupElement.querySelector('.skills-grid');
             groupTitle.textContent = groupData.group;
 
             // Render skill items inside this group
@@ -1734,8 +1746,8 @@ text-[#63747a] transition duration-150">
                 const itemDiv = itemClone.querySelector('.skill-item');
                 if (!itemDiv) return;
 
-                const nameSpan = itemDiv.querySelector('.text-lg');
-                const scoreSpan = itemDiv.querySelector('.text-sm');
+                const nameSpan = itemDiv.querySelector('.skill-name');
+                const scoreSpan = itemDiv.querySelector('.skill-score');
                 // Target the progress bar div which now has the gradient class
                 const progressBar = itemDiv.querySelector('.bg-gradient-to-r');
 
@@ -1789,7 +1801,7 @@ text-[#63747a] transition duration-150">
         }
 
         // Initialize rendering on window load to ensure all templates are available and visible for the animation
-        window.addEventListener('load', renderSkills);
+        document.addEventListener('DOMContentLoaded', renderSkills);
 
         // --- JavaScript for Contact Item Buffering Animation ---
         const contactItems = document.querySelectorAll('.contact-item');
@@ -1871,19 +1883,31 @@ text-[#63747a] transition duration-150">
         });
 
         // --- JavaScript for Mobile Menu Toggle ---
+        const mobileOverlay = document.getElementById('mobile-overlay');
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+        const closeBtn = document.getElementById('close-menu');
         const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
-        if (mobileMenuBtn && mobileMenu) {
+        if (mobileMenuBtn && mobileOverlay && closeBtn) {
             mobileMenuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
+                mobileOverlay.classList.remove('-translate-y-full');
             });
+            closeBtn.addEventListener('click', () => {
+                mobileOverlay.classList.add('-translate-y-full');
+            });
+
             // Close menu when a link is clicked
             mobileNavLinks.forEach(link => {
                 link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
+                    mobileOverlay.classList.add('-translate-y-full');
                 });
+            });
+
+            // Auto-close mobile menu on scroll
+            window.addEventListener('scroll', () => {
+                if (!mobileOverlay.classList.contains('-translate-y-full')) {
+                    mobileOverlay.classList.add('-translate-y-full');
+                }
             });
         }
     </script>
