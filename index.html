@@ -14,6 +14,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
 
+        /* ...existing code... */
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f7f8fd;
@@ -23,13 +24,19 @@
 
         .nav-bg {
             background-color: #ffffff;
+            border-bottom: 1px solid rgba(30,87,190,0.08);
         }
 
         .card-bg {
             background-color: #ffffff;
-            border: 1px solid rgba(30, 87, 190, 0.08);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(30,87,190,0.08);
+            box-shadow: 0 8px 24px rgba(30, 87, 190, 0.05);
             transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .card-bg:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(30, 87, 190, 0.08);
         }
 
         ::-webkit-scrollbar {
@@ -99,7 +106,7 @@
 
         /* --- ACTIVE NAV UNDERLINE EFFECT --- */
         .nav-link.pb-2.active-nav {
-            border-bottom: 2.5px solid #1e57be !important;
+            border-bottom: 2px solid #1e57be !important;
             color: #1e57be !important;
             font-weight: 600;
             padding-bottom: 2px;
@@ -160,7 +167,6 @@
         #certifications {
             display: none;
         }
-
     </style>
 
     <script>
@@ -169,10 +175,10 @@
                 extend: {
                     colors: {
                         'primary-blue': '#1e57be',
-                        'secondary-accent-blue': '#6cc9ff',
-                        'main-bg': '#f7f8fd',
+                        'secondary-accent': '#6cc9ff', // Corrected name
                         'primary-text': '#63747a',
                         'muted-text': '#8fa9b1',
+                        'bg-main': '#f7f8fd'
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -235,10 +241,10 @@
     </script>
 </head>
 
-<body>
+<body class="transition-colors duration-500">
     <!-- Confirmation Message Box (Replaces alert()) - Needs to be high in the DOM -->
     <div id="confirmation-message"
-        class="fixed top-5 left-1/2 -translate-x-1/2 z-50 p-4 bg-primary-blue text-white rounded-lg shadow-2xl max-w-sm"
+        class="fixed top-5 left-1/2 -translate-x-1/2 z-50 p-4 bg-[#1e57be] text-white rounded-lg shadow-2xl max-w-sm"
         role="alert">
         <div class="flex items-center">
             <!-- Icon: Check Circle -->
@@ -253,18 +259,18 @@
 
     <!-- Fixed Navigation Bar -->
     <nav
-        class="fixed top-0 left-0 w-full bg-white/95 backdrop-blur-sm z-50 shadow-lg border-b border-[rgba(30,87,190,0.08)]">
+        class="fixed top-0 left-0 w-full nav-bg z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <!-- LEFT SIDE: Name and Mobile Menu Toggle -->
                 <div class="flex items-center space-x-4 -ml-2">
                     <a href="#home"
-                        class="text-2xl font-bold text-primary-blue transition-all duration-300 transform hover:scale-110 hover:text-secondary-accent-blue origin-left">
+                        class="text-2xl font-bold text-[#1e57be] transition-all duration-300 transform hover:scale-110 origin-left">
                         MD Mehedi Hasan
                     </a>
                     <!-- Mobile Menu Button (Hamburger) - placeholder, JS not fully implemented for mobile menu -->
                     <button id="mobile-menu-btn"
-                        class="md:hidden text-primary-text p-2 rounded-md hover:bg-secondary-accent-blue/20 transition duration-200">
+                        class="md:hidden text-[#63747a] p-2 rounded-md hover:text-[#1e57be] transition duration-200">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4 6h16M4 12h16M4 18h16" />
@@ -274,55 +280,68 @@
                 <!-- CENTER: Navigation Links (Hidden on mobile) -->
                 <div class="hidden md:flex md:flex-1 md:justify-center md:space-x-4 items-center">
                     <!-- ...existing code... -->
-                    <a href="#home" class="nav-link px-3 py-1.5 pb-2 rounded-md text-sm font-medium text-primary-text hover:bg-secondary-accent-blue/20 hover:text-secondary-accent-blue transition duration-200">Home</a>
-                    <a href="#about-page" class="nav-link px-3 py-1.5 pb-2 rounded-md text-sm font-medium text-primary-text hover:bg-secondary-accent-blue/20 hover:text-secondary-accent-blue transition duration-200">About</a>
-                    <a href="#research-page" class="nav-link px-3 py-1.5 pb-2 rounded-md text-sm font-medium text-primary-text hover:bg-secondary-accent-blue/20 hover:text-secondary-accent-blue transition duration-200">Research</a>
-                    <a href="#skills-page" class="nav-link px-3 py-1.5 pb-2 rounded-md text-sm font-medium text-primary-text hover:bg-secondary-accent-blue/20 hover:text-secondary-accent-blue transition duration-200">My
+                    <a href="#home"
+                        class="nav-link px-3 py-1.5 pb-2 rounded-md text-sm font-medium text-[#63747a] hover:text-[#1e57be] transition duration-200">Home</a>
+                    <a href="#about-page"
+                        class="nav-link px-3 py-1.5 pb-2 rounded-md text-sm font-medium text-[#63747a] hover:text-[#1e57be] transition duration-200">About</a>
+                    <a href="#research-page"
+                        class="nav-link px-3 py-1.5 pb-2 rounded-md text-sm font-medium text-[#63747a] hover:text-[#1e57be] transition duration-200">Research</a>
+                    <a href="#skills-page"
+                        class="nav-link px-3 py-1.5 pb-2 rounded-md text-sm font-medium text-[#63747a] hover:text-[#1e57be] transition duration-200">My
                         Skills</a>
-                    <a href="#portfolio-page" class="nav-link px-3 py-1.5 pb-2 rounded-md text-sm font-medium text-primary-text hover:bg-secondary-accent-blue/20 hover:text-secondary-accent-blue transition duration-200">
+                    <a href="#portfolio-page"
+                        class="nav-link px-3 py-1.5 pb-2 rounded-md text-sm font-medium text-[#63747a] hover:text-[#1e57be] transition duration-200">
                         Portfolio
                     </a>
-                    <a href="#contact-page" class="nav-link px-3 py-1.5 pb-2 rounded-md text-sm font-medium text-primary-text hover:bg-secondary-accent-blue/20 hover:text-secondary-accent-blue transition duration-200">Contact</a>
+                    <a href="#contact-page"
+                        class="nav-link px-3 py-1.5 pb-2 rounded-md text-sm font-medium text-[#63747a] hover:text-[#1e57be] transition duration-200">Contact</a>
                     <!-- ...existing code... -->
                 </div>
                 <!-- RIGHT SIDE: Dark/Light Mode Toggle and Let's Talk Button -->
                 <div class="flex items-center space-x-4">
                     <!-- Let's Talk Button -->
                     <a href="#contact-page"
-                        class="px-3 py-1.5 bg-primary-blue text-white font-semibold rounded-lg shadow-md hover:bg-secondary-accent-blue transition duration-300 text-sm">
+                        class="px-3 py-1.5 bg-[#1e57be] text-white font-semibold rounded-lg shadow-md hover:bg-[#6cc9ff] transition duration-300 text-sm">
                         Let's Talk
                     </a>
                 </div>
             </div>
         </div>
         <!-- Mobile Menu (Hidden by default) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-[rgba(30,87,190,0.08)]">
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-[#ffffff] border-t border-[#1e57be]/10">
             <div class="px-4 pt-2 pb-6 space-y-2 flex flex-col">
-                <a href="#home" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-primary-text hover:bg-secondary-accent-blue/20 hover:text-secondary-accent-blue transition duration-200">Home</a>
-                <a href="#about-page" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-primary-text hover:bg-secondary-accent-blue/20 hover:text-secondary-accent-blue transition duration-200">About</a>
-                <a href="#research-page" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-primary-text hover:bg-secondary-accent-blue/20 hover:text-secondary-accent-blue transition duration-200">Research</a>
-                <a href="#skills-page" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-primary-text hover:bg-secondary-accent-blue/20 hover:text-secondary-accent-blue transition duration-200">My Skills</a>
-                <a href="#portfolio-page" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-primary-text hover:bg-secondary-accent-blue/20 hover:text-secondary-accent-blue transition duration-200">Portfolio</a>
-                <a href="#contact-page" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-primary-text hover:bg-secondary-accent-blue/20 hover:text-secondary-accent-blue transition duration-200">Contact</a>
+                <a href="#home"
+                    class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-[#63747a] hover:text-[#1e57be] transition duration-200">Home</a>
+                <a href="#about-page"
+                    class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-[#63747a] hover:text-[#1e57be] transition duration-200">About</a>
+                <a href="#research-page"
+                    class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-[#63747a] hover:text-[#1e57be] transition duration-200">Research</a>
+                <a href="#skills-page"
+                    class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-[#63747a] hover:text-[#1e57be] transition duration-200">My
+                    Skills</a>
+                <a href="#portfolio-page"
+                    class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-[#63747a] hover:text-[#1e57be] transition duration-200">Portfolio</a>
+                <a href="#contact-page"
+                    class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-[#63747a] hover:text-[#1e57be] transition duration-200">Contact</a>
             </div>
         </div>
     </nav>
 
     <!-- Row 1: Home (Page 1) -->
     <section id="home"
-        class="min-h-screen pt-24 pb-16 flex items-center justify-center px-4 sm:px-8">
+        class="min-h-screen pt-16 flex items-center justify-center px-4 sm:px-8 bg-section transition-colors duration-500">
 
         <div
-            class="w-full lg:max-w-6xl mx-auto flex flex-col items-center justify-start transition-all duration-500">
+            class="w-full lg:max-w-6xl mx-auto flex flex-col items-center justify-start card-bg rounded-3xl p-8 sm:p-12 transition-all duration-500">
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full max-w-4xl mx-auto flex-grow">
 
                 <div class="flex flex-col items-center justify-center text-center">
 
                     <img src="image/Home.png" alt="MD Mehedi Hasan Profile Picture">
-
                     <div
-                        class="rotating-title-container px-4 py-2 rounded-lg bg-white/90 text-primary-text font-semibold text-base shadow-md">
+                        class="rotating-title-container px-4 py-2 rounded-lg bg-[#f7f8fd] text-[#1e57be] font-semibold text-base transition-colors duration-500 shadow-md border border-[#1e57be]/10">
                         <span id="rotating-title" class="inline-block transition-opacity duration-500"></span>
                     </div>
 
@@ -331,22 +350,22 @@
                 <div class="flex flex-col justify-center text-center lg:text-left">
 
                     <h1
-                        class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-primary-blue mb-4 leading-tight">
+                        class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#1e57be] mb-4 leading-tight transition-colors duration-500">
                         I’m Mehedi Hasan
                     </h1>
 
-                    <p class="text-lg sm:text-2xl text-primary-blue font-medium mb-4">
+                    <p class="text-lg sm:text-2xl text-[#1e57be] font-medium mb-4 transition-colors duration-500">
                         Mechanical Engineer
                     </p>
 
                     <p
-                        class="text-lg text-primary-text max-w-2xl font-light lg:max-w-full">
+                        class="text-lg text-[#63747a] max-w-2xl font-light transition-colors duration-500 lg:max-w-full">
                         Undergraduate student at RUET. Experienced in CAD Design, 3D Modeling & Rendering and Basic
                         Programming.
                     </p>
 
                     <a href="#about-page"
-                        class="mt-8 px-8 py-3 bg-primary-blue text-white font-semibold rounded-full shadow-lg hover:bg-secondary-accent-blue transform hover:scale-105 transition duration-300 self-center lg:self-start">
+                        class="mt-8 px-8 py-3 bg-[#1e57be] text-white font-semibold rounded-full shadow-lg hover:bg-[#6cc9ff] transform hover:scale-105 transition duration-300 self-center lg:self-start">
                         Learn More About Me
                     </a>
 
@@ -357,46 +376,47 @@
     </section>
 
     <!-- Row 2: About Me (Page 2) -->
-    <section id="about-page" class="py-16 px-4 sm:px-8">
+    <section id="about-page" class="py-16 sm:py-10 px-4 sm:px-8 bg-section transition-colors duration-500">
 
         <div id="about-tabs-container" class="w-full lg:max-w-6xl mx-auto">
 
             <!-- MAIN BOX: Contains header sub-box + all content -->
-            <div class="w-full">
+            <div class="card-bg rounded-3xl p-6 sm:p-10">
 
                 <!-- SUB BOX: Header with heading and pill tabs -->
                 <div
-                    class="bg-white/50 rounded-2xl p-6 sm:p-8 mb-8 flex flex-col items-center justify-center">
-                    <h2 class="text-3xl sm:text-4xl font-bold text-primary-blue mb-8 text-center"
+                    class="bg-[#f7f8fd] rounded-2xl p-6 sm:p-8 mb-8 flex flex-col items-center justify-center border border-[#1e57be]/10">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-[#1e57be] mb-8 text-center transition-colors duration-500"
                         id="about">
                         About Me
                     </h2>
 
                     <!-- Pill-style Tab Navigation -->
                     <div
-                        class="grid grid-cols-2 md:flex md:flex-wrap justify-center items-center gap-3 md:gap-2 p-3 md:p-1.5 bg-main-bg rounded-2xl md:rounded-full w-full md:w-fit border border-[rgba(30,87,190,0.08)] backdrop-blur-sm">
+                        class="grid grid-cols-2 md:flex md:flex-wrap justify-center items-center gap-3 md:gap-2 p-3 md:p-1.5 bg-[#ffffff] rounded-2xl md:rounded-full w-full md:w-fit border border-[#1e57be]/10 backdrop-blur-sm">
                         <button
-                            class="tab-header w-full md:w-auto px-2 md:px-6 py-2.5 md:py-2 rounded-xl md:rounded-full text-sm font-medium transition-all duration-300"
+                            class="tab-header w-full md:w-auto px-2 md:px-6 py-2.5 md:py-2 rounded-xl md:rounded-full text-sm font-medium transition-all duration-300 bg-[#1e57be] text-white shadow-md"
                             data-tab="about">About</button>
                         <button
-                            class="tab-header w-full md:w-auto px-2 md:px-6 py-2.5 md:py-2 rounded-xl md:rounded-full text-sm font-medium transition-all duration-300"
+                            class="tab-header w-full md:w-auto px-2 md:px-6 py-2.5 md:py-2 rounded-xl md:rounded-full text-sm font-medium transition-all duration-300 text-[#8fa9b1] hover:text-[#1e57be] hover:bg-[#f7f8fd]"
                             data-tab="education">Education</button>
                         <button
-                            class="tab-header w-full md:w-auto px-2 md:px-6 py-2.5 md:py-2 rounded-xl md:rounded-full text-sm font-medium transition-all duration-300"
+                            class="tab-header w-full md:w-auto px-2 md:px-6 py-2.5 md:py-2 rounded-xl md:rounded-full text-sm font-medium transition-all duration-300 text-[#8fa9b1] hover:text-[#1e57be] hover:bg-[#f7f8fd]"
                             data-tab="experience">Experience</button>
                         <button
-                            class="tab-header w-full md:w-auto px-2 md:px-6 py-2.5 md:py-2 rounded-xl md:rounded-full text-sm font-medium transition-all duration-300"
+                            class="tab-header w-full md:w-auto px-2 md:px-6 py-2.5 md:py-2 rounded-xl md:rounded-full text-sm font-medium transition-all duration-300 text-[#8fa9b1] hover:text-[#1e57be] hover:bg-[#f7f8fd]"
                             data-tab="certifications">Certifications</button>
                     </div>
                 </div>
 
                 <!-- TAB CONTENT AREA (still inside main box) -->
                 <div id="tab-about" class="tab-content">
-                    <h3 class="tab-heading text-xl sm:text-3xl font-semibold text-primary-blue mb-4 sm:mb-6">
+                    <h3
+                        class="tab-heading text-xl sm:text-3xl font-semibold text-[#1e57be] mb-4 sm:mb-6 transition-colors duration-500">
                         Who I Am
                     </h3>
 
-                    <div class="h-0.5 w-20 bg-primary-blue rounded-full mb-8 tab-divider"></div>
+                    <div class="h-0.5 w-20 bg-[#1e57be] rounded-full mb-8 tab-divider"></div>
                     <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
                         <!-- LEFT COLUMN: Profile Picture -->
                         <div class="lg:col-span-2">
@@ -405,7 +425,7 @@
                         </div>
                         <!-- RIGHT COLUMN: Professional Description -->
                         <div
-                            class="lg:col-span-3 text-base sm:text-lg leading-relaxed text-justify text-primary-text space-y-4">
+                            class="lg:col-span-3 text-base sm:text-lg leading-relaxed text-justify text-[#63747a] space-y-4 transition-colors duration-500">
                             <p>An enthusiastic undergraduate student pursuing a bachelor's degree in Mechanical
                                 Engineering at Rajshahi University of Engineering and Technology (RUET).</p>
                             <p>With strong skills in Computer-Aided Design (CAD) and SolidWorks, I specialize in product
@@ -414,8 +434,8 @@
                                 Professional (CSWP) certifications, reflecting my dedication and expertise in the field.
                             </p>
                             <a href="your_cv_file_link.pdf" download="Mehedi_Hasan_CV.pdf"
-                                class="inline-flex items-center justify-center w-full sm:w-auto mt-8 px-6 py-3 bg-primary-blue
-                             text-white font-semibold rounded-lg shadow-md hover:bg-secondary-accent-blue transition duration-300"><i data-lucide="download" class="w-5 h-5 mr-2"></i>Download
+                                class="inline-flex items-center justify-center w-full sm:w-auto mt-8 px-6 py-3 bg-[#1e57be]
+                             text-white font-semibold rounded-lg shadow-md hover:bg-[#6cc9ff] transition duration-300"><i data-lucide="download" class="w-5 h-5 mr-2"></i>Download
                                 CV</a>
                         </div>
                     </div>
@@ -423,33 +443,34 @@
 
                 <!-- Education Tab Content -->
                 <div id="tab-education" class="tab-content hidden">
-                    <h3 class="tab-heading text-xl sm:text-3xl font-semibold text-primary-blue mb-4 sm:mb-6">
+                    <h3
+                        class="tab-heading text-xl sm:text-3xl font-semibold text-[#1e57be] mb-4 sm:mb-6 transition-colors duration-500">
                         Academic Background
                     </h3>
 
 
-                    <div class="h-0.5 w-20 bg-primary-blue rounded-full mb-6 tab-divider"></div>
+                    <div class="h-0.5 w-20 bg-[#1e57be] rounded-full mb-6 tab-divider"></div>
 
                     <div class="space-y-6">
 
                         <!-- RUET Entry -->
-                        <div class="flex items-start gap-6 pb-6 border-b border-primary-blue/20">
+                        <div class="flex items-start gap-6 pb-6 border-b border-[#1e57be]/10">
 
                             <div
-                                class="w-16 h-16 flex-shrink-0 rounded-full bg-primary-blue/10 p-2 flex items-center justify-center">
+                                class="w-16 h-16 flex-shrink-0 rounded-full bg-[#f7f8fd] p-2 flex items-center justify-center">
                                 <img src="image/RUET.png" alt="RUET Logo" class="w-full h-full object-contain">
                             </div>
 
                             <div>
-                                <p class="text-lg sm:text-xl font-bold text-primary-text font-semibold mb-2">
+                                <p class="text-lg sm:text-xl font-bold text-[#1e57be] mb-2">
                                     Rajshahi University of Engineering &amp; Technology (RUET)
                                 </p>
 
-                                <p class="text-base sm:text-lg text-primary-text mb-2">
+                                <p class="text-base sm:text-lg text-[#63747a] mb-2">
                                     B.Sc. in Mechanical Engineering
                                 </p>
 
-                                <p class="text-sm text-muted-text mt-2 tracking-wide">
+                                <p class="text-sm text-[#8fa9b1] mt-2 tracking-wide">
                                     Jan 2023 - Present
                                 </p>
                             </div>
@@ -458,7 +479,7 @@
                         <!-- Earlier Education -->
                         <div>
 
-                            <h4 class="text-xl sm:text-2xl font-semibold text-primary-text font-semibold mb-6">
+                            <h4 class="text-xl sm:text-2xl font-semibold text-[#1e57be] mb-6">
                                 Earlier Education
                             </h4>
 
@@ -468,20 +489,20 @@
                                 <div class="flex items-start gap-4">
 
                                     <div
-                                        class="w-14 h-14 flex-shrink-0 rounded-full bg-primary-blue/10 p-2 flex items-center justify-center">
+                                        class="w-14 h-14 flex-shrink-0 rounded-full bg-[#f7f8fd] p-2 flex items-center justify-center">
                                         <img src="image/GCC.png" alt="GCC Logo" class="w-full h-full object-contain">
                                     </div>
 
                                     <div>
-                                        <p class="text-lg sm:text-xl font-bold text-primary-text font-semibold mb-2">
+                                        <p class="text-lg sm:text-xl font-bold text-[#1e57be] mb-2">
                                             Gazipur Cantonment College (GCC)
                                         </p>
 
-                                        <p class="text-base sm:text-lg text-primary-text mb-2">
+                                        <p class="text-base sm:text-lg text-[#63747a] mb-2">
                                             Higher Secondary Certificate (HSC), Science
                                         </p>
 
-                                        <p class="text-sm text-muted-text mt-2 tracking-wide">
+                                        <p class="text-sm text-[#8fa9b1] mt-2 tracking-wide">
                                             Jun 2019 - Feb 2022 | Grade: Golden GPA 5.00
                                         </p>
                                     </div>
@@ -491,20 +512,20 @@
                                 <div class="flex items-start gap-4">
 
                                     <div
-                                        class="w-14 h-14 flex-shrink-0 rounded-full bg-primary-blue/10 p-2 flex items-center justify-center">
+                                        class="w-14 h-14 flex-shrink-0 rounded-full bg-[#f7f8fd] p-2 flex items-center justify-center">
                                         <img src="image/HPS.jpg" alt="HPSC Logo" class="w-full h-full object-contain">
                                     </div>
 
                                     <div>
-                                        <p class="text-lg sm:text-xl font-bold text-primary-text font-semibold mb-2">
+                                        <p class="text-lg sm:text-xl font-bold text-[#1e57be] mb-2">
                                             Hataykhari Public School &amp; College
                                         </p>
 
-                                        <p class="text-base sm:text-lg text-primary-text mb-2">
+                                        <p class="text-base sm:text-lg text-[#63747a] mb-2">
                                             School Education (Class 03-10)
                                         </p>
 
-                                        <p class="text-sm text-muted-text mt-2 tracking-wide">
+                                        <p class="text-sm text-[#8fa9b1] mt-2 tracking-wide">
                                             Jan 2011 - Feb 2019
                                         </p>
                                     </div>
@@ -518,44 +539,46 @@
 
                 <!-- Experience Tab Content -->
                 <div id="tab-experience" class="tab-content hidden">
-                    <h3 class="tab-heading text-xl sm:text-3xl font-semibold text-primary-blue mb-4 sm:mb-6">
+                    <h3
+                        class="tab-heading text-xl sm:text-3xl font-semibold text-[#1e57be] mb-4 sm:mb-6 transition-colors duration-500">
                         Professional Experience
                     </h3>
 
-                    <div class="h-0.5 w-20 bg-primary-blue rounded-full mb-6 tab-divider"></div>
+                    <div class="h-0.5 w-20 bg-[#1e57be] rounded-full mb-6 tab-divider"></div>
 
                     <div class="flex flex-col space-y-6">
 
                         <!-- Experience 1 -->
-                        <div class="flex flex-col gap-4 py-6 border-b border-primary-blue/20">
+                        <div class="flex flex-col gap-4 py-6 border-b border-[#1e57be]/10">
 
                             <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
 
                                 <div>
                                     <h4
-                                        class="text-xl sm:text-2xl font-bold text-primary-text font-semibold mb-1">
+                                        class="text-xl sm:text-2xl font-bold text-[#1e57be] transition-colors duration-500 mb-1">
                                         ABC Engineering Solutions
                                     </h4>
 
                                     <p
-                                        class="text-base sm:text-lg font-medium text-primary-blue mb-2">
+                                        class="text-base sm:text-lg font-medium text-[#6cc9ff] mb-2 transition-colors duration-500">
                                         Mechanical Engineering Intern
                                     </p>
 
-                                    <p class="text-sm text-muted-text mt-2 tracking-wide">
+                                    <p class="text-sm text-[#8fa9b1] mt-2 tracking-wide">
                                         Jun 2024 – Sep 2024
                                     </p>
                                 </div>
 
                                 <a href="#"
-                                    class="inline-flex items-center px-4 py-2 bg-primary-blue text-white text-sm font-medium rounded-lg shadow-md hover:bg-secondary-accent-blue transition duration-300 whitespace-nowrap flex-shrink-0">
+                                    class="inline-flex items-center px-4 py-2 bg-[#1e57be] text-white text-sm font-medium rounded-lg shadow-md hover:bg-[#6cc9ff] transition duration-300 whitespace-nowrap flex-shrink-0">
                                     View Details
                                     <i data-lucide="external-link" class="h-4 w-4 ml-1"></i>
                                 </a>
 
                             </div>
 
-                            <p class="text-base text-primary-text leading-relaxed mt-2">
+                            <p
+                                class="text-base text-[#63747a] leading-relaxed mt-2 transition-colors duration-500">
                                 Worked on CAD modeling, technical drawings, and basic product optimization. Collaborated
                                 with senior engineers on real-world mechanical design tasks.
                             </p>
@@ -568,29 +591,30 @@
 
                                 <div>
                                     <h4
-                                        class="text-xl sm:text-2xl font-bold text-primary-text font-semibold mb-1">
+                                        class="text-xl sm:text-2xl font-bold text-[#1e57be] transition-colors duration-500 mb-1">
                                         University Project Team
                                     </h4>
 
                                     <p
-                                        class="text-base sm:text-lg font-medium text-primary-blue mb-2">
+                                        class="text-base sm:text-lg font-medium text-[#6cc9ff] mb-2 transition-colors duration-500">
                                         Academic Project Lead
                                     </p>
 
-                                    <p class="text-sm text-muted-text mt-2 tracking-wide">
+                                    <p class="text-sm text-[#8fa9b1] mt-2 tracking-wide">
                                         Jan 2024 – May 2024
                                     </p>
                                 </div>
 
                                 <a href="#"
-                                    class="inline-flex items-center px-4 py-2 bg-primary-blue text-white text-sm font-medium rounded-lg shadow-md hover:bg-secondary-accent-blue transition duration-300 whitespace-nowrap flex-shrink-0">
+                                    class="inline-flex items-center px-4 py-2 bg-[#1e57be] text-white text-sm font-medium rounded-lg shadow-md hover:bg-[#6cc9ff] transition duration-300 whitespace-nowrap flex-shrink-0">
                                     Project Link
                                     <i data-lucide="external-link" class="h-4 w-4 ml-1"></i>
                                 </a>
 
                             </div>
 
-                            <p class="text-base text-primary-text leading-relaxed mt-2">
+                            <p
+                                class="text-base text-[#63747a] leading-relaxed mt-2 transition-colors duration-500">
                                 Led a team project focused on mechanical system analysis and simulation. Responsible for
                                 design planning, calculations, and final presentation.
                             </p>
@@ -601,40 +625,41 @@
 
                 <!-- Certifications Tab Content -->
                 <div id="tab-certifications" class="tab-content hidden">
-                    <h3 class="tab-heading text-xl sm:text-3xl font-semibold text-primary-blue mb-4 sm:mb-6">
+                    <h3
+                        class="tab-heading text-xl sm:text-3xl font-semibold text-[#1e57be] mb-4 sm:mb-6 transition-colors duration-500">
                         Professional Certifications
                     </h3>
 
-                    <div class="h-0.5 w-20 bg-primary-blue rounded-full mb-6 tab-divider"></div>
+                    <div class="h-0.5 w-20 bg-[#1e57be] rounded-full mb-6 tab-divider"></div>
 
                     <div class="space-y-6">
 
                         <!-- Certification 1: CSWP -->
                         <div
-                            class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-8 py-6 border-b border-primary-blue/20">
+                            class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-8 py-6 border-b border-[#1e57be]/10">
 
                             <div class="flex items-start space-x-4 w-full md:flex-1">
                                 <img src="image/SW.png" alt="CSWP Logo"
-                                    class="w-16 h-16 object-contain rounded-lg flex-shrink-0 bg-primary-blue/10 p-2 mt-1">
+                                    class="w-16 h-16 object-contain rounded-lg flex-shrink-0 bg-[#f7f8fd] p-2 mt-1">
 
                                 <div class="flex-1">
                                     <h4
-                                        class="text-xl md:text-2xl font-semibold text-primary-text font-semibold mb-1">
+                                        class="text-xl md:text-2xl font-semibold text-[#1e57be] mb-1 transition-colors duration-500">
                                         SOLIDWORKS CAD Design Professional (CSWP)
                                     </h4>
 
-                                    <p class="text-base text-muted-text mt-1">
+                                    <p class="text-base text-[#63747a] mt-1">
                                         Dassault Systèmes | Issued Aug 2024
                                     </p>
 
-                                    <p class="text-sm text-muted-text mt-2 tracking-wide">
+                                    <p class="text-sm text-[#8fa9b1] mt-2 tracking-wide">
                                         Credential ID C-4BQMETJS76
                                     </p>
                                 </div>
                             </div>
 
                             <a href="https://cv.virtualtester.com/qr/?b=SLDWRKS&i=C-4BQMETJS76" target="_blank"
-                                class="inline-flex items-center justify-center w-full md:w-auto px-4 py-2 bg-primary-blue text-white text-sm font-medium rounded-lg shadow-md hover:bg-secondary-accent-blue transition duration-300 whitespace-nowrap flex-shrink-0 mt-2 md:mt-0">
+                                class="inline-flex items-center justify-center w-full md:w-auto px-4 py-2 bg-[#1e57be] text-white text-sm font-medium rounded-lg shadow-md hover:bg-[#6cc9ff] transition duration-300 whitespace-nowrap flex-shrink-0 mt-2 md:mt-0">
                                 Show Credential
                                 <i data-lucide="external-link" class="h-4 w-4 ml-1"></i>
                             </a>
@@ -642,30 +667,30 @@
 
                         <!-- Certification 2: CSWA -->
                         <div
-                            class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-8 py-6 border-b border-primary-blue/20">
+                            class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-8 py-6 border-b border-[#1e57be]/10">
 
                             <div class="flex items-start space-x-4 w-full md:flex-1">
                                 <img src="image/SW.png" alt="CSWA Logo"
-                                    class="w-16 h-16 object-contain rounded-lg flex-shrink-0 bg-primary-blue/10 p-2 mt-1">
+                                    class="w-16 h-16 object-contain rounded-lg flex-shrink-0 bg-[#f7f8fd] p-2 mt-1">
 
                                 <div class="flex-1">
                                     <h4
-                                        class="text-xl md:text-2xl font-semibold text-primary-text font-semibold mb-1">
+                                        class="text-xl md:text-2xl font-semibold text-[#1e57be] mb-1 transition-colors duration-500">
                                         SOLIDWORKS CAD Design Associate (CSWA)
                                     </h4>
 
-                                    <p class="text-base text-muted-text mt-1">
+                                    <p class="text-base text-[#63747a] mt-1">
                                         Dassault Systèmes | Issued Jun 2024
                                     </p>
 
-                                    <p class="text-sm text-muted-text mt-2 tracking-wide">
+                                    <p class="text-sm text-[#8fa9b1] mt-2 tracking-wide">
                                         Credential ID C-HE8TOR64A7
                                     </p>
                                 </div>
                             </div>
 
                             <a href="https://cv.virtualtester.com/qr/?b=SLDWRKS&i=C-HE8TQR64A7" target="_blank"
-                                class="inline-flex items-center justify-center w-full md:w-auto px-4 py-2 bg-primary-blue text-white text-sm font-medium rounded-lg shadow-md hover:bg-secondary-accent-blue transition duration-300 whitespace-nowrap flex-shrink-0 mt-2 md:mt-0">
+                                class="inline-flex items-center justify-center w-full md:w-auto px-4 py-2 bg-[#1e57be] text-white text-sm font-medium rounded-lg shadow-md hover:bg-[#6cc9ff] transition duration-300 whitespace-nowrap flex-shrink-0 mt-2 md:mt-0">
                                 Show Credential
                                 <i data-lucide="external-link" class="h-4 w-4 ml-1"></i>
                             </a>
@@ -673,30 +698,30 @@
 
                         <!-- Certification 3: 3DSwymer -->
                         <div
-                            class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-8 py-6 border-b border-primary-blue/20">
+                            class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-8 py-6 border-b border-[#1e57be]/10">
 
                             <div class="flex items-start space-x-4 w-full md:flex-1">
                                 <img src="image/SW.png" alt="3DSwymer Logo"
-                                    class="w-16 h-16 object-contain rounded-lg flex-shrink-0 bg-primary-blue/10 p-2 mt-1">
+                                    class="w-16 h-16 object-contain rounded-lg flex-shrink-0 bg-[#f7f8fd] p-2 mt-1">
 
                                 <div class="flex-1">
                                     <h4
-                                        class="text-xl md:text-2xl font-semibold text-primary-text font-semibold mb-1">
+                                        class="text-xl md:text-2xl font-semibold text-[#1e57be] mb-1 transition-colors duration-500">
                                         3DSwymer Associate
                                     </h4>
 
-                                    <p class="text-base text-muted-text mt-1">
+                                    <p class="text-base text-[#63747a] mt-1">
                                         Dassault Systèmes | Issued Sep 2024
                                     </p>
 
-                                    <p class="text-sm text-muted-text mt-2 tracking-wide">
+                                    <p class="text-sm text-[#8fa9b1] mt-2 tracking-wide">
                                         Credential ID C-DNRM5W4P7E
                                     </p>
                                 </div>
                             </div>
 
                             <a href="https://cv.virtualtester.com/qr/?b=SLDWRKS&i=C-DNRM5W4P7E" target="_blank"
-                                class="inline-flex items-center justify-center w-full md:w-auto px-4 py-2 bg-primary-blue text-white text-sm font-medium rounded-lg shadow-md hover:bg-secondary-accent-blue transition duration-300 whitespace-nowrap flex-shrink-0 mt-2 md:mt-0">
+                                class="inline-flex items-center justify-center w-full md:w-auto px-4 py-2 bg-[#1e57be] text-white text-sm font-medium rounded-lg shadow-md hover:bg-[#6cc9ff] transition duration-300 whitespace-nowrap flex-shrink-0 mt-2 md:mt-0">
                                 Show Credential
                                 <i data-lucide="external-link" class="h-4 w-4 ml-1"></i>
                             </a>
@@ -708,41 +733,41 @@
 
                             <div class="flex items-start space-x-4 w-full md:flex-1">
                                 <img src="image/SW.png" alt="Additive Manufacturing Logo"
-                                    class="w-16 h-16 object-contain rounded-lg flex-shrink-0 bg-primary-blue/10 p-2 mt-1">
+                                    class="w-16 h-16 object-contain rounded-lg flex-shrink-0 bg-white/10 p-2 mt-1">
 
                                 <div class="flex-1">
                                     <h4
-                                        class="text-xl md:text-2xl font-semibold text-primary-text font-semibold mb-1">
+                                        class="text-xl md:text-2xl font-semibold text-white light:text-gray-900 mb-1 transition-colors duration-500">
                                         SOLIDWORKS Additive Manufacturing Associate
                                     </h4>
 
-                                    <p class="text-base text-muted-text mt-1">
+                                    <p class="text-base text-gray-400 light:text-gray-600 mt-1">
                                         Dassault Systèmes | Issued Jun 2025
                                     </p>
 
-                                    <p class="text-sm text-muted-text mt-2 tracking-wide">
+                                    <p class="text-sm text-gray-500 mt-2 tracking-wide">
                                         Credential ID C-SUTZCK2BP6
                                     </p>
                                 </div>
                             </div>
 
                             <a href="https://cv.virtualtester.com/qr/?b=SLDWRKS&i=C-SUTZCK2BP6" target="_blank"
-                                class="inline-flex items-center justify-center w-full md:w-auto px-4 py-2 bg-primary-blue text-white text-sm font-medium rounded-lg shadow-md hover:bg-secondary-accent-blue transition duration-300 whitespace-nowrap flex-shrink-0 mt-2 md:mt-0">
+                                class="inline-flex items-center justify-center w-full md:w-auto px-4 py-2 bg-sky-600 text-white text-sm font-medium rounded-lg shadow-md hover:bg-sky-700 transition duration-300 whitespace-nowrap flex-shrink-0 mt-2 md:mt-0">
                                 Show Credential
                                 <i data-lucide="external-link" class="h-4 w-4 ml-1"></i>
                             </a>
                         </div>
-                </div>
+                    </div>
     </section>
 
     <!-- Research & Publications -->
-    <section id="research-page" class="py-16 px-4 sm:px-8">
+    <section id="research-page" class="py-6 sm:py-10 px-4 sm:px-8 bg-section transition-colors duration-500">
 
         <div class="w-full lg:max-w-6xl mx-auto">
 
-            <div class="w-full">
+            <div class="card-bg rounded-3xl shadow-xl p-8 sm:p-12">
 
-                <h2 class="text-2xl sm:text-4xl font-bold text-primary-blue mb-6">
+                <h2 class="text-2xl sm:text-4xl font-bold text-sky-400 mb-6 transition-colors duration-500">
                     Research & Publications
                 </h2>
 
@@ -750,40 +775,40 @@
 
                     <!-- Research Item -->
                     <div
-                        class="p-6 rounded-xl bg-white border border-[rgba(30,87,190,0.08)] transition-all duration-300">
+                        class="p-6 rounded-xl bg-gray-800/40 light:bg-gray-50 border border-gray-700/40 light:border-gray-200 transition-all duration-300">
 
                         <h3
-                            class="text-xl sm:text-2xl font-bold text-primary-blue mb-4 leading-snug">
+                            class="text-xl sm:text-2xl font-bold text-sky-400 mb-4 leading-snug transition-colors">
                             Efficient Energy Recovery from Wastewater Using Microbial Fuel Cells
                         </h3>
 
                         <div class="flex flex-wrap gap-4 mb-6">
                             <span
-                                class="flex items-center text-sm font-medium text-primary-blue bg-primary-blue/10 px-3 py-1 rounded-full">
+                                class="flex items-center text-sm font-medium text-sky-400 bg-sky-400/10 px-3 py-1 rounded-full">
                                 <i data-lucide="user" class="w-3.5 h-3.5 mr-2"></i> MD Mehedi Hasan
                             </span>
                             <span
-                                class="flex items-center text-sm font-medium text-muted-text bg-muted-text/10 px-3 py-1 rounded-full">
+                                class="flex items-center text-sm font-medium text-gray-400 bg-white/5 px-3 py-1 rounded-full">
                                 <i data-lucide="users" class="w-3.5 h-3.5 mr-2"></i> Co-authors Available
                             </span>
                         </div>
 
                         <div class="space-y-3 mb-8">
-                            <p class="text-primary-text flex items-start gap-3 text-sm sm:text-base">
-                                <i data-lucide="calendar" class="w-5 h-5 text-primary-blue shrink-0 mt-0.5"></i>
+                            <p class="text-gray-300 flex items-start gap-3 text-sm sm:text-base">
+                                <i data-lucide="calendar" class="w-5 h-5 text-sky-500 shrink-0 mt-0.5"></i>
                                 <span>2nd International Conference on Renewable Energy and Environment, 2024</span>
                             </p>
                             <p class="flex items-start gap-3">
-                                <i data-lucide="link-2" class="w-5 h-5 text-primary-blue shrink-0 mt-0.5"></i>
+                                <i data-lucide="link-2" class="w-5 h-5 text-emerald-500 shrink-0 mt-0.5"></i>
                                 <a href="https://doi.org/10.1234/abcd5678" target="_blank"
-                                    class="text-primary-blue hover:text-secondary-accent-blue hover:underline text-sm break-all font-medium transition-colors">
+                                    class="text-sky-500 hover:text-sky-400 hover:underline text-sm break-all font-medium transition-colors">
                                     https://doi.org/10.1234/abcd5678
                                 </a>
                             </p>
                         </div>
 
                         <div class="border-t border-white/5 pt-6">
-                            <p class="text-muted-text line-height-fix text-base italic leading-relaxed">
+                            <p class="text-gray-400 line-height-fix text-base italic leading-relaxed">
                                 "This study explores the application of microbial fuel cells (MFCs) for efficient energy
                                 recovery from wastewater, highlighting key operational parameters and performance
                                 enhancement through novel substrate utilization."
@@ -799,13 +824,13 @@
     </section>
 
     <!-- Row 4: My Skills -->
-    <section id="skills-page" class="py-16 px-4 sm:px-8">
+    <section id="skills-page" class="py-6 sm:py-10 px-4 sm:px-8 bg-section transition-colors duration-500">
 
         <div class="w-full lg:max-w-6xl mx-auto">
 
-            <div class="w-full">
+            <div class="card-bg rounded-3xl p-8 sm:p-12">
 
-                <h2 class="text-2xl sm:text-4xl font-bold text-primary-blue mb-6">
+                <h2 class="text-2xl sm:text-4xl font-bold text-[#1e57be] mb-6 transition-colors duration-500">
                     My Skills
                 </h2>
 
@@ -816,9 +841,10 @@
                 <!-- Skill Group Template -->
                 <template id="skill-group-template">
                     <div class="mb-8">
-                        <h3 class="text-xl sm:text-3xl font-semibold text-primary-blue mb-4 sm:mb-6">
+                        <h3
+                            class="text-2xl sm:text-3xl font-semibold text-[#1e57be] mb-4 sm:mb-6 transition-colors duration-500">
                         </h3>
-                        <div class="h-0.5 w-20 bg-primary-blue rounded-full mb-8"></div>
+                        <div class="h-0.5 w-20 bg-[#1e57be] rounded-full mb-8"></div>
 
                         <div class="space-y-4">
                             <!-- Skill items -->
@@ -829,15 +855,15 @@
                 <!-- Skill Item Template -->
                 <template id="skill-item-template">
                     <div
-                        class="skill-item p-4 rounded-lg transition-all duration-300 hover:bg-primary-blue/5 hover:scale-[1.02] hover:shadow-md cursor-pointer">
+                        class="skill-item p-4 rounded-lg transition-all duration-300 hover:bg-[#f7f8fd] hover:scale-[1.02] hover:shadow-md cursor-pointer">
 
                         <div class="flex justify-between items-center mb-2 gap-2">
-                            <span class="text-lg font-medium text-primary-text font-medium"></span>
-                            <span class="text-sm font-semibold text-muted-text"></span>
+                            <span class="text-lg font-medium text-[#63747a]"></span>
+                            <span class="text-sm font-semibold text-[#8fa9b1]"></span>
                         </div>
 
-                        <div class="w-full bg-main-bg rounded-full h-2 shadow-inner">
-                            <div class="bg-gradient-to-r from-primary-blue to-secondary-accent-blue h-2 rounded-full transition-all duration-1000 ease-out"
+                        <div class="w-full bg-[#8fa9b1]/20 rounded-full h-2 shadow-inner">
+                            <div class="bg-[#1e57be] h-2 rounded-full transition-all duration-1000 ease-out"
                                 style="width: 0;"></div>
                         </div>
 
@@ -849,17 +875,17 @@
     </section>
 
     <!-- Row 4.5: Portfolio (New Section) -->
-    <section id="portfolio-page" class="py-16 px-4 sm:px-8">
+    <section id="portfolio-page" class="py-6 sm:py-10 px-4 sm:px-8 bg-section transition-colors duration-500">
 
-        <div class="w-full lg:max-w-6xl mx-auto">
+        <div class="w-full lg:max-w-6xl mx-auto card-bg rounded-3xl pt-8 pb-6 sm:pt-12 sm:pb-8 px-8">
             <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-8">
 
-                <h2 class="text-3xl sm:text-4xl font-bold text-primary-blue mb-4 lg:mb-0">
+                <h2 class="text-3xl sm:text-4xl font-bold text-[#1e57be] transition-colors duration-500 mb-4 lg:mb-0">
                     3D Modeling & Mechanical Design Showcase
                 </h2>
 
                 <div
-                    class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary-blue text-white shadow-md hover:bg-secondary-accent-blue transition-all duration-300 cursor-pointer">
+                    class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1e57be] text-white shadow-md hover:bg-[#6cc9ff] transition-all duration-300 cursor-pointer">
                     <i data-lucide="download" class="w-4 h-4"></i>
                     <span class="text-sm font-medium">Design Portfolio (PDF)</span>
                 </div>
@@ -876,13 +902,14 @@
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=1" alt="Project 1"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
-                            class="text-xl sm:text-2xl font-semibold tracking-wide text-primary-blue mb-2">
+                            class="text-xl sm:text-2xl font-semibold tracking-wide text-[#1e57be] mb-2 transition-colors duration-500">
                             1. 3D Engine Model
                         </h3>
 
-                        <p class="text-sm text-muted-text mb-4">Designed a detailed 3D model of a mechanical engine using
+                        <p class="text-sm text-[#63747a] mb-4">Designed a detailed 3D model of a mechanical engine using
                             SolidWorks and rendered it with KeyShot.</p>
-                        <button class="group text-primary-text hover:text-primary-blue text-base font-semibold self-start mt-2 underline underline-offset-4">View
+                        <button
+                            class="group text-[#1e57be] hover:text-[#6cc9ff] text-base font-semibold self-start mt-2 underline underline-offset-4">View
                             Project <span
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
@@ -891,12 +918,12 @@
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=2" alt="Project 2"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
-                            class="text-xl sm:text-2xl font-semibold tracking-wide text-primary-blue mb-2">
+                            class="text-xl sm:text-2xl font-semibold tracking-wide text-[#1e57be] mb-2 transition-colors duration-500">
                             2. Portfolio Website</h3>
-                        <p class="text-sm text-muted-text mb-4">Developed this responsive portfolio using HTML, Tailwind
+                        <p class="text-sm text-[#63747a] mb-4">Developed this responsive portfolio using HTML, Tailwind
                             CSS, and JavaScript, focusing on a dark, neon theme.</p>
                         <button
-                            class="group text-primary-text hover:text-primary-blue text-base font-semibold self-start mt-2 underline underline-offset-4">View
+                            class="group text-[#1e57be] hover:text-[#6cc9ff] text-base font-semibold self-start mt-2 underline underline-offset-4">View
                             Project <span
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
@@ -905,12 +932,12 @@
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=3" alt="Project 3"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
-                            class="text-xl sm:text-2xl font-semibold tracking-wide text-primary-blue mb-2">
+                            class="text-xl sm:text-2xl font-semibold tracking-wide text-[#1e57be] mb-2 transition-colors duration-500">
                             3. CAD Assembly Project</h3>
-                        <p class="text-sm text-muted-text mb-4">Created a complex assembly of mechanical parts
+                        <p class="text-sm text-[#63747a] mb-4">Created a complex assembly of mechanical parts
                             demonstrating advanced CAD techniques and motion studies.</p>
                         <button
-                            class="group text-primary-text hover:text-primary-blue text-base font-semibold self-start mt-2 underline underline-offset-4">View
+                            class="group text-[#1e57be] hover:text-[#6cc9ff] text-base font-semibold self-start mt-2 underline underline-offset-4">View
                             Project <span
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
@@ -919,12 +946,12 @@
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=4" alt="Project 4"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
-                            class="text-xl sm:text-2xl font-semibold tracking-wide text-primary-blue mb-2">
+                            class="text-xl sm:text-2xl font-semibold tracking-wide text-[#1e57be] mb-2 transition-colors duration-500">
                             4. Simulation Analysis</h3>
-                        <p class="text-sm text-muted-text mb-4">Performed FEA and motion analysis on mechanical components
+                        <p class="text-sm text-[#63747a] mb-4">Performed FEA and motion analysis on mechanical components
                             to ensure reliability and structural integrity under load.</p>
                         <button
-                            class="group text-primary-text hover:text-primary-blue text-base font-semibold self-start mt-2 underline underline-offset-4">View
+                            class="group text-[#1e57be] hover:text-[#6cc9ff] text-base font-semibold self-start mt-2 underline underline-offset-4">View
                             Project <span
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
@@ -933,12 +960,12 @@
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=5" alt="Project 5"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
-                            class="text-xl sm:text-2xl font-semibold tracking-wide text-primary-blue mb-2">
+                            class="text-xl sm:text-2xl font-semibold tracking-wide text-[#1e57be] mb-2 transition-colors duration-500">
                             5. Product Visualization</h3>
-                        <p class="text-sm text-muted-text mb-4">Rendered photorealistic images for product marketing and
+                        <p class="text-sm text-[#63747a] mb-4">Rendered photorealistic images for product marketing and
                             presentations using KeyShot and advanced lighting techniques.</p>
                         <button
-                            class="group text-primary-text hover:text-primary-blue text-base font-semibold self-start mt-2 underline underline-offset-4">View
+                            class="group text-[#1e57be] hover:text-[#6cc9ff] text-base font-semibold self-start mt-2 underline underline-offset-4">View
                             Project <span
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
@@ -947,12 +974,12 @@
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=6" alt="Project 6"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
-                            class="text-xl sm:text-2xl font-semibold tracking-wide text-primary-blue mb-2">
+                            class="text-xl sm:text-2xl font-semibold tracking-wide text-[#1e57be] mb-2 transition-colors duration-500">
                             6. Concept Sketches</h3>
-                        <p class="text-sm text-muted-text mb-4">Created initial concept sketches and digital mockups for
+                        <p class="text-sm text-[#63747a] mb-4">Created initial concept sketches and digital mockups for
                             client proposals, translating ideas into tangible forms.</p>
                         <button
-                            class="group text-primary-text hover:text-primary-blue text-base font-semibold self-start mt-2 underline underline-offset-4">View
+                            class="group text-[#1e57be] hover:text-[#6cc9ff] text-base font-semibold self-start mt-2 underline underline-offset-4">View
                             Project <span
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
@@ -961,12 +988,12 @@
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=7" alt="Project 7"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
-                            class="text-xl sm:text-2xl font-semibold tracking-wide text-primary-blue mb-2">
+                            class="text-xl sm:text-2xl font-semibold tracking-wide text-[#1e57be] mb-2 transition-colors duration-500">
                             7. Reverse Engineering</h3>
-                        <p class="text-sm text-muted-text mb-4">Recreated legacy parts and assemblies from physical
+                        <p class="text-sm text-[#63747a] mb-4">Recreated legacy parts and assemblies from physical
                             samples using 3D scanning and CAD tools to produce accurate models.</p>
                         <button
-                            class="group text-primary-text hover:text-primary-blue text-base font-semibold self-start mt-2 underline underline-offset-4">View
+                            class="group text-[#1e57be] hover:text-[#6cc9ff] text-base font-semibold self-start mt-2 underline underline-offset-4">View
                             Project <span
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
@@ -975,12 +1002,12 @@
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=8" alt="Project 8"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
-                            class="text-xl sm:text-2xl font-semibold tracking-wide text-primary-blue mb-2">
+                            class="text-xl sm:text-2xl font-semibold tracking-wide text-[#1e57be] mb-2 transition-colors duration-500">
                             8. Sheet Metal Design</h3>
-                        <p class="text-sm text-muted-text mb-4">Designed and unfolded specialized sheet metal parts for
+                        <p class="text-sm text-[#63747a] mb-4">Designed and unfolded specialized sheet metal parts for
                             manufacturing and prototyping, optimizing material usage.</p>
                         <button
-                            class="group text-primary-text hover:text-primary-blue text-base font-semibold self-start mt-2 underline underline-offset-4">View
+                            class="group text-[#1e57be] hover:text-[#6cc9ff] text-base font-semibold self-start mt-2 underline underline-offset-4">View
                             Project <span
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
@@ -989,12 +1016,12 @@
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=9" alt="Project 9"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
-                            class="text-xl sm:text-2xl font-semibold tracking-wide text-primary-blue mb-2">
+                            class="text-xl sm:text-2xl font-semibold tracking-wide text-[#1e57be] mb-2 transition-colors duration-500">
                             9. 3D Printing Project</h3>
-                        <p class="text-sm text-muted-text mb-4">Prepared and optimized models for additive manufacturing
+                        <p class="text-sm text-[#63747a] mb-4">Prepared and optimized models for additive manufacturing
                             and 3D printing, focusing on support structure minimization.</p>
                         <button
-                            class="group text-primary-text hover:text-primary-blue text-base font-semibold self-start mt-2 underline underline-offset-4">View
+                            class="group text-[#1e57be] hover:text-[#6cc9ff] text-base font-semibold self-start mt-2 underline underline-offset-4">View
                             Project <span
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
@@ -1003,12 +1030,12 @@
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=10" alt="Project 10"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
-                            class="text-xl sm:text-2xl font-semibold tracking-wide text-primary-blue mb-2">
+                            class="text-xl sm:text-2xl font-semibold tracking-wide text-[#1e57be] mb-2 transition-colors duration-500">
                             10. Fixture Design</h3>
-                        <p class="text-sm text-muted-text mb-4">Developed custom jigs and fixtures for production
+                        <p class="text-sm text-[#63747a] mb-4">Developed custom jigs and fixtures for production
                             environments to ensure consistent part positioning and quality control.</p>
                         <button
-                            class="group text-primary-text hover:text-primary-blue text-base font-semibold self-start mt-2 underline underline-offset-4">View
+                            class="group text-[#1e57be] hover:text-[#6cc9ff] text-base font-semibold self-start mt-2 underline underline-offset-4">View
                             Project <span
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
@@ -1017,12 +1044,12 @@
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=11" alt="Project 11"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
-                            class="text-xl sm:text-2xl font-semibold tracking-wide text-primary-blue mb-2">
+                            class="text-xl sm:text-2xl font-semibold tracking-wide text-[#1e57be] mb-2 transition-colors duration-500">
                             11. Piping & Routing</h3>
-                        <p class="text-sm text-muted-text mb-4">Designed complex piping layouts and cable routing paths
+                        <p class="text-sm text-[#63747a] mb-4">Designed complex piping layouts and cable routing paths
                             for industrial machinery, adhering to safety standards.</p>
                         <button
-                            class="group text-primary-text hover:text-primary-blue text-base font-semibold self-start mt-2 underline underline-offset-4">View
+                            class="group text-[#1e57be] hover:text-[#6cc9ff] text-base font-semibold self-start mt-2 underline underline-offset-4">View
                             Project <span
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
@@ -1031,12 +1058,12 @@
                         <img src="https://placehold.co/750x1000/0ea5e9/fff?text=12" alt="Project 12"
                             class="w-full h-[240px] object-cover rounded-lg mb-4">
                         <h3
-                            class="text-xl sm:text-2xl font-semibold tracking-wide text-primary-blue mb-2">
+                            class="text-xl sm:text-2xl font-semibold tracking-wide text-[#1e57be] mb-2 transition-colors duration-500">
                             12. Design Optimization</h3>
-                        <p class="text-sm text-muted-text mb-4">Executed design optimization processes to reduce material
+                        <p class="text-sm text-[#63747a] mb-4">Executed design optimization processes to reduce material
                             weight while maintaining structural integrity and performance.</p>
                         <button
-                            class="group text-primary-text hover:text-primary-blue text-base font-semibold self-start mt-2 underline underline-offset-4">View
+                            class="group text-[#1e57be] hover:text-[#6cc9ff] text-base font-semibold self-start mt-2 underline underline-offset-4">View
                             Project <span
                                 class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span></button>
                     </div>
@@ -1048,11 +1075,11 @@
                     <!-- Previous/Next Buttons -->
                     <div class="flex justify-center space-x-6">
                         <button id="prev-btn"
-                            class="px-6 py-2 rounded-full bg-primary-blue text-white font-semibold hover:bg-secondary-accent-blue transition disabled:opacity-30 disabled:cursor-not-allowed">
+                            class="px-6 py-2 rounded-full bg-[#1e57be] text-white font-semibold hover:bg-[#6cc9ff] transition disabled:opacity-30 disabled:cursor-not-allowed">
                             &larr; Prev
                         </button>
                         <button id="next-btn"
-                            class="px-6 py-2 rounded-full bg-primary-blue text-white font-semibold hover:bg-secondary-accent-blue transition disabled:opacity-30 disabled:cursor-not-allowed">
+                            class="px-6 py-2 rounded-full bg-[#1e57be] text-white font-semibold hover:bg-[#6cc9ff] transition disabled:opacity-30 disabled:cursor-not-allowed">
                             Next &rarr;
                         </button>
                     </div>
@@ -1062,8 +1089,8 @@
         <style>
             .neon-card {
                 background-color: #ffffff;
-                border-radius: 12px;
                 border: 1px solid rgba(30, 87, 190, 0.08);
+                border: none;
                 transition: all 0.3s;
                 /* Mobile: Card takes full width */
                 width: 100%;
@@ -1081,8 +1108,8 @@
 
             .neon-card:hover {
                 transform: scale(1.02);
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-                background-color: #f7f8fd;
+                box-shadow: 0 10px 30px rgba(30, 87, 190, 0.08);
+                background-color: #ffffff;
             }
 
             #slider-track {
@@ -1099,14 +1126,18 @@
                 height: 12px;
                 border-radius: 50%;
                 background-color: #8fa9b1;
+                /* Darker gray for inactive dots */
                 transition: all 0.3s ease;
                 cursor: pointer;
             }
 
             .slider-dot.active {
                 background-color: #1e57be !important;
-                box-shadow: none;
-                transform: scale(1.2);
+            }
+
+            .neon-button:hover:not(:disabled) {
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                transform: scale(1.05);
             }
 
             @media (max-width: 640px) {
@@ -1123,9 +1154,9 @@
                     /* More space between dots */
                 }
             }
+
             .slider-dot:hover {
                 background-color: #6cc9ff;
-                box-shadow: none;
             }
         </style>
         <script>
@@ -1240,23 +1271,23 @@
         </script>
     </section>
     <!-- Row 5: Contact (Page 5) - UPDATED TO TWO BOXES -->
-    <section id="contact-page" class="py-16 px-4 sm:px-8">
+    <section id="contact-page" class="py-6 sm:py-10 px-4 sm:px-8 bg-section transition-colors duration-500">
         <div class="w-full lg:max-w-6xl mx-auto">
             <h2
-                class="text-3xl sm:text-4xl font-bold text-primary-blue text-center mb-8 sm:mb-10">
+                class="text-3xl sm:text-4xl font-bold text-[#1e57be] text-center mb-8 sm:mb-10 transition-colors duration-500">
                 Get In Touch
             </h2>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
                 <!-- Left Column: Contact Information and Social Links -->
-                <div class="flex flex-col justify-between">
+                <div class="card-bg p-8 sm:p-12 rounded-3xl flex flex-col justify-between">
                     <div>
-                        <h3 class="text-2xl sm:text-3xl font-semibold text-primary-blue mb-4">
+                        <h3 class="text-2xl sm:text-3xl font-semibold text-[#1e57be] mb-4 transition-colors duration-500">
                             Contact Details
                         </h3>
 
-                        <p class="text-muted-text mb-8">
+                        <p class="text-[#8fa9b1] mb-8">
                             Feel free to reach out via any of the methods below.
                         </p>
 
@@ -1264,70 +1295,74 @@
                         <div class="space-y-6">
                             <!-- 1. Location - Added contact-item class for JS interaction -->
                             <div
-                                class="contact-item flex items-start gap-4 p-4 rounded-xl transition-all duration-300 hover:bg-white hover:shadow-md cursor-pointer">
-                                <div class="flex-shrink-0 p-3 rounded-xl bg-primary-blue/10 text-primary-blue">
+                                class="contact-item flex items-start gap-4 p-4 rounded-xl transition-all duration-300 hover:bg-[#f7f8fd] hover:shadow-md cursor-pointer">
+                                <div class="flex-shrink-0 p-3 rounded-xl bg-[#1e57be]/10 text-[#1e57be]">
                                     <i data-lucide="map-pin" class="w-6 h-6"></i>
                                 </div>
                                 <div>
-                                    <p class="font-semibold text-lg text-primary-text font-semibold">Location</p>
-                                    <p class="text-muted-text">RUET, Rajshahi-6204, Bangladesh</p>
+                                    <p class="font-semibold text-lg text-[#63747a]">Location</p>
+                                    <p class="text-[#8fa9b1]">RUET, Rajshahi-6204, Bangladesh</p>
                                 </div>
                             </div>
                             <!-- 2. Phone Number - Added contact-item class for JS interaction -->
                             <div
-                                class="contact-item flex items-start space-x-4 p-3 rounded-xl transition-all duration-300 hover:bg-white hover:scale-[1.02] hover:shadow-md cursor-pointer">
-                                <div class="flex-shrink-0 p-3 rounded-xl bg-primary-blue/10 text-primary-blue">
+                                class="contact-item flex items-start space-x-4 p-3 rounded-xl transition-all duration-300 hover:bg-[#f7f8fd] hover:scale-[1.02] hover:shadow-md cursor-pointer">
+                                <div class="flex-shrink-0 p-3 rounded-xl bg-[#1e57be]/10 text-[#1e57be]">
                                     <i data-lucide="phone" class="w-6 h-6"></i>
                                 </div>
                                 <div>
-                                    <p class="font-semibold text-lg text-primary-text font-semibold">Phone Number</p>
-                                    <p class="text-muted-text">+880 1880 168384</p>
+                                    <p class="font-semibold text-lg text-[#63747a]">Phone Number</p>
+                                    <p class="text-[#8fa9b1]">+880 1880 168384</p>
                                 </div>
                             </div>
                             <!-- 3. Email Address - Added contact-item class for JS interaction -->
                             <div
-                                class="contact-item flex items-start space-x-4 p-3 rounded-xl transition-all duration-300 hover:bg-white hover:scale-[1.02] hover:shadow-md cursor-pointer">
-                                <div class="flex-shrink-0 p-3 rounded-xl bg-primary-blue/10 text-primary-blue">
+                                class="contact-item flex items-start space-x-4 p-3 rounded-xl transition-all duration-300 hover:bg-[#f7f8fd] hover:scale-[1.02] hover:shadow-md cursor-pointer">
+                                <div class="flex-shrink-0 p-3 rounded-xl bg-[#1e57be]/10 text-[#1e57be]">
                                     <i data-lucide="mail" class="w-6 h-6"></i>
                                 </div>
                                 <div>
-                                    <p class="font-semibold text-lg text-primary-text font-semibold">Email Address</p>
-                                    <p class="text-muted-text">mehedi168384@gmail.com</p>
+                                    <p class="font-semibold text-lg text-[#63747a]">Email Address</p>
+                                    <p class="text-[#8fa9b1]">mehedi168384@gmail.com</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Social Media Icons (UPDATED TO 2x3 GRID) -->
-                    <div class="mt-8 pt-6 border-t border-[rgba(30,87,190,0.08)] text-center">
-                        <h4 class="text-xl font-semibold text-primary-text font-semibold mb-4">Connect with me</h4>
+                    <div class="mt-8 pt-6 border-t border-[#1e57be]/10 text-center">
+                        <h4 class="text-xl font-semibold text-[#63747a] mb-4">Connect with me</h4>
                         <!-- New Grid Layout: 3 columns with centering and gap -->
                         <div class="grid grid-cols-3 gap-y-4 gap-x-2 justify-items-center mx-auto max-w-sm">
                             <!-- 1. LinkedIn (Existing URL) -->
                             <a href="https://www.linkedin.com/in/mehedihasan79?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-                                target="_blank" class="text-muted-text hover:text-primary-blue transition duration-300"
+                                target="_blank" class="text-[#8fa9b1] hover:text-[#1e57be] transition duration-300"
                                 title="LinkedIn">
                                 <i data-lucide="linkedin" class="w-8 h-8"></i>
                             </a>
                             <!-- 2. Facebook (Existing URL) -->
                             <a href="https://www.facebook.com/share/1BcT4TakQ5/" target="_blank"
-                                class="text-muted-text hover:text-primary-blue transition duration-300" title="Facebook">
+                                class="text-[#8fa9b1] hover:text-[#1e57be] transition duration-300" title="Facebook">
                                 <i data-lucide="facebook" class="w-8 h-8"></i>
                             </a>
                             <!-- 3. Instagram (Existing URL) -->
-                            <a href="https://www.instagram.com/mehedi.hasan_79?igsh=ZXRjeXJubmg1bHk5" target="_blank" class="text-muted-text hover:text-primary-blue transition duration-300" title="Instagram">
+                            <a href="https://www.instagram.com/mehedi.hasan_79?igsh=ZXRjeXJubmg1bHk5" target="_blank"
+                                class="text-[#8fa9b1] hover:text-[#1e57be] transition duration-300" title="Instagram">
                                 <i data-lucide="instagram" class="w-8 h-8"></i>
                             </a>
                             <!-- 4. Threads (Existing URL) - Using at-sign as the closest representation in Lucide -->
-                            <a href="https://www.threads.com/@mehedi.hasan_79" target="_blank" class="text-muted-text hover:text-primary-blue transition duration-300" title="Threads">
+                            <a href="https://www.threads.com/@mehedi.hasan_79" target="_blank"
+                                class="text-[#8fa9b1] hover:text-[#1e57be] transition duration-300" title="Threads">
                                 <i data-lucide="at-sign" class="w-8 h-8"></i>
                             </a>
                             <!-- 5. X / Twitter (NEW) -->
-                            <a href="https://x.com/mehedi_hasan_79" target="_blank" class="text-muted-text hover:text-primary-blue transition duration-300" title="X (Twitter)">
+                            <a href="https://x.com/mehedi_hasan_79" target="_blank"
+                                class="text-[#8fa9b1] hover:text-[#1e57be] transition duration-300" title="X (Twitter)">
                                 <i data-lucide="twitter" class="w-8 h-8"></i>
                             </a>
                             <!-- 6. GitHub (NEW URL) -->
-                            <a href="https://github.com/mdmehedihasan079" target="_blank" class="text-muted-text hover:text-primary-blue transition duration-300" title="GitHub">
+                            <a href="https://github.com/mdmehedihasan079" target="_blank"
+                                class="text-[#8fa9b1] hover:text-[#1e57be] transition duration-300" title="GitHub">
                                 <i data-lucide="github" class="w-8 h-8"></i>
                             </a>
 
@@ -1336,57 +1371,61 @@
                 </div>
 
                 <!-- Right Column: Send Us A Message Form -->
-                <div class="flex flex-col justify-between">
+                <div class="card-bg p-8 sm:p-12 rounded-3xl flex flex-col justify-between">
                     <div>
-                        <h3 class="text-2xl sm:text-3xl font-semibold text-primary-blue mb-4">
+                        <h3 class="text-2xl sm:text-3xl font-semibold text-[#1e57be] mb-4 transition-colors duration-500">
                             Send Me a Message
                         </h3>
 
 
-                        <p class="text-muted-text mb-6">
+                        <p class="text-[#8fa9b1] mb-6">
                             I look forward to hearing about your project or opportunity.
                         </p>
                         <form id="contact-form" class="space-y-6">
 
                             <!-- Full Name -->
                             <div>
-                                <label for="full-name" class="block text-sm font-medium text-primary-text mb-1">Full
+                                <label for="full-name"
+                                    class="block text-sm font-medium text-[#63747a] mb-1">Full
                                     Name</label>
                                 <input type="text" id="full-name" name="fullName" placeholder="Your name" required
-                                    class="w-full px-4 py-2.5 bg-white border border-[rgba(30,87,190,0.08)] rounded-lg
-focus:ring-primary-blue focus:border-primary-blue placeholder-muted-text
-text-primary-text transition duration-150">
+                                    class="w-full px-4 py-2.5 bg-[#f7f8fd] border border-[#1e57be]/20 rounded-lg
+focus:ring-[#1e57be] focus:border-[#1e57be] placeholder-[#8fa9b1]
+text-[#63747a] transition duration-150">
 
                             </div>
 
                             <!-- Email Address -->
                             <div>
-                                <label for="email" class="block text-sm font-medium text-primary-text mb-1">Email
+                                <label for="email"
+                                    class="block text-sm font-medium text-[#63747a] mb-1">Email
                                     Address</label>
                                 <input type="email" id="email" name="email" placeholder="your.email@example.com"
                                     required
-                                    class="w-full px-4 py-3 bg-white border border-[rgba(30,87,190,0.08)] rounded-lg focus:ring-primary-blue focus:border-primary-blue placeholder-muted-text text-primary-text transition duration-150">
+                                    class="w-full px-4 py-3 bg-[#f7f8fd] border border-[#1e57be]/20 rounded-lg focus:ring-[#1e57be] focus:border-[#1e57be] placeholder-[#8fa9b1] text-[#63747a] transition duration-150">
                             </div>
 
                             <!-- Subject -->
                             <div>
-                                <label for="subject" class="block text-sm font-medium text-primary-text mb-1">Subject</label>
+                                <label for="subject"
+                                    class="block text-sm font-medium text-[#63747a] mb-1">Subject</label>
                                 <input type="text" id="subject" name="subject"
                                     placeholder="Project Inquiry, Job Offer, etc." required
-                                    class="w-full px-4 py-3 bg-white border border-[rgba(30,87,190,0.08)] rounded-lg focus:ring-primary-blue focus:border-primary-blue placeholder-muted-text text-primary-text transition duration-150">
+                                    class="w-full px-4 py-3 bg-[#f7f8fd] border border-[#1e57be]/20 rounded-lg focus:ring-[#1e57be] focus:border-[#1e57be] placeholder-[#8fa9b1] text-[#63747a] transition duration-150">
                             </div>
 
                             <!-- Message -->
                             <div>
-                                <label for="message" class="block text-sm font-medium text-primary-text mb-1">Message</label>
+                                <label for="message"
+                                    class="block text-sm font-medium text-[#63747a] mb-1">Message</label>
                                 <textarea id="message" name="message" rows="6" placeholder="I'd like to discuss..."
                                     required
-                                    class="w-full px-4 py-3 bg-white border border-[rgba(30,87,190,0.08)] rounded-lg focus:ring-primary-blue focus:border-primary-blue placeholder-muted-text text-primary-text transition duration-150 resize-none"></textarea>
+                                    class="w-full px-4 py-3 bg-[#f7f8fd] border border-[#1e57be]/20 rounded-lg focus:ring-[#1e57be] focus:border-[#1e57be] placeholder-[#8fa9b1] text-[#63747a] transition duration-150 resize-none"></textarea>
                             </div>
 
                             <!-- Submit Button -->
                             <button type="submit"
-                                class="w-full flex items-center justify-center px-6 py-3 border border-transparent text-base font-semibold rounded-lg text-white bg-primary-blue hover:bg-secondary-accent-blue transition duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-blue focus:ring-offset-main-bg">
+                                class="w-full flex items-center justify-center px-6 py-3 border border-transparent text-base font-semibold rounded-lg text-white bg-[#1e57be] hover:bg-[#6cc9ff] transition duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1e57be] focus:ring-offset-white">
                                 <i data-lucide="send" class="w-5 h-5 mr-2 -ml-1 transform rotate-45"></i>
                                 Send Message
                             </button>
@@ -1397,19 +1436,19 @@ text-primary-text transition duration-150">
     </section>
 
     <!-- NEW SECTION: Closing Message / Final CTA -->
-    <section class="py-12 px-4 sm:px-8">
+    <section class="py-12 px-4 sm:px-8 transition-colors duration-500">
         <div
-            class="max-w-4xl mx-auto text-center p-8">
-            <p class="text-2xl sm:text-3xl font-light italic text-primary-text leading-snug">
+            class="max-w-4xl mx-auto text-center p-8 rounded-2xl border-4 border-[#1e57be]/30 bg-white">
+            <p class="text-2xl sm:text-3xl font-light italic text-[#63747a] leading-snug">
                 Thank you for exploring my portfolio. I’d love to hear from you—<span
-                    class="font-semibold text-primary-blue">feel free to reach out!</span>
+                    class="font-semibold text-[#1e57be]">feel free to reach out!</span>
             </p>
         </div>
     </section>
 
 
     <!-- START: Enhanced Footer Section (Replaces old simple footer) -->
-    <footer class="bg-white text-primary-text border-t border-[rgba(30,87,190,0.08)]">
+    <footer class="bg-white text-[#63747a] border-t border-[#1e57be]/10">
         <!-- REDUCED VERTICAL PADDING: py-16 -> py-12 (3rem) -->
         <div class="container mx-auto px-6 pt-12 pb-0">
             <!-- REDUCED GRID GAP: gap-12 -> gap-8 (2rem) -->
@@ -1420,7 +1459,7 @@ text-primary-text transition duration-150">
                     <div class="mb-3">
 
                         <h6
-                            class="text-2xl font-semibold hover:font-extrabold text-primary-blue tracking-widest uppercase hover:text-secondary-accent-blue transition duration-300">
+                            class="text-2xl font-semibold hover:font-extrabold text-[#1e57be] tracking-widest uppercase transition duration-300">
                             MD Mehedi Hasan
                         </h6>
 
@@ -1435,7 +1474,7 @@ text-primary-text transition duration-150">
                 </div>
                 <!-- 2. Quick Links (Responsive Two Column Layout) -->
                 <div>
-                    <h4 class="text-primary-text font-semibold mb-4 border-l-2 border-primary-blue pl-3">
+                    <h4 class="text-[#1e57be] font-semibold mb-4 border-l-2 border-[#1e57be] pl-3">
                         Quick Links
                     </h4>
 
@@ -1445,21 +1484,21 @@ text-primary-text transition duration-150">
                         <ul class="space-y-2">
                             <li>
                                 <a href="#home"
-                                    class="text-sm hover:text-secondary-accent-blue transition duration-200 inline-block hover:translate-x-1">
+                                    class="text-sm hover:text-[#1e57be] transition duration-200 inline-block hover:translate-x-1">
                                     Home
                                 </a>
                             </li>
 
                             <li>
                                 <a href="#about-page"
-                                    class="text-sm hover:text-secondary-accent-blue transition duration-200 inline-block hover:translate-x-1">
+                                    class="text-sm hover:text-[#1e57be] transition duration-200 inline-block hover:translate-x-1">
                                     About
                                 </a>
                             </li>
 
                             <li>
                                 <a href="#research-page"
-                                    class="text-sm hover:text-secondary-accent-blue transition duration-200 inline-block hover:translate-x-1">
+                                    class="text-sm hover:text-[#1e57be] transition duration-200 inline-block hover:translate-x-1">
                                     Research
                                 </a>
                             </li>
@@ -1469,21 +1508,21 @@ text-primary-text transition duration-150">
                         <ul class="space-y-2">
                             <li>
                                 <a href="#skills-page"
-                                    class="text-sm hover:text-secondary-accent-blue transition duration-200 inline-block hover:translate-x-1">
+                                    class="text-sm hover:text-[#1e57be] transition duration-200 inline-block hover:translate-x-1">
                                     My Skills
                                 </a>
                             </li>
 
                             <li>
                                 <a href="#portfolio-page"
-                                    class="text-sm hover:text-secondary-accent-blue transition duration-200 inline-block hover:translate-x-1">
+                                    class="text-sm hover:text-[#1e57be] transition duration-200 inline-block hover:translate-x-1">
                                     Portfolio
                                 </a>
                             </li>
 
                             <li>
                                 <a href="#contact-page"
-                                    class="text-sm hover:text-secondary-accent-blue transition duration-200 inline-block hover:translate-x-1">
+                                    class="text-sm hover:text-[#1e57be] transition duration-200 inline-block hover:translate-x-1">
                                     Contact
                                 </a>
                             </li>
@@ -1494,54 +1533,54 @@ text-primary-text transition duration-150">
 
                 <!-- 3. Get In Touch / CTA -->
                 <div>
-                    <h4 class="text-primary-text font-semibold mb-4 border-l-2 border-primary-blue pl-3">Get In Touch
+                    <h4 class="text-[#1e57be] font-semibold mb-4 border-l-2 border-[#1e57be] pl-3">Get In Touch
                     </h4>
                     <p class="text-sm mb-4">Have a project in mind?</p>
                     <a href="#contact-page"
-                        class="inline-block px-5 py-2 text-sm font-medium bg-primary-blue text-white rounded-lg shadow-lg hover:bg-secondary-accent-blue transition duration-300">
+                        class="inline-block px-5 py-2 text-sm font-medium bg-[#1e57be] text-white rounded-lg shadow-lg hover:bg-[#6cc9ff] transition duration-300">
                         Let's talk
                     </a>
-                    <p class="text-xs mt-4 text-muted-text">Based in Rajshahi, Bangladesh</p>
+                    <p class="text-xs mt-4 text-[#8fa9b1]">Based in Rajshahi, Bangladesh</p>
                 </div>
                 <!-- 4. Follow Me & Newsletter (Updated Social Icons with Lucide) -->
                 <div>
-                    <h4 class="text-primary-text font-semibold mb-4 border-l-2 border-primary-blue pl-3">Follow Me</h4>
+                    <h4 class="text-[#1e57be] font-semibold mb-4 border-l-2 border-[#1e57be] pl-3">Follow Me</h4>
                     <!-- Social Icons (LinkedIn, Facebook, Instagram, Threads, Twitter, GitHub) -->
                     <div class="flex space-x-4 mb-6">
                         <!-- LinkedIn -->
                         <a href="https://www.linkedin.com/in/mehedihasan79?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
                             target="_blank"
-                            class="p-2 border border-[rgba(30,87,190,0.08)] rounded-full hover:bg-gray-700 text-muted-text hover:text-primary-blue transition duration-300"
+                            class="p-2 border border-[#1e57be]/20 rounded-full hover:bg-[#f7f8fd] text-[#63747a] hover:text-[#1e57be] transition duration-300"
                             aria-label="LinkedIn">
                             <i data-lucide="linkedin" class="w-5 h-5"></i>
                         </a>
                         <!-- Facebook -->
                         <a href="https://www.facebook.com/share/1BcT4TakQ5/" target="_blank"
-                            class="p-2 border border-[rgba(30,87,190,0.08)] rounded-full hover:bg-gray-700 text-muted-text hover:text-primary-blue transition duration-300"
+                            class="p-2 border border-[#1e57be]/20 rounded-full hover:bg-[#f7f8fd] text-[#63747a] hover:text-[#1e57be] transition duration-300"
                             aria-label="Facebook">
                             <i data-lucide="facebook" class="w-5 h-5"></i>
                         </a>
                         <!-- Instagram -->
                         <a href="https://www.instagram.com/mehedi.hasan_79?igsh=ZXRjeXJubmg1bHk5" target="_blank"
-                            class="p-2 border border-[rgba(30,87,190,0.08)] rounded-full hover:bg-gray-700 text-muted-text hover:text-primary-blue transition duration-300"
+                            class="p-2 border border-[#1e57be]/20 rounded-full hover:bg-[#f7f8fd] text-[#63747a] hover:text-[#1e57be] transition duration-300"
                             aria-label="Instagram">
                             <i data-lucide="instagram" class="w-5 h-5"></i>
                         </a>
                         <!-- Threads (Using Lucide 'at-sign' as before) -->
                         <a href="https://www.threads.com/@mehedi.hasan_79" target="_blank"
-                            class="p-2 border border-[rgba(30,87,190,0.08)] rounded-full hover:bg-gray-700 text-muted-text hover:text-primary-blue transition duration-300"
+                            class="p-2 border border-[#1e57be]/20 rounded-full hover:bg-[#f7f8fd] text-[#63747a] hover:text-[#1e57be] transition duration-300"
                             aria-label="Threads">
                             <i data-lucide="at-sign" class="w-5 h-5"></i>
                         </a>
                         <!-- X / Twitter -->
                         <a href="https://x.com/mehedi_hasan_79" target="_blank"
-                            class="p-2 border border-[rgba(30,87,190,0.08)] rounded-full hover:bg-gray-700 text-muted-text hover:text-primary-blue transition duration-300"
+                            class="p-2 border border-[#1e57be]/20 rounded-full hover:bg-[#f7f8fd] text-[#63747a] hover:text-[#1e57be] transition duration-300"
                             aria-label="Twitter">
                             <i data-lucide="twitter" class="w-5 h-5"></i>
                         </a>
                         <!-- GitHub -->
                         <a href="https://github.com/mdmehedihasan079" target="_blank"
-                            class="p-2 border border-[rgba(30,87,190,0.08)] rounded-full hover:bg-gray-700 text-muted-text hover:text-primary-blue transition duration-300"
+                            class="p-2 border border-[#1e57be]/20 rounded-full hover:bg-[#f7f8fd] text-[#63747a] hover:text-[#1e57be] transition duration-300"
                             aria-label="GitHub">
                             <i data-lucide="github" class="w-5 h-5"></i>
                         </a>
@@ -1550,9 +1589,9 @@ text-primary-text transition duration-150">
                     <p class="text-sm mb-3">Join my newsletter for updates</p>
                     <form class="flex">
                         <input type="email" placeholder="Email address" aria-label="Email address for newsletter"
-                            class="p-2.5 w-full text-sm bg-main-bg border border-[rgba(30,87,190,0.08)] text-primary-text rounded-l-lg focus:ring-primary-blue focus:border-primary-blue focus:outline-none">
+                            class="p-2.5 w-full text-sm bg-[#f7f8fd] border border-[#1e57be]/20 text-[#63747a] rounded-l-lg focus:ring-[#1e57be] focus:border-[#1e57be] focus:outline-none">
                         <button type="submit"
-                            class="px-5 py-2.5 text-sm font-medium bg-primary-blue text-white rounded-r-lg hover:bg-secondary-accent-blue transition duration-300">
+                            class="px-5 py-2.5 text-sm font-medium bg-[#1e57be] text-white rounded-r-lg hover:bg-[#6cc9ff] transition duration-300">
                             Subscribe
                         </button>
                     </form>
@@ -1560,8 +1599,8 @@ text-primary-text transition duration-150">
             </div>
             <!-- Divider -->
             <!-- REDUCED MARGIN AND PADDING: mt-12 pt-8 -> mt-8 pt-6 -->
-            <div class="border-t border-[rgba(30,87,190,0.08)] mt-8 pt-4 pb-4 text-center">
-                <p class="text-sm text-muted-text">
+            <div class="border-t border-[#1e57be]/10 mt-8 pt-4 pb-6 text-center">
+                <p class="text-sm text-[#8fa9b1]">
                     &copy; 2026 Mehedi Hasan. All rights reserved.
                 </p>
             </div>
@@ -1571,7 +1610,7 @@ text-primary-text transition duration-150">
 
     <!-- Scroll to Top Button -->
     <button id="scrollTopBtn" onclick="scrollToTop()"
-        class="bg-primary-blue p-3 rounded-full shadow-xl hover:bg-secondary-accent-blue text-white transition duration-300 focus:outline-none focus:ring-4 focus:ring-secondary-accent-blue focus:ring-opacity-50"
+        class="bg-[#1e57be] p-3 rounded-full shadow-xl hover:bg-[#6cc9ff] text-white transition duration-300 focus:outline-none focus:ring-4 focus:ring-[#1e57be] focus:ring-opacity-50"
         aria-label="Scroll to top">
         <!-- Up Arrow Icon -->
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -1873,11 +1912,11 @@ text-primary-text transition duration-150">
                     const isActive = btn.dataset.tab === tabName;
 
                     if (isActive) {
-                        btn.classList.add("bg-primary-blue", "text-white", "shadow-md");
-                        btn.classList.remove("text-muted-text", "hover:text-primary-blue", "hover:bg-primary-blue/10");
+                        btn.classList.add("bg-[#1e57be]", "text-white", "shadow-md");
+                        btn.classList.remove("text-[#8fa9b1]", "hover:text-[#1e57be]", "hover:bg-[#f7f8fd]");
                     } else {
-                        btn.classList.remove("bg-primary-blue", "text-white", "shadow-md");
-                        btn.classList.add("text-muted-text", "hover:text-primary-blue", "hover:bg-primary-blue/10");
+                        btn.classList.remove("bg-[#1e57be]", "text-white", "shadow-md");
+                        btn.classList.add("text-[#8fa9b1]", "hover:text-[#1e57be]", "hover:bg-[#f7f8fd]");
                     }
                 });
 
