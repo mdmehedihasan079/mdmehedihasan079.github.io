@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meheedi Hasan | Portfolio</title>
+    <title>Mehedi Hasan | Portfolio</title>
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Load Lucide Icons (New addition for professional, scalable icons) -->
@@ -167,6 +167,23 @@
         #certifications {
             display: none;
         }
+
+        /* Ensure the popup is hidden by default */
+        #confirmation-message.hidden {
+            display: none !important;
+        }
+
+        /* Ensure the popup shows and centers when 'flex' is active */
+        #confirmation-message.flex {
+            display: flex !important;
+            opacity: 1 !important;
+            pointer-events: auto !important;
+        }
+
+        /* Prevent scrolling the background when the message is open */
+        body.modal-open {
+            overflow: hidden;
+        }
     </style>
 
     <script>
@@ -243,19 +260,20 @@
 
 <body class="transition-colors duration-500">
     <!-- Confirmation Message Box (Replaces alert()) - Needs to be high in the DOM -->
-    <div id="confirmation-message"
-        class="fixed top-5 left-1/2 -translate-x-1/2 z-50 p-4 bg-[#1e57be] text-white rounded-lg shadow-2xl max-w-sm"
-        role="alert">
-        <div class="flex items-center">
-            <!-- Icon: Check Circle -->
-            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M9 12l2 2l4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-            <p class="font-medium">Message Sent! We'll be in touch soon.</p>
+    <div id="confirmation-message" class="fixed inset-0 z-[9999] hidden items-center justify-center p-4 bg-black/50 backdrop-blur-sm transition-all duration-300">
+    <div class="bg-white rounded-2xl p-8 max-w-sm w-full text-center shadow-2xl transform scale-95 transition-transform duration-300">
+        <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="check-circle" class="w-12 h-12"></i>
         </div>
+        <h3 class="text-2xl font-bold text-gray-800 mb-2">Message Sent!</h3>
+        <p class="text-gray-600 mb-6">Thank you for reaching out. I'll get back to you as soon as possible.</p>
+
+        <button onclick="const msg = document.getElementById('confirmation-message'); msg.classList.replace('flex', 'hidden'); document.body.style.overflow = '';"
+            class="w-full py-3 bg-[#1e57be] text-white font-semibold rounded-xl hover:bg-[#6cc9ff] transition-colors">
+            Close
+        </button>
     </div>
+</div>
 
     <!-- Fixed Navigation Bar -->
     <nav class="fixed top-0 left-0 w-full nav-bg z-50 shadow-sm">
@@ -898,18 +916,35 @@
     <section id="portfolio-page" class="py-6 sm:py-10 px-4 sm:px-8 bg-section transition-colors duration-500">
 
         <div class="w-full lg:max-w-6xl mx-auto card-bg rounded-3xl pt-8 pb-6 sm:pt-12 sm:pb-8 px-8">
-            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-8">
-
-                <h2 class="text-3xl sm:text-4xl font-bold text-[#1e57be] transition-colors duration-500 mb-4 lg:mb-0">
-                    Mechanical Design Portfolio
-                </h2>
-
-                <div
-                    class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1e57be] text-white shadow-md hover:bg-[#6cc9ff] transition-all duration-300 cursor-pointer">
-                    <i data-lucide="download" class="w-4 h-4"></i>
-                    <span class="text-sm font-medium">Design Portfolio (PDF)</span>
+            <div class="mb-8">
+                <!-- MOBILE LAYOUT: block on small screens, hidden on sm and up -->
+                <div class="block sm:hidden">
+                    <div class="flex flex-col gap-4">
+                        <h2 class="text-3xl font-bold text-[#1e57be]">
+                            Mechanical Design
+                        </h2>
+                        <div class="flex justify-between items-center">
+                            <h2 class="text-3xl font-bold text-[#1e57be]">
+                                Portfolio
+                            </h2>
+                            <div class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1e57be] text-white shadow-md hover:bg-[#6cc9ff] transition-all duration-300 cursor-pointer whitespace-nowrap">
+                                <i data-lucide="download" class="w-4 h-4"></i>
+                                <span class="text-sm font-medium">PDF</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
+        
+                <!-- DESKTOP LAYOUT: hidden by default, flex on sm and up -->
+                <div class="hidden sm:flex sm:items-center sm:justify-between gap-4">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-[#1e57be] transition-colors duration-500">
+                        Mechanical Design Portfolio
+                    </h2>
+                    <div class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1e57be] text-white shadow-md hover:bg-[#6cc9ff] transition-all duration-300 cursor-pointer whitespace-nowrap">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        <span class="text-sm font-medium">Design Portfolio (PDF)</span>
+                    </div>
+                </div>
             </div>
 
             <!-- Slider Wrapper: Hides overflow -->
@@ -1427,7 +1462,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Right Column: Send Us A Message Form -->
                 <div class="card-bg p-8 sm:p-12 rounded-3xl flex flex-col justify-between">
                     <div>
@@ -1436,73 +1470,57 @@
                             Send Me a Message
                         </h3>
 
-
                         <p class="text-[#8fa9b1] mb-6">
                             I look forward to hearing about your project or opportunity.
                         </p>
-                        <form action="https://formspree.io/f/mnjbzzyr" method="POST" class="space-y-6">
-
-                            <input type="hidden" name="_subject" value="New Portfolio Contact Message">
-                            <input type="hidden" name="_captcha" value="false">
-                            <input type="hidden" name="_next" value="https://mdmehedihasan079.github.io/">
+                        <form id="contact-form" class="space-y-6">
 
 
                             <!-- Full Name -->
                             <div>
-                                <label for="full-name" class="block text-sm font-medium text-[#63747a] mb-1">
-                                    Full Name
-                                </label>
+                                <label for="full-name" class="block text-sm font-medium text-[#63747a] mb-1">Full
+                                    Name</label>
                                 <input type="text" id="full-name" name="fullName" placeholder="Your name" required
                                     class="w-full px-4 py-2.5 bg-[#f7f8fd] border border-[#1e57be]/20 rounded-lg
-                          focus:ring-[#1e57be] focus:border-[#1e57be] placeholder-[#8fa9b1]
-            text-[#63747a] transition duration-150">
+focus:ring-[#1e57be] focus:border-[#1e57be] placeholder-[#8fa9b1]
+text-[#63747a] transition duration-150">
+
                             </div>
 
                             <!-- Email Address -->
                             <div>
-                                <label for="email" class="block text-sm font-medium text-[#63747a] mb-1">
-                                    Email Address
-                                </label>
-                                <input type="email" id="email" name="email" placeholder="your.email@example.com"
-                                    required class="w-full px-4 py-3 bg-[#f7f8fd] border border-[#1e57be]/20 rounded-lg
-            focus:ring-[#1e57be] focus:border-[#1e57be]
-            placeholder-[#8fa9b1] text-[#63747a] transition duration-150">
+                                <label for="email" class="block text-sm font-medium text-[#63747a] mb-1">Email
+                                    Address</label>
+                                <input type="email" id="email" name="email" required
+                                    placeholder="your.email@example.com" required
+                                    class="w-full px-4 py-3 bg-[#f7f8fd] border border-[#1e57be]/20 rounded-lg focus:ring-[#1e57be] focus:border-[#1e57be] placeholder-[#8fa9b1] text-[#63747a] transition duration-150">
                             </div>
 
                             <!-- Subject -->
                             <div>
-                                <label for="subject" class="block text-sm font-medium text-[#63747a] mb-1">
-                                    Subject
-                                </label>
+                                <label for="subject"
+                                    class="block text-sm font-medium text-[#63747a] mb-1">Subject</label>
                                 <input type="text" id="subject" name="subject"
-                                    placeholder="Project Inquiry, Job Offer, etc." required class="w-full px-4 py-3 bg-[#f7f8fd] border border-[#1e57be]/20 rounded-lg
-            focus:ring-[#1e57be] focus:border-[#1e57be]
-            placeholder-[#8fa9b1] text-[#63747a] transition duration-150">
+                                    placeholder="Project Inquiry, Job Offer, etc." required
+                                    class="w-full px-4 py-3 bg-[#f7f8fd] border border-[#1e57be]/20 rounded-lg focus:ring-[#1e57be] focus:border-[#1e57be] placeholder-[#8fa9b1] text-[#63747a] transition duration-150">
                             </div>
 
                             <!-- Message -->
                             <div>
-                                <label for="message" class="block text-sm font-medium text-[#63747a] mb-1">
-                                    Message
-                                </label>
+                                <label for="message"
+                                    class="block text-sm font-medium text-[#63747a] mb-1">Message</label>
                                 <textarea id="message" name="message" rows="6" placeholder="I'd like to discuss..."
-                                    required class="w-full px-4 py-3 bg-[#f7f8fd] border border-[#1e57be]/20 rounded-lg
-            focus:ring-[#1e57be] focus:border-[#1e57be]
-            placeholder-[#8fa9b1] text-[#63747a] transition duration-150 resize-none">
-        </textarea>
+                                    required
+                                    class="w-full px-4 py-3 bg-[#f7f8fd] border border-[#1e57be]/20 rounded-lg focus:ring-[#1e57be] focus:border-[#1e57be] placeholder-[#8fa9b1] text-[#63747a] transition duration-150 resize-none"></textarea>
                             </div>
 
                             <!-- Submit Button -->
-                            <button type="submit" class="w-full flex items-center justify-center px-6 py-3 border border-transparent
-        text-base font-semibold rounded-lg text-white bg-[#1e57be]
-        hover:bg-[#6cc9ff] transition duration-300 focus:outline-none
-        focus:ring-2 focus:ring-offset-2 focus:ring-[#1e57be] focus:ring-offset-white">
+                            <button type="submit"
+                                class="w-full flex items-center justify-center px-6 py-3 border border-transparent text-base font-semibold rounded-lg text-white bg-[#1e57be] hover:bg-[#6cc9ff] transition duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1e57be] focus:ring-offset-white">
                                 <i data-lucide="send" class="w-5 h-5 mr-2 -ml-1 transform rotate-45"></i>
                                 Send Message
                             </button>
-
                         </form>
-
                     </div>
                 </div>
             </div>
@@ -1517,7 +1535,6 @@
             </p>
         </div>
     </section>
-
 
     <!-- START: Enhanced Footer Section (Replaces old simple footer) -->
     <footer class="bg-white text-[#63747a] border-t border-[#1e57be]/10">
@@ -1872,69 +1889,70 @@
             });
         });
 
-        // --- Form Submission Logic (Contact Page) ---
+        // --- Form Submission Logic (Contact Page) - LIVE AJAX VERSION ---
         const form = document.getElementById('contact-form');
         const confirmationMessage = document.getElementById('confirmation-message');
 
-        /**
-         * Clears the form and shows a confirmation message (mock submission).
-         * @param {Event} event The form submission event.
-         */
-        function handleFormSubmit(event) {
+        async function handleFormSubmit(event) {
             event.preventDefault();
 
-            // In a real application, you would send this data to a server here (e.g., using fetch API).
             const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
-            console.log("Mock submission data:", data);
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
 
-            form.reset();
+            // Set button to loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Sending...';
 
-            // Show confirmation message
-            confirmationMessage.classList.add('show');
-            // Re-render icons if needed, though they shouldn't change for the message box
-            if (typeof lucide !== 'undefined') { lucide.createIcons(); }
+            try {
+                const response = await fetch("https://formspree.io/f/mnjbzzyr", {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
 
-            setTimeout(() => {
-                confirmationMessage.classList.remove('show');
-            }, 5000);
+                if (response.ok) {
+                    // Success! Reset the form
+                    form.reset();
 
-            console.log("Form submitted successfully. Mock data sent.");
+                    if (confirmationMessage) {
+                        // 1. Show the box by swapping 'hidden' for 'flex'
+                        confirmationMessage.classList.replace('hidden', 'flex');
+
+                        // 2. NEW: Lock background scrolling so the user stays on the message
+                        document.body.style.overflow = 'hidden';
+
+                        // Refresh icons if using Lucide
+                        if (typeof lucide !== 'undefined') { lucide.createIcons(); }
+
+                        // 3. Automatically hide it after 6 seconds and unlock scrolling
+                        setTimeout(() => {
+                            if (confirmationMessage.classList.contains('flex')) {
+                                confirmationMessage.classList.replace('flex', 'hidden');
+                                document.body.style.overflow = ''; // Unlock scrolling
+                            }
+                        }, 6000);
+                    }
+                } else {
+                    // Error handling
+                    const data = await response.json();
+                    alert(data.errors ? data.errors[0].message : "Submission failed.");
+                }
+            } catch (error) {
+                alert("Connection error. Please check your internet.");
+            } finally {
+                // Restore button state
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+                if (typeof lucide !== 'undefined') { lucide.createIcons(); }
+            }
         }
 
         if (form) {
             form.addEventListener('submit', handleFormSubmit);
         }
-
-        // --- JavaScript for Scroll to Top Button (NEW) ---
-        const btn = document.getElementById('scrollTopBtn');
-
-        // Function to scroll to the top of the document
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-
-        // Show or hide the button based on scroll position (500px threshold)
-        window.addEventListener('scroll', function () {
-            if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
-                btn.classList.add('show');
-            } else {
-                btn.classList.remove('show');
-            }
-        });
-
-        // Attach the function globally (needed for onclick attribute)
-        window.scrollToTop = scrollToTop;
-
-        // Final icon rendering to ensure all elements including the new footer and scroll button are initialized
-        window.addEventListener('load', () => {
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
-        });
 
         // --- JavaScript for Mobile Menu Toggle ---
         const mobileOverlay = document.getElementById('mobile-overlay');
